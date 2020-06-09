@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/blob/master/shape/README.md#top">
-     SH APE (SHaring Anyones Programs and Environment)
+     SH APE (SHare A Program + Environment)
    </a>
 </h1>
 <p align=center>
@@ -32,7 +32,7 @@ BEGIN{  APE["oid"]  = 0
         APE["up"]   = APE["dot"] APE["dot"]
 }
 function List(i)    { split("",i,"") }
-function Object(i)  { List(i); i["is"] = "Object"; i["oid"] = ++APE["oid"] }
+function Object(i)  { List(i); i["ois"] = "Object"; i["oid"] = ++APE["oid"] }
 
 function zap(i,k)  { k = k?k:length(i)+1; i[k][0]; List(i[k]); return k } 
 
@@ -44,13 +44,13 @@ function inherit(k,f,   g) {
   while(k) {
     g = k f
     if (g in FUNCTAB) return g
-    k = APE["is"][k]
+    k = APE["ois"][k]
   }
   print "#E> failed method lookup: ["f"]"
   exit 2
 }
 function is(i,x) {
-  if ("is" in i) { APE["is"][x] = i["is"] }
-  i["is"] = x
+  if ("ois" in i) { APE["ois"][x] = i["ois"] }
+  i["ois"] = x
 }
 ```
