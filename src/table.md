@@ -23,7 +23,8 @@ function read(i,f,    r,c) {
   f  = f ? f : "-"
   r  = -1
   while((getline f) > 0)  { 
-    gsub(/[ \t\r]*/, "")
+    gsub(/([ \t\r]*|#.*)/, "")
+    if (length($0)==0) continue
     if(++r == 0) {
       for(c=1; c<=NF; c++) 
         if ($c !~ /\?/)

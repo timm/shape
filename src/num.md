@@ -42,7 +42,7 @@ Updates
 ```awk
 function NumAdd(i,v,    d) {
   if (v=="?") return v
-  v += 0
+  v += 0 # coerce to string
   i.n++
   i.lo  = v < i.lo ? v : i.lo
   i.hi  = v > i.hi ? v : i.hi
