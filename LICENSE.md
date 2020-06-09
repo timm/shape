@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/blob/master/shape/README.md#top">
-     SH APE = Simple HAck 4   Programs + documeEntation
+     SH ape = Simple HAck 4   Programs + documeEntation
    </a>
 </h1>
 <p align=center>
@@ -26,7 +26,7 @@
 
 MIT License
 
-Copyright (c) 2020 sh ell
+Copyright (c) 2020 SH ape
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
