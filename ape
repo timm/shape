@@ -59,7 +59,7 @@ here() { cd $1; basename `pwd`; }
 exists() { 
   if [ ! -f "$Ape/$1"  ]; then
     if  [ -f "$Ape/$2" ]; then
-      cp $Ape/$2 > $Ape/$1
+      cp $Ape/$2 $Ape/$1
     fi
   fi
 }
@@ -82,7 +82,6 @@ if ls src/*.md  >/dev/null 2>&1; then for i in src/*.md ;  do trans $i; done fi
 k=$Ape/.var/$(basename $1 .md).awk
 if [ -f "$k" ]; then
   if [ -t 0 ]; then
-    echo "AWKPATH='$Ape/.var:$AWKPATH'  gawk  -f $k"
     AWKPATH="$Ape/.var:$AWKPATH"  gawk  -f $k
   else
     cat - | AWKPATH="$Ape/.var:$AWKPATH"  gawk $j -f $k
