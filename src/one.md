@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/blob/master/shape/README.md#top">
-     SH APE (SHAre Programs + documeEntation)
+     SH APE = SHAred Programs + documeEntation
    </a>
 </h1>
 <p align=center>
