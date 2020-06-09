@@ -1,14 +1,16 @@
 # <a name=top>
 # <h1 align=center>
-#    <a href="https://github.com/timm/blob/master/shape/README.md#top">SH APE (SHaring A Programmer Environment)</a>
+#    <a href="https://github.com/timm/blob/master/shape/README.md#top">
+#      SH APE (SHaring A Programmer Environment)
+#    </a>
 # </h1>
 # <p align=center>
-#    <a href="https://github.com/timm/shape/blob/master/LICENSE">license</a> ::
-#    <a href="https://github.com/timm/shape/blob/master/INSTALL.md#top">install</a> ::
-#    <a href="https://github.com/timm/shape/blob/master/CODE_OF_CONDUCT.md#top">contribute</a> ::
-#    <a href="https://github.com/timm/shape/issues">issues</a> ::
-#    <a href="https://github.com/timm/shape/blob/master/CITATION.md#top">cite</a> ::
-#    <a href="https://github.com/timm/shape/blob/master/CONTACT.md#top">contact</a>
+#    <a href="https://github.com/timm/shape/blob/master/LICENSE">license</a>
+#    :: <a href="https://github.com/timm/shape/blob/master/INSTALL.md#top">install</a>
+#    :: <a href="https://github.com/timm/shape/blob/master/CODE_OF_CONDUCT.md#top">contribute</a>
+#    :: <a href="https://github.com/timm/shape/issues">issues</a>
+#    :: <a href="https://github.com/timm/shape/blob/master/CITATION.md#top">cite</a>
+#    :: <a href="https://github.com/timm/shape/blob/master/CONTACT.md#top">contact</a>
 # </p>
 # <p align=center>
 #    <img width=600 src="https://github.com/timm/misc/blob/master/odd/etc/img/solidgallery.gif">
