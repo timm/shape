@@ -20,8 +20,7 @@ banner() { cat<<'EOF'
 
 EOF
 }
-
-trans1() { gawk '
+tran() { gawk '
   function transpile(s) {
     s = gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/, 
               "[\"\\1\\2\"]","g",s) 
@@ -36,24 +35,40 @@ trans1() { gawk '
                          { print (In ? "# " : "")  $0 } '
 }
 trans() {
-  local j=$Ape/.var/$(basename $1 .md).awk
-  if [ "$1" -nt "$j" ]; then
-    cat $1 | trans1 > $j
-  fi
+  local f=`find $Ape/src $Ape/test -name '*.md'`
+  if [ -n "$f" ]; then 
+    for g in $f 
+    do 
+      local h=$Ape/.var/$(basename $g .md).awk
+      if [ "$g" -nt "$h" ]; then
+        cat $g | tran > $h
+      fi
+    done
+   fi
 }
 doc() {
-  if [ "$Ape/README.md" -nt "$1" ]; then
-    x=$(mktemp)
-    cat $Ape/README.md | gawk '
+  cat $Ape/README.md | gawk '
         BEGIN { FS="\n"; RS="" } 
-              { print; exit 0  }'  > $x
-    cat $1 | gawk '
+              { print; exit 0  }'  
+  cat $1 | gawk '
         BEGIN { FS="\n"; RS="" } 
         NR==1 && $1~/name=top>/ { next }
-              { print ""; print }'  >> $x
-    mv $x $1
+              { print ""; print }'  
+}
+docs() {
+  local f=`find $Ape  -name '*.md'`
+  if [ -n "$f" ]; then 
+    for g in $f
+    do
+       if [ "$Ape/README.md" -nt "$g" ]; then
+         local h=$(mktemp)
+         doc $g > $h
+         mv $h $g
+       fi
+    done
   fi
 }
+
 here() { cd $1; basename `pwd`; }
 
 exists() { 
@@ -68,16 +83,14 @@ exists() {
 
 mkdir -p $Ape/.var
 mkdir -p $Ape/etc/dot
+mkdir -p $Ape/src
+mkdir -p $Ape/test
 
 exists .gitignore etc/dot/gitignore
 exists .travis.yml etc/dot/travisyml
 
-if ls      *.md >/dev/null 2>&1; then for i in *.md      ; do doc   $i; done fi
-if ls test/*.md >/dev/null 2>&1; then for i in test/*.md ; do doc   $i; done fi
-if ls src/*.md  >/dev/null 2>&1; then for i in src/*.md ;  do doc   $i; done fi
-
-if ls test/*.md >/dev/null 2>&1; then for i in test/*.md ; do trans $i; done fi
-if ls src/*.md  >/dev/null 2>&1; then for i in src/*.md ;  do trans $i; done fi
+docs
+trans
 
 k=$Ape/.var/$(basename $1 .md).awk
 if [ -f "$k" ]; then
