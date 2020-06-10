@@ -5,7 +5,7 @@
    </a>
 </h1>
 <p align=center>
-   <a href="https://github.com/timm/shape/blob/master/LICENSE">license</a>
+   <a href="https://github.com/timm/shape/blob/master/LICENSE.md#top">license</a>
    :: <a href="https://github.com/timm/shape/blob/master/INSTALL.md#top">install</a>
    :: <a href="https://github.com/timm/shape/blob/master/CODE_OF_CONDUCT.md#top">contribute</a>
    :: <a href="https://github.com/timm/shape/issues">issues</a>
