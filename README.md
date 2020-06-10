@@ -43,11 +43,12 @@ Use _SHape_ if you want:
 - Simple documentation
    - To write documentation, very quickly, using literature programming.
 
+<img align=righ width=300 src="https://lh3.googleusercontent.com/proxy/WoHuwoUaID-4_l9rtETL5FS-FvC7Ip3JcS10nu_uIPbogYU4QVZ0SIxU9rprAE7lM0LvQS5y3fOZ2SJRThbda6VgUPvbXENB3LRjRN7ullQ2bSIkgJySilz-w5pmv6Q">
 Literate programmers surround their code with test telling the _story_ of that code. The standard literate programming (LP) "3 file model" implements that
 as two post-processors that convert:
 (1) some LP file into
 (2) a documentation files; and
-(3) an excitable code file.
+(3) an excitable source code.
 _SHape_ implement's a simpler model where developers:
 
 1. _Write a doco file._ 
