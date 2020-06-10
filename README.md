@@ -28,14 +28,16 @@
 <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
 After  coding for decades I find myself repeating a common set of
 practices whenever I write in Prolog, Python, Perl, LISP, Smalltalk, 
-CoffeeScript, LUA, Gawk, etc etc.  
-_SHape_  bundles up all those practices in one simple and
+CoffeeScript, LUA, Gawk, or other languages.
+CODE_OF_CONDUCT.md 
+_SHape_ 
+bundles up all those practices in one simple and
 convenient package that supports:
 
 - Fast install:
    - With _SHape_, code can be installed code without having to update config files all over your hard drive.
 - Fast uninstall:
-   - With _SHape_, code can be quickly uninstalled, just by deleting the _SHapre_ directory
+   - With _SHape_, code can be quickly uninstalled, just by deleting the _SHape_ directory
 - Faster coding:
    - In principle, _SHape_ could be support any scripting language. For example
      the version of _SHape_ augments a standard language (gawk) with extensions
