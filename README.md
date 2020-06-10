@@ -37,19 +37,13 @@ Use _SHape_ if you want:
    - With _SHape_, code can be installed code without having to update config files all over your hard drive.
 - Fast uninstall:
    - With _SHape_, code can be fully and easily unistalled, just by deleting the _SHapre_ directory
-- Easy unit testing:
+- Faster coding:
+   - In principle, _SHape_ could be used 
+- Test-drive development:
    - To be able to separate your code into many small files, each of which can be tested severely;
    - To write unit tests checked by Travis CI whenever your commit to the repo.
-- Simple documentation
-   - To write documentation, very quickly, using literature programming.
-
-<img align=righ width=300 src="https://lh3.googleusercontent.com/proxy/WoHuwoUaID-4_l9rtETL5FS-FvC7Ip3JcS10nu_uIPbogYU4QVZ0SIxU9rprAE7lM0LvQS5y3fOZ2SJRThbda6VgUPvbXENB3LRjRN7ullQ2bSIkgJySilz-w5pmv6Q">
-Literate programmers surround their code with test telling the _story_ of that code. The standard literate programming (LP) "3 file model" implements that
-as two post-processors that convert:
-(1) some LP file into
-(2) a documentation files; and
-(3) an excitable source code.
-_SHape_ implement's a simpler model where developers:
+- Doco-first development:
+   -  _SHape_ enocurages a "docu-driven" development cycle.
 
 1. _Write a doco file._ 
    - In our case, an .md files containing code blocks. 
