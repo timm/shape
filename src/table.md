@@ -61,7 +61,7 @@ function read(i,f,    r,c) {
 ```
 
 ```awk
-function dist(i,r1,r2,cols,  p,x,y,d,n) {
+function dist(i,r1,r2,cols,  c,p,x,y,d,n) {
   n = 0.00001 # stop divide by zero errors
   p = THE.dist.p
   for(c in cols) {

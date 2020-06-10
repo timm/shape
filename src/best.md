@@ -28,7 +28,7 @@
 ```awk
 @include "table"
 
-function best(i,min,out,   rows) {
+function best(i,min,out,   rows,r) {
   for(r in i.data) 
     if (rand() < THE.best.want/length(i.data)) 
       push(rows,r)
@@ -75,7 +75,7 @@ function distant(i,r1,rows,cols,  a,n,r2) {
   n = int(n*THE.distant.far)  
   return a[n].row
 }
-function dom(i,r1,r2,   e,n,x,y,s1,s2) {   
+function dom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
   n = length(i.my.goals)
   for(c in i.my.goals) {
     x   = i.data[r1][c]
