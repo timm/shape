@@ -16,7 +16,7 @@
    <img width=600 src="https://github.com/timm/misc/blob/master/odd/etc/img/solidgallery.gif">
 </p>
 <p align=center>
-   <img src="https://img.shields.io/badge/language-lua-orange">
+   <img src="https://img.shields.io/badge/language-gawk-orange">
    <img src="https://img.shields.io/badge/purpose-ai,se-blueviolet">
    <img src="https://img.shields.io/badge/platform-mac,*nux-informational">
    <a href="https://travis-ci.org/github/timm/shape"> <img src="https://travis-ci.org/timm/shape.svg?branch=master"></a>
