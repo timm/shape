@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/shape/blob/master/README.md#top">
-     SHape = a Simple HAck 4 Programs + documeEntation
+     SHape = SHell tricks  for Any Program + documeEntation
    </a>
 </h1>
 <p align=center>
@@ -23,12 +23,6 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-
-
-
-
-
-
 # Options
 
 ```awk
@@ -39,9 +33,3 @@ BEGIN {
   THE.best.min = 0.5
 }
 ```
-
-
-
-
-
-

@@ -7,8 +7,8 @@ banner() { cat<<'EOF'
 
      _----------_,     SHape  v1.0
     ,"__         _-:,   -----------
-   /    ""--_--""...:\   a Simple
-  /         |.........\   HAck for 
+   /    ""--_--""...:\   SHell tricks for
+  /         |.........\   Any 
  /          |..........\   Program +
 /,         _'_........./:   documEntation
 ! -,    _-"   "-_... ,;;:    
