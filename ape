@@ -89,6 +89,7 @@ mkdir -p $Ape/test
 exists .gitignore         etc/dot/gitignore
 exists .travis.yml        etc/dot/travisyml
 exists CODE_OF_CONDUCT.md etc/md/CODE_OF_CONDUCT.md 
+exists CITATION.md        etc/md/CITATION.md 
 exists CONTACT.md         etc/md/CONTACT.md 
 exists INSTALL.md         etc/md/INSTALL.md 
 exists LICENSE.md         etc/md/LICENSE.md 
