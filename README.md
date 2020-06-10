@@ -31,7 +31,7 @@ CoffeeScript, LUA, Gawk, or other languages.
 This code bundles up all those practices in one simple and
 convenient package that supports:
 
-<img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
+<img align=right width=300 src="http://clipart-library.com/data_images/79676.gif">
 
 - Fast install:
    - With _SHape_,
