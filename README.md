@@ -38,6 +38,11 @@ This repo shares two sets of tricks.
 - Language dependent tricks. For example:
   -  This  repo includes supports code for _Gold_ (the Gawk object layer).
 
+## How?
+
+See our [install](INSTALL.md) instructions and our
+[guide for contributors](CONTRIBUTING.md).
+
 <br clear=all>
 
 ## Why?
