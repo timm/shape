@@ -25,7 +25,8 @@
 
 # MIT License
 
-Copyright (c) 2020 SH ape
+Copyright (c) 2020 SH ape    
+Tim Menzies
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
