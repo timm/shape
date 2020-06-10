@@ -1,6 +1,6 @@
 <a name=top>
 <h1 align=center>
-   <a href="https://github.com/timm/shape/blob/master/shape/README.md#top">
+   <a href="https://github.com/timm/shape/blob/master/README.md#top">
      SHape = Simple HAck 4   Programs + documeEntation
    </a>
 </h1>
