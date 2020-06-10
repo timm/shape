@@ -25,6 +25,8 @@
 
 # Why SHape?
 
+XXX mention tmux vim 
+
 After  coding for decades I find myself repeating a common set of
 practices whenever I write in Prolog, Python, Perl, LISP, Smalltalk, 
 CoffeeScript, LUA, Gawk, or other languages.
