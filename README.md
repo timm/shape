@@ -31,12 +31,12 @@ CoffeeScript, LUA, Gawk, or other languages.
 This code bundles up all those practices in one simple and
 convenient package that supports:
 
-- Fast install:
+- <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
+  Fast install:
    - With _SHape_, code can be installed code without having to update config files all over your hard drive.
 - Fast uninstall:
    - With _SHape_, code can be quickly uninstalled, just by deleting the _SHape_ directory
-- <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
-  Faster coding:
+- Faster coding:
    - In principle, _SHape_ could be support any scripting language. For example
      the version of _SHape_ augments a standard language (gawk) with extensions
      to support objects and encapulation and polymorphism.
