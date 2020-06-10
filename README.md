@@ -43,7 +43,7 @@ convenient package that supports:
    - In principle, _SHape_ could be support any scripting language. For example
      the version of _SHape_ augments a standard language (gawk) with extensions
      to support objects and encapulation and polymorphism.
-- Test-drive development:
+- Test-driven development:
    - _SHape_ code comprises many small files, each of which can be tested severely;
    - _SHape_'s unit tests for code in the `src/` directory are held in a separate `test/` directory.
    - All those test are re-checked by  Travis CI whenever this code is committed back to Github.
