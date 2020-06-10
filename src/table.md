@@ -26,11 +26,17 @@
 # Table
 
 ```awk
-@include "ape"
-@include "num"
-@include "sym"
-@include "poly"
+@include "ape"  # standard libraries
+@include "num"  # knows "mu", standard deviations "sd"
+@include "sym"  # knows "mode" and counts of "seen" symbols
+@include "poly" # polymorphic functions
+```
 
+Tables store raw data in `rows`  and summaries of
+those data in `cols` (columns). For example `i.rows[r][c]`
+holds  data from row `r` and columns `c`.
+
+```awk
 function Table(i) {
   Object(i)
   is(i,"Table")
@@ -38,11 +44,32 @@ function Table(i) {
   has(i,"rows")
   has(i,"my") # stores indexes to particular subsets of cols 
 }
+```
+
+The first row of data names the columns. Special symbols
+on those names distinguish different kinds of columns. For example:
+
+    outlook, $temp,  <humid, wind,  !play        
+    rainy,   68,     80,     FALSE, yes # comments
+    sunny,   85,     85,     FALSE, no 
+    ...
+
+In this example:
+
+- `$temp` is a column of numbers; 
+- `<humid` is a goal to be minimized; 
+- `!play` is a symbolic class;
+-  and the rest of the columns hold symbols.
+
+```awk
 function what(i,txt,pos) { 
+  if (txt ~ /!/)    i.my.klass[pos]
   if (txt ~ /[<>]/) i.my.goals[pos]
   return txt ~ /[\$<>]/ ? "Num" : "Sym" 
 }
+```
 
+```awk
 function read(i,f,    r,c) {
   FS = ","
   f  = f ? f : "-"
