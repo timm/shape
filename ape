@@ -5,7 +5,7 @@ Ape=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 banner() { cat<<'EOF'
 
-     _----------_,     SH ape  v1.0
+     _----------_,     SHape  v1.0
     ,"__         _-:,   -----------
    /    ""--_--""...:\   Simple
   /         |.........\   HAck for 
