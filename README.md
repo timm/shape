@@ -31,8 +31,9 @@ CoffeeScript, LUA, Gawk, or other languages.
 This code bundles up all those practices in one simple and
 convenient package that supports:
 
-- <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
-  Fast install:
+<img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
+
+-  Fast install:
    - With _SHape_, 
      code can be installed code without having to update config files all over your hard drive.
 - Fast uninstall:
