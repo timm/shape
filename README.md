@@ -27,9 +27,9 @@
 
 <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
 After  coding for decades I find myself repeating a common set of
-practices whenever I write in
-Prolog, Python, Perl, LISP, Smalltalk, CoffeeScript, LUA, Gawk,
-etc etc.  _SHape_  bundles up all those practices in one simple and
+practices whenever I write in Prolog, Python, Perl, LISP, Smalltalk, 
+CoffeeScript, LUA, Gawk, etc etc.  
+_SHape_  bundles up all those practices in one simple and
 convenient package that supports:
 
 - Fast install:
