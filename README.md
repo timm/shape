@@ -25,20 +25,21 @@
 
 # About
 
-<img align=right width=300 src="http://clipart-library.com/data_images/79676.gif">
+<img align=right width=300 src="etc/img/womancoder.png">
 
 ## What?
 
-This repo stores two sets of tricks.
+This repo shares two sets of tricks.
 
-- _SHape_ language independent methods to support command-line development using bash, Github, vim, tmux.
+- _SHape_: language independent methods to support command-line 
+  development using bash, Github, vim, tmux.
   these tricks are called _SHape_.
-- Language dependent tricks. For example, this  repo includes
-   supports code for _Gold_ (a Gawk object layer).
+- Language dependent tricks. For example:
+  -  This  repo includes supports code for _Gold_ (the Gawk object layer).
 
 ## Why did I write these repo?
 
-While IDE's are great, command-line development is fast,  lightweight,
+While IDEs are great, command-line development is fast,  lightweight,
 and portable to anywhere we can access a terminal.
 So I do a lot of command-line code developing with bash, vim, and tmux.
 But no matter what language I am working in,  I usually end up with the same
@@ -47,9 +48,9 @@ For example, whether or not I am
 coding in Prolog, Python, Perl, LISP, Smalltalk, 
 CoffeeScript, LUA, Gawk, etc etc, then my work environment looks like:
 
-<p align=center><img src="etc/img/screen.png" width=850></p>
+<p align=center><a href="etc/img/screen.png"><img src="etc/img/screen900.png" width=850></a></p>
 
-Within that environment, I can do:
+I recommend these tools since, with them, you can:
 
 - Portable coding:
    - The methods here work anywhere you can get to a \*nix-style command line.
