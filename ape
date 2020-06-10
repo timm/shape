@@ -35,7 +35,7 @@ tran() { gawk '
                          { print (In ? "# " : "")  $0 } '
 }
 trans() {
-  local f=`find $Ape/src $Ape/test -name '*.md'`
+  local f=`ls $Ape/src/*.md $Ape/test/*.md 2>/dev/null`
   if [ -n "$f" ]; then 
     for g in $f 
     do 
@@ -56,7 +56,7 @@ doc() {
               { print ""; print }'  
 }
 docs() {
-  local f=`find $Ape  -name '*.md'`
+  local f=`ls $Ape/src/*.md $Ape/test/*.md $Ape/*.md 2>/dev/null`
   if [ -n "$f" ]; then 
     for g in $f
     do
@@ -81,26 +81,29 @@ exists() {
 
 ##################################################
 
-mkdir -p $Ape/.var
-mkdir -p $Ape/etc/dot
-mkdir -p $Ape/src
-mkdir -p $Ape/test
-
-exists .gitignore         etc/dot/gitignore
-exists .travis.yml        etc/dot/travisyml
-exists CODE_OF_CONDUCT.md etc/md/CODE_OF_CONDUCT.md 
-exists CITATION.md        etc/md/CITATION.md 
-exists CONTACT.md         etc/md/CONTACT.md 
-exists INSTALL.md         etc/md/INSTALL.md 
-exists LICENSE.md         etc/md/LICENSE.md 
-exists requirements.txt   etc/md/requirements.txt
-exists src/ape.md         etc/md/ape.md
-exists src/lib.md         etc/md/lib.md
-exists src/obj.md         etc/md/obj.md
-exists src/the.md         etc/md/the.md
-
-docs
-trans
+setup() {
+  mkdir -p $Ape/.var
+  mkdir -p $Ape/etc/dot
+  mkdir -p $Ape/src
+  mkdir -p $Ape/test
+  
+  exists .gitignore         etc/dot/gitignore
+  exists .travis.yml        etc/dot/travisyml
+  exists CODE_OF_CONDUCT.md etc/md/CODE_OF_CONDUCT.md 
+  exists CITATION.md        etc/md/CITATION.md 
+  exists CONTACT.md         etc/md/CONTACT.md 
+  exists INSTALL.md         etc/md/INSTALL.md 
+  exists LICENSE.md         etc/md/LICENSE.md 
+  exists requirements.txt   etc/md/requirements.txt
+  exists src/ape.md         etc/md/ape.md
+  exists src/lib.md         etc/md/lib.md
+  exists src/obj.md         etc/md/obj.md
+  exists src/the.md         etc/md/the.md
+  
+ docs
+ trans
+}
+setup
 
 k=$Ape/.var/$(basename $1 .md).awk
 if [ -f "$k" ]; then

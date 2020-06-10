@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/shape/blob/master/README.md#top">
-     SHape = Simple HAck 4   Programs + documeEntation
+     SHape = Simple HAck   4   Programs + documeEntation
    </a>
 </h1>
 <p align=center>
@@ -27,9 +27,9 @@
 
 ```awk
 BEGIN {
-  the.distant.far = 0.9
-  the.distant.want = 256
-  the.dist.p = 2 
-  the.best.min = 0.5
+  THE.distant.far = 0.9
+  THE.distant.want = 256
+  THE.dist.p = 2 
+  THE.best.min = 0.5
 }
 ```

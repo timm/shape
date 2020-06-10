@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/shape/blob/master/README.md#top">
-     SHape = Simple HAck 4   Programs + documeEntation
+     SHape = Simple HAck   4   Programs + documeEntation
    </a>
 </h1>
 <p align=center>
@@ -30,9 +30,9 @@
 
 function best(i,min,out,   rows) {
   for(r in i.data) 
-    if (rand() < the.best.want/length(data)) 
+    if (rand() < THE.best.want/length(i.data)) 
       push(rows,r)
-  besthalves(i,rows, out, 2*length(data)^the.best.min)
+  besthalves(i,rows, out, 2*length(i.data)^THE.best.min)
 }
 
 function besthalves(i,rows,out,min,  x,tmp) {
@@ -45,7 +45,7 @@ function besthalves(i,rows,out,min,  x,tmp) {
 }
       
 function besthalf(i,rows,out,
-                  one,two,three,c,r,a,b,c,x,mid,d,left) {
+                  one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
   two     = distant(i,one,rows,   i.my.goals)
   three   = distant(i,two,rows,   i.my.goals)
@@ -59,20 +59,20 @@ function besthalf(i,rows,out,
     mid   += x/length(rows)
     d[r]  = x
   }
-  left = dom(i,two,three) 
-  for(r in d) 
-    if left  {
+  if (dom(i,two,three)) {
+    for(r in d) 
       if (d[r] <= mid) push(out,r)
-    } else
-      if (d[r] >= min) push(out,r)
+  } else  
+    for(r in d) 
+      if (d[r] >= mid) push(out,r)
 }
-function distant(i,r1,rows,cols,  a,n) {
+function distant(i,r1,rows,cols,  a,n,r2) {
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2
       a[r2].dist = dist(i,r1,r2,cols) }
   n = keysort(a,"dist")
-  n = int(n*the.distant.far)  
+  n = int(n*THE.distant.far)  
   return a[n].row
 }
 function dom(i,r1,r2,   e,n,x,y,s1,s2) {   
@@ -87,15 +87,5 @@ function dom(i,r1,r2,   e,n,x,y,s1,s2) {
   }
  return s1/n < s2/n
 }
-```
-## Main
 
-```awk
-function main(     head,w,lo,hi,data) {
-  read(head,w,lo,hi,data)
-  oo(data,"d")
-}
-BEGIN { 
-  rogues() 
-}
-```
+BEGIN {rogues()}

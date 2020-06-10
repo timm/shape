@@ -1,7 +1,7 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/shape/blob/master/README.md#top">
-     SHape = Simple HAck 4   Programs + documeEntation
+     SHape = Simple HAck   4   Programs + documeEntation
    </a>
 </h1>
 <p align=center>
@@ -56,17 +56,17 @@ function read(i,f,    r,c) {
           hass(i.cols, c, what(i,$c,c), $c, c) 
     } else
         for(c in i.cols)
-          i.rows[r][c] = add(i.cols[c], $c)
+          i.rows[r][c] = add(i.cols[c], $c) }
 }
 ```
 
 ```awk
 function dist(i,r1,r2,cols,  p,x,y,d,n) {
   n = 0.00001 # stop divide by zero errors
-  p = the.dist.p
-  for(c in cols)
-    x  = norm(i, c, data[r1][c])
-    y  = norm(i, c, data[r2][c])
+  p = THE.dist.p
+  for(c in cols) {
+    x  = norm(i, c, i.data[r1][c])
+    y  = norm(i, c, i.data[r2][c])
     d += abs(x-y)^p
     n++
   }
