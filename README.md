@@ -29,9 +29,7 @@
 After  coding for decades I find myself repeating a common set of
 practices whenever I write in Prolog, Python, Perl, LISP, Smalltalk, 
 CoffeeScript, LUA, Gawk, or other languages.
-CODE_OF_CONDUCT.md 
-_SHape_ 
-bundles up all those practices in one simple and
+This code bundles up all those practices in one simple and
 convenient package that supports:
 
 - Fast install:
