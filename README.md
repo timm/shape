@@ -24,6 +24,8 @@
 </p>
 
 
+## What
+
 <img align=right width=300 src="etc/img/womancoder.png">
 
 This repo shares two sets of tricks.
@@ -34,7 +36,7 @@ This repo shares two sets of tricks.
 - Language dependent tricks. For example:
   -  This  repo includes supports code for _Gold_ (the Gawk object layer).
 
-## How?
+## How
 
 See our [install](INSTALL.md) instructions and our
 [guide for contributors](CONTRIBUTING.md).
