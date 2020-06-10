@@ -1,13 +1,13 @@
 <a name=top>
 <h1 align=center>
    <a href="https://github.com/timm/shape/blob/master/README.md#top">
-     SHape = Simple HAck   4   Programs + documeEntation
+     SHape = a Simple HAck 4 Programs + documeEntation
    </a>
 </h1>
 <p align=center>
    <a    href="https://github.com/timm/shape/blob/master/LICENSE.md#top">license</a>
    :: <a href="https://github.com/timm/shape/blob/master/INSTALL.md#top">install</a>
-   :: <a href="https://github.com/timm/shape/blob/master/CODE_OF_CONDUCT.md#top">contribute</a>
+   :: <a href="https://github.com/timm/shape/blob/master/CONTRIBUTE.md#top">contribute</a>
    :: <a href="https://github.com/timm/shape/issues">issues</a>
    :: <a href="https://github.com/timm/shape/blob/master/CITATION.md#top">cite</a>
    :: <a href="https://github.com/timm/shape/blob/master/CONTACT.md#top">contact</a>
@@ -23,7 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Table
+# `Tab`les
 
 ```awk
 @include "ape"  # standard libraries
@@ -32,12 +32,12 @@
 @include "poly" # polymorphic functions
 ```
 
-Tables store raw data in `rows`  and summaries of
+`Tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
 holds  data from row `r` and columns `c`.
 
 ```awk
-function Table(i) {
+function Tab(i) {
   Object(i)
   is(i,"Table")
   has(i,"cols")
@@ -62,15 +62,20 @@ In this example:
 -  and the rest of the columns hold symbols.
 
 ```awk
-function what(i,txt,pos) { 
-  if (txt ~ /!/)    i.my.klass[pos]
-  if (txt ~ /[<>]/) i.my.goals[pos]
-  return txt ~ /[\$<>]/ ? "Num" : "Sym" 
+function TabWhat(i,txt,c) { 
+  if (txt ~ /!/)        i.my.klass[c]
+  if (txt ~ /[<>]/)     i.my.goals[c]
+  if (txt ~ /[\$<>]/) { i.my.nums[c]; return "Num" }
+  i.my.syms[c]
+  return "Sym" }
 }
 ```
 
+Tables can be initializd from  comma separated value files via 
+the `TabRead`.
+
 ```awk
-function read(i,f,    r,c) {
+function TabRead(i,f,    r,c) {
   FS = ","
   f  = f ? f : "-"
   r  = -1
@@ -80,7 +85,7 @@ function read(i,f,    r,c) {
     if(++r == 0) {
       for(c=1; c<=NF; c++) 
         if ($c !~ /\?/)
-          hass(i.cols, c, what(i,$c,c), $c, c) 
+          hass(i.cols, c, TabHat(i,$c,c), $c, c) 
     } else
         for(c in i.cols)
           i.rows[r][c] = add(i.cols[c], $c) }
@@ -88,18 +93,18 @@ function read(i,f,    r,c) {
 ```
 
 ```awk
-function dist(i,r1,r2,cols,  c,p,x,y,d,n) {
+function TabDist(i,r1,r2,cols,  c,p,x,y,d,n) {
   n = 0.00001 # stop divide by zero errors
   p = THE.dist.p
   for(c in cols) {
-    x  = norm(i, c, i.data[r1][c])
-    y  = norm(i, c, i.data[r2][c])
+    x  = TabNorm(i, c, i.data[r1][c])
+    y  = TabNorm(i, c, i.data[r2][c])
     d += abs(x-y)^p
     n++
   }
   return (d/n)^(1/p)
 }
-function norm(i,c,x,   lo,hi) {
+function TabNorm(i,c,x,   lo,hi) {
   if (x ~ /\?/) return x
   lo = i.cols[c].lo
   hi = i.cols[c].hi

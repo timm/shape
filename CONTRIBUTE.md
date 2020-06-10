@@ -1,3 +1,28 @@
+<a name=top>
+<h1 align=center>
+   <a href="https://github.com/timm/shape/blob/master/README.md#top">
+     SHape = a Simple HAck 4 Programs + documeEntation
+   </a>
+</h1>
+<p align=center>
+   <a    href="https://github.com/timm/shape/blob/master/LICENSE.md#top">license</a>
+   :: <a href="https://github.com/timm/shape/blob/master/INSTALL.md#top">install</a>
+   :: <a href="https://github.com/timm/shape/blob/master/CONTRIBUTE.md#top">contribute</a>
+   :: <a href="https://github.com/timm/shape/issues">issues</a>
+   :: <a href="https://github.com/timm/shape/blob/master/CITATION.md#top">cite</a>
+   :: <a href="https://github.com/timm/shape/blob/master/CONTACT.md#top">contact</a>
+</p>
+<p align=center>
+   <img width=600 src="https://github.com/timm/misc/blob/master/odd/etc/img/solidgallery.gif">
+</p>
+<p align=center>
+   <img src="https://img.shields.io/badge/language-gawk-orange">
+   <img src="https://img.shields.io/badge/purpose-ai,se-blueviolet">
+   <img src="https://img.shields.io/badge/platform-mac,*nux-informational">
+   <a href="https://travis-ci.org/github/timm/shape"> <img src="https://travis-ci.org/timm/shape.svg?branch=master"></a>
+   <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
+</p>
+
 # Contributing to Atom
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
@@ -26,6 +51,7 @@ These are mostly guidelines, not rules. Use your best judgment, and feel free to
 [Style guides](#styleguides)
   * [Git Commit Messages](#git-commit-messages)
   * [Gawk Styleguide](#gawk-styleguide)
+  * [Gold Styleguide](#gold-styleguide)
   * [Documentation Styleguide](#documentation-styleguide)
 
 [Additional Notes](#additional-notes)
@@ -48,7 +74,6 @@ If chat is more your speed, you can join the SHape Discord team:
     * There are many other channels available, check the channel list
 
 ## What should I know before I get started?
-
 
 ### SHape and Packages
 
@@ -216,32 +241,35 @@ While the prerequisites above must be satisfied prior to having your pull reques
     * :arrow_down: `:arrow_down:` when downgrading dependencies
     * :shirt: `:shirt:` when removing linter warnings
 
-### JavaScript Styleguide
+### Gawk Styleguide
 
-All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/).
+* Assume you code will be added as an `@include` to someone else's code. This means:
+  * Use `BEGIN {ACTION}` a lot to handle side-effects on loading.
+  * Use `PATTERN {ACTION}` very rarely (if at all). 
+  * Use `END {ACTION}' very rarely (if a tall).
+* In those files, start,end your awk code used `\`\`\`awk`  and `\`\`\`.
+  * Code should be no more than 60 lines wide.
 
-* Prefer the object spread operator (`{...anotherObj}`) to `Object.assign()`
-* Inline `export`s with expressions whenever possible
-  ```js
-  // Use this:
-  export default class ClassName {
+### Gold Styleguide
 
-  }
+Gold is a Gawk object layer.
 
-  // Instead of:
-  class ClassName {
-
-  }
-  export default ClassName
-  ```
-* Place requires in the following order:
-    * Built in Node Modules (such as `path`)
-    * Built in Atom and Electron Modules (such as `atom`, `remote`)
-    * Local Modules (using relative paths)
-* Place class properties in the following order:
-    * Class methods and properties (methods starting with `static`)
-    * Instance methods and properties
-* [Avoid platform-dependent code](https://flight-manual.atom.io/hacking-atom/sections/cross-platform-compatibility/)
+* Write source code in `src/X.md` files. 
+* Write test code for `src/X.md` in `text/Xok.md` files
+* Globals should be stored in the `src/the.md` file.
+* Files should start with `@include "ape"` This loads `the, lib, obj` in that order.
+  * Modify `src/the.md` a lot (this is your space for variables)
+  * Modify `src/obj.md` very rarely (if at all) since  this is the glue that holds everyone together.
+  * Modify `src/lib.md` judiciously since this is where we hold functions everyone uses.
+* Reserve the variable `i` for objects (since this is shorter than `self` or `this`).
+* Classes start with an uppercase.
+* Methods are CamelCase where the first word is the class name.
+* Classes should be written in a `X.md` should contain a function `function X(i) ` to initialize
+  objects of type `X`.
+  * The first two lines of that function should: 
+     * Reference some superclass; e.g. `Object(i)` . IMPORTAT: this call must be first.
+     * Identify the type of an object using `is(i,"X")`  (note the double quotes around the class name).
+* Polymorphic functions are defined using the object type identifier. For example:
 
 ### CoffeeScript Styleguide
 
@@ -480,4 +508,3 @@ Please open an issue on `atom/atom` if you have suggestions for new labels, and 
 [help-wanted]:https://github.com/search?q=is%3Aopen+is%3Aissue+label%3Ahelp-wanted+user%3Aatom+sort%3Acomments-desc+-label%3Abeginner
 [contributing-to-official-atom-packages]:https://flight-manual.atom.io/hacking-atom/sections/contributing-to-official-atom-packages/
 [hacking-on-atom-core]: https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/
-

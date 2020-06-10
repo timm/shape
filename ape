@@ -92,7 +92,7 @@ setup() {
   exists CODE_OF_CONDUCT.md etc/md/CODE_OF_CONDUCT.md 
   exists CITATION.md        etc/md/CITATION.md 
   exists CONTACT.md         etc/md/CONTACT.md 
-  exists CONTRIBUTING.md    etc/md/CONTRIBUTING.md 
+  exists CONTRIBUTE.md      etc/md/CONTRIBUTE.md 
   exists INSTALL.md         etc/md/INSTALL.md 
   exists LICENSE.md         etc/md/LICENSE.md 
   exists requirements.txt   etc/md/requirements.txt
