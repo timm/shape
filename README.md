@@ -33,9 +33,11 @@ convenient package that supports:
 
 - <img align=right width=300 src="https://i.pinimg.com/originals/2e/b1/4e/2eb14e256b325629f9bae311cd77fb90.jpg">
   Fast install:
-   - With _SHape_, code can be installed code without having to update config files all over your hard drive.
+   - With _SHape_, 
+     code can be installed code without having to update config files all over your hard drive.
 - Fast uninstall:
-   - With _SHape_, code can be quickly uninstalled, just by deleting the _SHape_ directory
+   - With _SHape_, 
+    code can be quickly uninstalled, just by deleting the _SHape_ directory
 - Faster coding:
    - In principle, _SHape_ could be support any scripting language. For example
      the version of _SHape_ augments a standard language (gawk) with extensions
