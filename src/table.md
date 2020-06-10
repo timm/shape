@@ -20,7 +20,7 @@
    <img src="https://img.shields.io/badge/purpose-ai,se-blueviolet">
    <img src="https://img.shields.io/badge/platform-mac,*nux-informational">
    <a href="https://travis-ci.org/github/timm/shape"> <img src="https://travis-ci.org/timm/shape.svg?branch=master"></a>
-   <a href="https://zenodo.org/badge/latestdoi/263210595"> <img src="https://zenodo.org/badge/263210595.svg" alt="DOI"></a>
+   <a href="https://zenodo.org/badge/latestdoi/271082575"><img src="https://zenodo.org/badge/271082575.svg" alt="DOI"></a>
 </p>
 
 # Table
