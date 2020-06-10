@@ -1,16 +1,17 @@
-language: C
+language: C 
 
-sudo: true
+sudo: true 
 
-install:
-  - curl -R -O http://www.lua.org/ftp/lua-5.3.5.tar.gz
-  - tar zxf lua-5.3.5.tar.gz
-  - cd lua-5.3.5
-  - make linux test
+install: 
+  - wget -O gawk.tar.gz https://ftp.gnu.org/gnu/gawk/gawk-5.1.0.tar.gz 
+  - tar xzf gawk.tar.gz 
+  - cd gawk-5.1.0 
+  - ./configure; sudo make; sudo make install 
+  - cd .. 
 
-script:
-  - ls
-  - cd ../test
-  - pwd
-  - bash all.sh
 
+script: 
+  - gawk -W version | head -1 
+  - sh ape
+  - cd test 
+  - sh ../apge allok.md

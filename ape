@@ -86,8 +86,17 @@ mkdir -p $Ape/etc/dot
 mkdir -p $Ape/src
 mkdir -p $Ape/test
 
-exists .gitignore etc/dot/gitignore
-exists .travis.yml etc/dot/travisyml
+exists .gitignore         etc/dot/gitignore
+exists .travis.yml        etc/dot/travisyml
+exists CODE_OF_CONDUCT.md etc/md/CODE_OF_CONDUCT.md 
+exists CONTACT.md         etc/md/CONTACT.md 
+exists INSTALL.md         etc/md/INSTALL.md 
+exists LICENSE.md         etc/md/LICENSE.md 
+exists requirements.txt   etc/md/requirements.txt
+exists src/ape.md         etc/md/ape.md
+exists src/lib.md         etc/md/lib.md
+exists src/obj.md         etc/md/obj.md
+exists src/the.md         etc/md/the.md
 
 docs
 trans
