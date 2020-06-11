@@ -23,14 +23,14 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
+# Tab
+
 ```awk
 @include "ape"  # standard libraries
 @include "num"  # knows "mu", standard deviations "sd"
 @include "sym"  # knows "mode" and counts of "seen" symbols
 @include "poly" # polymorphic functions
 ```
-
-# Tab
 
 `Tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
