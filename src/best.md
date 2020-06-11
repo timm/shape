@@ -44,7 +44,7 @@ function Best(i,t, cols) {
 function BestDist(i,t,r1,r2) { 
   return TabDist(t,r1,r2, t.my[i.cols]) 
 }
-function BestFar(i,t,r1,r2) { 
+function BestFar(i,t,r1,r2) {  ## worng
   return TabFar(t,r1,r2,t.my[i.cols])
 }
 function BestHalf(i,t, rest,best,   r,min) {
@@ -66,7 +66,7 @@ function BestHalves(i,t,rows,rest,best,  x,best0) {
 function BestHalfi,t,rows,rest,best,
               one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
-  two     = BestFar( i,t,one,rows )
+  two     = TabFar( i,t,one,rows ) #### wrong
   three   = BestFar( i,t,two,rows)
   c       = BestDist(i, two, three)
   for(r in rows) {
