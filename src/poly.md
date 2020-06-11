@@ -26,6 +26,6 @@
 # Polymorphism
 
 ```awk
-function add(i,x,    f) { f=i.ois "Add";  print "["f"]"; return @f(i,x)   }
-function dist(i,x,y, f) { f=i.ois "Dist"; print "["f"]"; return @f(i,x,y) }
+function add(i,x,    f) { f=i.ois "Add";  return @f(i,x)   }
+function dist(i,x,y, f) { f=i.ois "Dist"; return @f(i,x,y) }
 ```

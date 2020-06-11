@@ -47,31 +47,40 @@ function Tab(i) {
 ```
 
 The first row of data names the columns. Special symbols
-on those names distinguish different kinds of columns. For example:
+on those names distinguish different kinds of columns. For example, 
+in the following data fragment...
 
     outlook, $temp,  <humid, wind,  !play        
     rainy,   68,     80,     FALSE, yes # comments
     sunny,   85,     85,     FALSE, no 
     ...
 
-In this example:
+... then the columns are:
 
 - `$temp` is a column of numbers; 
 - `<humid` is a goal to be minimized; 
 - `!play` is a symbolic class;
 -  and the rest of the columns hold symbols.
 
+### TabCol
+
+Define a new column whose name is `x` at position `c`.
+
+
 ```awk
 function TabCol(i,x,c) { 
-  if (x ~ /!/)    i.my.klass[c]
-  if (x ~ /[<>]/) i.my.goals[c]
+  if  ( x ~ /!/     ) i.my.klass[c]
+  if  ( x ~ /[<>]/  ) i.my.goals[c]
+  i.my[ x ~ /[!<>]/ ? "y"   : "x" ][c]
   if (x ~ /[\$<>]/) { hass(i.cols,c,"Num",x,c); i.my.nums[c] }
   else              { hass(i.cols,c,"Sym",x c); i.my.syms[c] }
 }
 ```
 
+### TabRead
+
 `Tab`les can be initialize from  comma separated value files via 
-`tabRead`.
+`tabRead`. If `f` is omitted, then this code reads from standard input.
 
 ```awk
 function TabRead(i,f,    r,c) {
@@ -85,13 +94,23 @@ function TabRead(i,f,    r,c) {
     for(c=1; c<=NF; c++) 
       if(r == 0) 
         TabCol(i,$c,c)
-      else
+      else 
         i.rows[r][c] = add(i.cols[c], $c) }
 }
 ```
 
+## Distance
+
+### TabDist
+
+Returns the distance between two rows.
+
+- By default, this function computes distance using all the x variables.
+- To change that defaults, set `cols` variables
+
 ```awk
 function TabDist(i,r1,r2,cols,  n,p,d,d1) {
+  if (!isarray(cols)) return TabDist(i,r1,r2, i.my.x)
   n = 0.00001 # stop divide by zero errors
   p = THE.dist.p
   for(c in cols)  {
@@ -100,8 +119,20 @@ function TabDist(i,r1,r2,cols,  n,p,d,d1) {
   }
   return (d/n)^(1/p)
 }
+```
 
+### TabFar
+
+Returns a row that is `THE.distant.far` most distant from `TabFar`.
+
+- By default, this function searchers everything in `i.rows`
+  and computes distance using all the optimization `goals`. 
+- To change those defaults, set the `rows` and `cols` variables
+
+```awk
 function TabFar(i,r1,rows,cols,  a,n,r2) {
+  if (!isarray(rows)) return TabFar(i,r1,i.rows)
+  if (!isarray(cols)) return TabFar(i,r1,rows,i.my.x)
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2
