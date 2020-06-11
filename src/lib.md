@@ -79,6 +79,10 @@ function compare(x,y) {
 
 ## Debugging
 
+### Rogues
+
+Report variables that have escaped from functions.
+
 ```awk
 function rogues(    s) {
   for(s in SYMTAB) 
@@ -89,3 +93,48 @@ function rogues(    s) {
       print "#W> Rogue: " s>"/dev/stderr"
 }
 ```
+
+### Tests
+
+Top level unit-test driver.  Resets the random number generator
+before each test.  Prints the group and nmae of the test.
+Warns about stray globals at the end.
+
+```awk
+function tests(what, all,   f,a,i,n) {
+  n = split(all,a,",")
+  print "\n#--- " what " -----------------------"
+  for(i=1;i<=n;i++) { 
+    srand(1)
+    f = a[i]; 
+    @f(f) 
+  }
+  rogues()
+}
+```
+
+### ok
+
+Report the `yes` or `no` message if a test passes or fails.
+Increments the global `test.yes` and `test.no` counters.
+
+```awk
+function ok(f,yes,    msg) {
+  msg = yes ? "PASSED!" : "FAILED!"
+  yes ? APE.test.yes++ : APE.test.no++
+  print "#TEST:\t" msg "\t" f
+}
+```
+
+### near
+
+Return true if what you `got` is within `epsilon` of
+what you `want` (`epsilon` defaults to 0.001).
+
+```awk
+function near(got,want,     epsilon) {
+   epsilon = epsilon ? epsilon : 0.001
+   return abs(want - got)/(want + 10^-32)  < epsilon
+}
+```
+

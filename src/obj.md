@@ -27,6 +27,7 @@
 
 ```awk
 BEGIN{  APE["oid"]  = 0
+        APE["ok"]["yes"] = APRE["ok"]["no"] = 0
         APE["dot"] = sprintf("%c",46)
         APE["up"]   = APE["dot"] APE["dot"]
 }

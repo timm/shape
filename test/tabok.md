@@ -3,7 +3,7 @@
 
 function _tab(    i) {
   Tab(i)
-  TabRead(i,"data/raw/auto93-10000" APE.dot "csv") 
+  TabRead(i,"data/raw/auto93" APE.dot "csv") 
 }
 
 BEGIN { _tab() }
