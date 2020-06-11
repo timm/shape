@@ -35,40 +35,37 @@ recursively divide the `rows` in a `Tab`le.
 
 
 ```awk
-function Best(i,t, cols) {
+function Best(i,t, cols,    r,rows) {
   Object(i)
-  i.min = length(t.rows)^THE.best.min
-  i.enough  = THE.space.some / length(t.rows)
-  i.cols = cols ? cols : "x"
-}
-function BestDist(i,t,r1,r2) { 
-  return TabDist(t,r1,r2, t.my[i.cols]) 
-}
-function BestFar(i,t,r1,r2) {  ## worng
-  return TabFar(t,r1,r2,t.my[i.cols])
-}
-function BestHalf(i,t, rest,best,   r,min) {
+  is(i,"Best")
+  i.min    = length(t.rows)^THE.best.min
+  i.enough = THE.space.some / length(t.rows)
+  i.cols   = cols ? cols : "x"
+  has(i,"best")
+  has(i,"rest")
   for(r in i.data) 
     if (rand() < i.enough)
-      push(rows,r)
-  BestHalves(i,t,rows, rest,best)
+      push(rows,r);
+  BestHalf(i,t,rows)
 }
+function BestDist(i,t,x,y) {return TabDist(t,x,y,  t.my[i.cols])}
+function BestDom( i,t,x,y) {return TabDom( t,x,y,  t.my[i.cols])}
+function BestFar( i,t,x,a) {return TabFar( t,x,y,a,t.my[i.cols])}
 
-function BestHalves(i,t,rows,rest,best,  x,best0) {
-  if (length(rows) < i.min) {
+function BestHalves(i,t,rows,   x) {
+  if (length(rows) >= i.min) 
+    BestRest(i,t,rows)
+  else
     for(x in rows)
-      best[x] = rows[x] 
-  } else { 
-     BestRest( i,t, rows,  rest, best0)
-     BestHalves(i,t, best0, rest, best) }
+      i.best[x] = rows[x] 
 }
       
-function BestHalfi,t,rows,rest,best,
+function BestRest(i,t,rows,   best
               one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
-  two     = TabFar( i,t,one,rows ) #### wrong
-  three   = BestFar( i,t,two,rows)
-  c       = BestDist(i, two, three)
+  two     = BestFar(i,t,  one, rows)
+  three   = BestFar(i,t,  two, rows)
+  c       = BestDist(i,t, two, three)
   for(r in rows) {
     a     = BestDist(i,t, r, two)
     b     = BestDist(i,t, r, three)
@@ -78,25 +75,14 @@ function BestHalfi,t,rows,rest,best,
     mid  += x/length(rows)
     d[r]  = x
   }
-  if (BestDom(i,two,three)) {
+  if (BestDom(i,t,two,three)) {
     for(r in d) 
-      d[r] <= mid ? push(best,r) : push(rest,r)
-  } else  
+      d[r] <= mid ? push(best,r) : push(i.rest,r)
+  } else  { 
     for(r in d) 
-      d[r] >= mid ? push(best,r) : push(rest,r)
-}
-
-function BestDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
-  n = length(i.my.goals)
-  for(c in i.my.goals) {
-    x   = i.data[r1][c]
-    y   = i.data[r2][c]
-    x   = NumNorm(i, c, x)
-    y   = NumNorm(i, c, y)
-    s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
-    s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
+      d[r] >= mid ? push(best,r) : push(i.rest,r)
   }
- return s1/n < s2/n
+  BestHalves(i,t,best) 
 }
 
 BEGIN {rogues()}

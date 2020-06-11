@@ -135,3 +135,17 @@ function TabFar(i,r1,rows,cols,  a,n,r2) {
 }
 ```
 
+```awk
+function TabDom(i,r1,r2,cols,   c,e,n,x,y,s1,s2) {   
+  n = length(cols)
+  for(c in cols) {
+    x   = i.data[r1][c]
+    y   = i.data[r2][c]
+    x   = NumNorm(i, c, x)
+    y   = NumNorm(i, c, y)
+    s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
+    s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
+  }
+ return s1/n < s2/n
+}
+```
