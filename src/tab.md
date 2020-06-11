@@ -23,8 +23,6 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# `tab`les
-
 ```awk
 @include "ape"  # standard libraries
 @include "num"  # knows "mu", standard deviations "sd"
@@ -32,7 +30,9 @@
 @include "poly" # polymorphic functions
 ```
 
-`tab`les store raw data in `rows`  and summaries of
+# Tab
+
+`Tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
 holds  data from row `r` and columns `c`.
 
@@ -45,7 +45,6 @@ function Tab(i) {
   has(i,"my") # stores indexes to particular subsets of cols 
 }
 ```
-
 The first row of data names the columns. Special symbols
 on those names distinguish different kinds of columns. For example, 
 in the following data fragment...
@@ -62,10 +61,9 @@ in the following data fragment...
 - `!play` is a symbolic class;
 -  and the rest of the columns hold symbols.
 
-### TabCol
+### tabCol()
 
 Define a new column whose name is `x` at position `c`.
-
 
 ```awk
 function TabCol(i,x,c) { 
@@ -77,7 +75,7 @@ function TabCol(i,x,c) {
 }
 ```
 
-### TabRead
+### TabRead()
 
 `Tab`les can be initialize from  comma separated value files via 
 `tabRead`. If `f` is omitted, then this code reads from standard input.
@@ -98,10 +96,9 @@ function TabRead(i,f,    r,c) {
         i.rows[r][c] = add(i.cols[c], $c) }
 }
 ```
-
 ## Distance
 
-### TabDist
+### TabDist()
 
 Returns the distance between two rows.
 
@@ -120,8 +117,7 @@ function TabDist(i,r1,r2,cols,  n,p,d,d1) {
   return (d/n)^(1/p)
 }
 ```
-
-### TabFar
+### TabFar()
 
 Returns a row that is `THE.distant.far` most distant from `TabFar`.
 
