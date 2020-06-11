@@ -102,14 +102,12 @@ function TabRead(i,f,    r,c) {
 ```
 ### TabDist()
 
-Returns the distance between two rows.
+Returns the distance between two rows, manured
+in terms of the columns `cols`.
 
-- By default, this function computes distance using all the x variables.
-- To change that defaults, set `cols` variables
 
 ```awk
 function TabDist(i,r1,r2,cols,  p,c,d) {
-  if (!isarray(cols)) return TabDist(i,r1,r2, i.my.x)
   p = THE.tab.p
   for(c in cols)  
     d += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
@@ -121,15 +119,12 @@ function TabDist(i,r1,r2,cols,  p,c,d) {
 Returns a row that is far away from row `r1`.
 
 - To avoid extreme outliers, we only go `THE.tab.far` away from `r1`.
-- By default, this function:
+- This function:
   - Searchers everything in `i.rows`
-  - Computes distance using all the optimization `goals`. 
-- To change those defaults, set the `rows` and `cols` variables
+  - Computes distance using all the optimization `i.my.x`. 
 
 ```awk
 function TabFar(i,r1,rows,cols,  a,n,r2) {
-  if (!isarray(rows)) return TabFar(i,r1,i.rows, cols)
-  if (!isarray(cols)) return TabFar(i,r1, rows ,i.my.x)
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2

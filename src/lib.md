@@ -39,6 +39,7 @@ function any(a)    { return int(0.5 + rand()*length(a)) }
 function push(a,x) { a[length(a)+1] = x; return x }
 ```
 
+```
 ### oo()
 
 Display nested lists.

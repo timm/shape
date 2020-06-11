@@ -30,6 +30,6 @@ BEGIN {
   THE.tab.far = 0.9
   THE.space.some = 256
   THE.tab.p = 2 
-  THE.space.min = 0.5
+  THE.best.min = 0.5
 }
 ```

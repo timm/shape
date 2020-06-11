@@ -26,59 +26,67 @@
 # Space
 
 ```awk
+@include "ape"
 @include "tab"
 ```
 
-Reason about the `Space` between `rows` in
-`Tables`.
-
-## Distance
-Recursively divide the data on the
+Using random projections,
+recursively divide the `rows` in a `Tab`le.
 
 
 ```awk
-function SpaceBest(i,cols, min,t, out,   t,r,min) {
-  if(!isarray(cols)) return SpaceBest
-  t = t ? t : THE.space.some/length(i.data) 
+function Best(i,t, cols) {
+  Object(i)
+  i.min = length(t.rows)^THE.best.min
+  i.enough  = THE.space.some / length(t.rows)
+  i.cols = cols ? cols : "x"
+}
+function BestDist(i,t,r1,r2) { 
+  return TabDist(t,r1,r2, t.my[i.cols]) 
+}
+function BestFar(i,t,r1,r2) { 
+  return TabFar(t,r1,r2,t.my[i.cols])
+}
+function BestHalf(i,t, rest,best,   r,min) {
   for(r in i.data) 
-    if (rand() < t)
+    if (rand() < i.enough)
       push(rows,r)
-  min = min? min : (i.rows)^THE.space.min
-  SpaceBest1(i,rows, out, min)
+  BestHalves(i,t,rows, rest,best)
 }
 
-function SpaceBest1(i,rows,out,min,  x,tmp) {
-  if (length(rows) < min) {
+function BestHalves(i,t,rows,rest,best,  x,best0) {
+  if (length(rows) < i.min) {
     for(x in rows)
-      out[x] = rows[x] 
+      best[x] = rows[x] 
   } else { 
-     SpaceHalf( i, rows, tmp)
-     SpaceBest1(i,tmp,  out, min) }
+     BestRest( i,t, rows,  rest, best0)
+     BestHalves(i,t, best0, rest, best) }
 }
       
-function SpaceHalf(i,rows,cols, out, 
+function BestHalfi,t,rows,rest,best,
               one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
-  two     = SpaceFar( i,one,rows,  i.my.goals )
-  three   = SpaceFarT( i,two,rows,  i.my.goals )
-  c       = SpaceDist(    i,two,three, i.my.goals ) 
+  two     = BestFar( i,t,one,rows )
+  three   = BestFar( i,t,two,rows)
+  c       = BestDist(i, two, three)
   for(r in rows) {
-    a     = TabDist(i, r, two,   cols)
-    b     = TabDist(i, r, three, cols)
+    a     = BestDist(i,t, r, two)
+    b     = BestDist(i,t, r, three)
     x     = (a^2+c^2 - b^2) / (2*c) 
     if (x > 1) x = 1
     if (x < 0) x = 0
-    mid   += x/length(rows)
+    mid  += x/length(rows)
     d[r]  = x
   }
   if (BestDom(i,two,three)) {
     for(r in d) 
-      if (d[r] <= mid) push(out,r)
+      d[r] <= mid ? push(best,r) : push(rest,r)
   } else  
     for(r in d) 
-      if (d[r] >= mid) push(out,r)
+      d[r] >= mid ? push(best,r) : push(rest,r)
 }
-function SpaceDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
+
+function BestDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
   n = length(i.my.goals)
   for(c in i.my.goals) {
     x   = i.data[r1][c]
