@@ -26,7 +26,6 @@
 
 ## What
 
-<img align=right width=300 src="etc/img/womancoder.png">
 
 This repo shares two sets of tricks.
 
@@ -55,6 +54,8 @@ coding in Prolog, Python, Perl, LISP, Smalltalk,
 CoffeeScript, LUA, Gawk, etc etc, then my work environment looks like:
 
 <p align=center><a href="etc/img/screen.png"><img src="etc/img/screen900.png" width=900></a></p>
+
+<img align=right width=300 src="etc/img/womancoder.png">
 
 I recommend these tools since, with them, you can:
 

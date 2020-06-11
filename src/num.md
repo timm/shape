@@ -25,7 +25,6 @@
 
 # Num
 
-
 ```awk
 function Num(i,txt,pos) {
   Object(i)
