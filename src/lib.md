@@ -77,22 +77,9 @@ function compare(x,y) {
 }
 ```
 
-## Debugging
+## Unit tests
 
-### Rogues
-
-Report variables that have escaped from functions.
-
-```awk
-function rogues(    s) {
-  for(s in SYMTAB) 
-    if (s ~ /^[A-Z][a-z]/) 
-      print "#W> Global " s>"/dev/stderr"
-  for(s in SYMTAB) 
-    if (s ~ /^[_a-z]/    ) 
-      print "#W> Rogue: " s>"/dev/stderr"
-}
-```
+``
 
 ### Tests
 
@@ -112,7 +99,6 @@ function tests(what, all,   f,a,i,n) {
   rogues()
 }
 ```
-
 ### ok
 
 Report the `yes` or `no` message if a test passes or fails.
@@ -125,7 +111,6 @@ function ok(f,yes,    msg) {
   print "#TEST:\t" msg "\t" f
 }
 ```
-
 ### near
 
 Return true if what you `got` is within `epsilon` of
@@ -137,4 +122,17 @@ function near(got,want,     epsilon) {
    return abs(want - got)/(want + 10^-32)  < epsilon
 }
 ```
+### Rogues
 
+Report variables that have escaped from functions.
+
+```awk
+function rogues(    s) {
+  for(s in SYMTAB) 
+    if (s ~ /^[A-Z][a-z]/) 
+      print "#W> Global " s>"/dev/stderr"
+  for(s in SYMTAB) 
+    if (s ~ /^[_a-z]/    ) 
+      print "#W> Rogue: " s>"/dev/stderr"
+}
+`
