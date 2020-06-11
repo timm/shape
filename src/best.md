@@ -46,7 +46,7 @@ function Best(i,t, cols,    r,rows) {
   for(r in i.data) 
     if (rand() < i.enough)
       push(rows,r);
-  BestHalf(i,t,rows)
+  BestHalves(i,t,rows)
 }
 function BestDist(i,t,x,y) {return TabDist(t,x,y,  t.my[i.cols])}
 function BestDom( i,t,x,y) {return TabDom( t,x,y,  t.my[i.cols])}
@@ -60,8 +60,8 @@ function BestHalves(i,t,rows,   x) {
       i.best[x] = rows[x] 
 }
       
-function BestRest(i,t,rows,   best
-              one,two,three,c,r,a,b,x,mid,d) {
+function BestRest(i,t,rows, 
+              one,two,three,c,r,a,b,x,mid,d,best) {
   one     = any(rows)
   two     = BestFar(i,t,  one, rows)
   three   = BestFar(i,t,  two, rows)
