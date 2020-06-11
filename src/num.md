@@ -41,24 +41,38 @@ function Num(i,txt,pos) {
 Updates
 
 ```awk
-function NumAdd(i,v,    d) {
-  if (v=="?") return v
-  v += 0 # coerce to string
+function NumAdd(i,x,    d) {
+  if (x=="?") return x
+  x += 0 # coerce to string
   i.n++
-  i.lo  = v < i.lo ? v : i.lo
-  i.hi  = v > i.hi ? v : i.hi
-  d     = v - i.mu
+  i.lo  = x < i.lo ? x : i.lo
+  i.hi  = x > i.hi ? x : i.hi
+  d     = x - i.mu
   i.mu += d/i.n
-  i.m2 += d*(v - i.mu)
+  i.m2 += d*(x - i.mu)
   NumVar(i)
-  return v
+  return x
 }
-function NumVar(i) {
+function NumSub (i,x,     d)
+  if (x == "?") return x
+  if (i.n < 1 )  return x
+  i.n--
+  d     = x - i.mu
+  i.mu -= d / i.n
+  i.m2 -= d * (x - i.mu)
+  i.sd  = NumVar(i)
+  return x
+end
+function NumSd(i) {
   if (i.m2 < 0) return 0
   if (i.n  < 2) return 0
   i.sd = (i.m2/(i.n - 1))^0.5
   return i.sd
 }
+
+function NumMid(i) { return i.mu }
+function NumVar(i) { return i.sd }
+
 ```
 
 ```awk

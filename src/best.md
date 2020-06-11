@@ -35,32 +35,47 @@ recursively divide the `rows` in a `Tab`le.
 
 
 ```awk
-function Best(i,t, cols,    r,rows) {
+function Best(i,t,    r,rows) {
   Object(i)
   is(i,"Best")
   i.min    = length(t.rows)^THE.best.min
-  i.enough = THE.space.some / length(t.rows)
-  i.cols   = cols ? cols : "x"
+  i.enough = THE.best.enpugh / length(t.rows)
+  i.cols   = THE.best.cols
   has(i,"best")
   has(i,"rest")
   for(r in i.data) 
     if (rand() < i.enough)
       push(rows,r);
-  BestHalves(i,t,rows)
+  BestGet(i,t,rows)
 }
-function BestDist(i,t,x,y) {return TabDist(t,x,y,  t.my[i.cols])}
-function BestDom( i,t,x,y) {return TabDom( t,x,y,  t.my[i.cols])}
-function BestFar( i,t,x,a) {return TabFar( t,x,y,a,t.my[i.cols])}
+```
 
-function BestHalves(i,t,rows,   x) {
+Interface functions: connecting `Best` to the services of `Tab`.
+
+```awk
+function BestDist(i,t,x,y) {return TabDist(t,x,y, t.my[i.cols])}
+function BestFar( i,t,x,a) {return TabFar( t,x,a, t.my[i.cols])}
+```
+### BestGet()
+
+Divide the data (if there are enough rows). Otherwise,
+all the current `rows` are `best`.
+
+```awk
+function BestGet(i,t,rows,   x) {
   if (length(rows) >= i.min) 
-    BestRest(i,t,rows)
+    BestDiv(i,t,rows)
   else
     for(x in rows)
       i.best[x] = rows[x] 
 }
-      
-function BestRest(i,t,rows, 
+```
+### BestDiv()
+
+Random projection (project using cosine rule between two distant points).
+
+```awk
+function BestDiv(i,t,rows, 
               one,two,three,c,r,a,b,x,mid,d,best) {
   one     = any(rows)
   two     = BestFar(i,t,  one, rows)
@@ -69,20 +84,19 @@ function BestRest(i,t,rows,
   for(r in rows) {
     a     = BestDist(i,t, r, two)
     b     = BestDist(i,t, r, three)
-    x     = (a^2+c^2 - b^2) / (2*c) 
+    x     = (a^2+c^2 - b^2) / (2*c)  # cosine rule)
     if (x > 1) x = 1
     if (x < 0) x = 0
     mid  += x/length(rows)
     d[r]  = x
   }
-  if (BestDom(i,t,two,three)) {
+  if (TabDom(t,two,three)) 
     for(r in d) 
       d[r] <= mid ? push(best,r) : push(i.rest,r)
-  } else  { 
+  else   
     for(r in d) 
-      d[r] >= mid ? push(best,r) : push(i.rest,r)
-  }
-  BestHalves(i,t,best) 
+      d[r] >= mid ? push(best,r) : push(i.rest,r);
+  BestGet(i,t,best) 
 }
-
 BEGIN {rogues()}
+```

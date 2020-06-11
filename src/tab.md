@@ -65,7 +65,7 @@ Note that we say that the goals and classes
 are the `y` columns and the others are the `x`
 columns.
 
-### tabCol()
+### TabCol()
 
 Define a new column whose name is `x` at position `c`.
 
@@ -111,7 +111,7 @@ function TabDist(i,r1,r2,cols,  p,c,d) {
   p = THE.tab.p
   for(c in cols)  
     d += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
-  return (d/(length(rows)+0.00001))^(1/p)
+  return (d/(length(cols)+0.00001))^(1/p)
 }
 ```
 ### TabFar()

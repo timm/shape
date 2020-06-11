@@ -244,15 +244,20 @@ While the prerequisites above must be satisfied prior to having your pull reques
 ### Gawk Styleguide
 
 * Assume you code will be added as an `@include` to someone else's code. This means:
-  * Use `BEGIN {ACTION}` a lot to handle side-effects on loading.
-  * Use `PATTERN {ACTION}` very rarely (if at all). 
-  * Use `END {ACTION}' very rarely (if a tall).
+  * Use `BEGIN {ACTION}` a lot (when wanting to call code when loading a file);
+  * Use the following two constructs rarely (if at all) 
+    since that means this file cannot be a subroutine loaded somewhere else;
+    * `PATTERN {ACTION}` 
+    * `END {ACTION}`
 * In those files, start,end your awk code used `\`\`\`awk`  and `\`\`\`.
   * Code should be no more than 60 lines wide.
 
 ### Gold Styleguide
 
 Gold is a Gawk object layer.
+
+
+method with `_` are itnernal services. 
 
 * Write source code in `src/X.md` files. 
 * Write test code for `src/X.md` in `text/Xok.md` files

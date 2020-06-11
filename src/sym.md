@@ -49,11 +49,38 @@ function SymAdd(i,v,  tmp) {
   if (tmp > i.most) { i.most = tmp; i.mode = v }
   return v 
 }
-```
 
-````awk
+function SymDec(i,v,  tmp) {
+  if (v == "?") return v
+  if (v in i.seen) {
+    tmp = i.seen[v]
+    it (tmp > 0) {
+      i.n--
+      i.seen[v]-- }}
+  return v 
+}
+```
+### SymDist()
+
+Distance between 2 symbols.
+
+```awk
 function SymDist(i,x,y) {
   if (x=="?" && y="?") return 1
   return x==y
+}
+```
+## Var and Mid
+
+```awk      
+function SymMid(i) { return i.mode }  
+
+function SymVar(i,  e,p,x,tmp) {
+  for (x in i.seen) {
+    tmp = i.seen[x]
+    if (tmp > 0) {
+      p = tmp/i.n
+      e -= p*log(p)/log(2) }}
+  return e
 }
 ```

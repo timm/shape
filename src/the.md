@@ -31,5 +31,7 @@ BEGIN {
   THE.space.some = 256
   THE.tab.p = 2 
   THE.best.min = 0.5
+  THE.best.cols = "y"
+  THE.best.enough = 256
 }
 ```
