@@ -109,7 +109,7 @@ function ok(f,yes,    msg) {
   print "#TEST:\t" msg "\t" f
 }
 ```
-### near
+### near()
 
 Return true if what you `got` is within `epsilon` of
 what you `want` (`epsilon` defaults to 0.001).
@@ -120,7 +120,7 @@ function near(got,want,     epsilon) {
    return abs(want - got)/(want + 10^-32)  < epsilon
 }
 ```
-### Rogues
+### rogues()
 
 Report variables that have escaped from functions.
 
@@ -133,4 +133,4 @@ function rogues(    s) {
     if (s ~ /^[_a-z]/    ) 
       print "#W> Rogue: " s>"/dev/stderr"
 }
-`
+```
