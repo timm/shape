@@ -58,6 +58,7 @@ CoffeeScript, LUA, Gawk, etc etc, then my work environment looks like:
 I recommend these tools since, with them, you can:
 
 
+- <img align=right width=200 src="etc/img/womancoder.png">
 - Write portable coding:
    - The methods here work anywhere you can get to a \*nix-style command line.
 - Do fast install:
@@ -66,8 +67,7 @@ I recommend these tools since, with them, you can:
 - Do dast uninstall:
    - With _SHape_,
      code can be quickly uninstalled, just by deleting the _SHape_ directory
-- <img align=right width=300 src="etc/img/womancoder.png">
-  Support test-driven development:
+- Support test-driven development:
    - _SHape_ code comprises many small files, each of which can be tested severely;
    - _SHape_'s unit tests for code in the `src/` directory are held in a separate `test/` directory.
    - All those test are re-checked by  Travis CI whenever this code is committed back to Github.
