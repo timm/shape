@@ -262,10 +262,10 @@ Gold is a Gawk object layer.
   * Modify `src/obj.md` very rarely (if at all) since  this is the glue that holds everyone together.
   * Modify `src/lib.md` judiciously since this is where we hold functions everyone uses.
 * Reserve the variable `i` for objects (since this is shorter than `self` or `this`).
-* Classes start with an uppercase.
-* Methods are CamelCase where the first word is the class name.
-* Classes should be written in a `X.md` should contain a function `function X(i) ` to initialize
-  objects of type `X`.
+* Classes start with an lowercase.
+* Methods are camelCase where the first word is the class name.
+* Classes should be written in a `x.md` should contain a function `function x(i) ` to initialize
+  objects of type `x`.
   * The first two lines of that function should: 
      * Reference some superclass; e.g. `Object(i)` . IMPORTAT: this call must be first.
      * Identify the type of an object using `is(i,"X")`  (note the double quotes around the class name).

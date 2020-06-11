@@ -23,7 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Sym
+# sym
 
 Creat.
 
@@ -43,10 +43,17 @@ Update.
 
 ```awk
 function SymAdd(i,v,  tmp) {
-  if (v != "?") return v
+  if (v == "?") return v
   i.n++
   tmp = ++i.seen[v]
   if (tmp > i.most) { i.most = tmp; i.mode = v }
   return v 
+}
+```
+
+````awk
+function SymDist(i,x,y) {
+  if (x=="?" && y="?") return 1
+  return x==y
 }
 ```

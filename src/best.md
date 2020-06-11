@@ -28,60 +28,51 @@
 ```awk
 @include "table"
 
-function best(i,min,out,   rows,r) {
+function Best(i,min,out,   rows,r) {
   for(r in i.data) 
     if (rand() < THE.best.want/length(i.data)) 
       push(rows,r)
-  besthalves(i,rows, out, 2*length(i.data)^THE.best.min)
+  BestHalves(i,rows, out, 2*length(i.data)^THE.best.min)
 }
 
-function besthalves(i,rows,out,min,  x,tmp) {
+function BestHavles(i,rows,out,min,  x,tmp) {
   if (length(rows) < min)  {
     for(x in rows)
       out[x] = rows[x] 
   } else { 
-     besthalf(  i,rows,tmp)
-     besthalves(i,tmp, out, min) }
+     BestHalf(  i,rows,tmp)
+     BestHalves(i,tmp, out, min) }
 }
       
-function besthalf(i,rows,out,
-                  one,two,three,c,r,a,b,x,mid,d) {
+function BestHalf(i,rows,out,
+              one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
-  two     = distant(i,one,rows,   i.my.goals)
-  three   = distant(i,two,rows,   i.my.goals)
-  c       = dist(i,   two, three, i.my.goals)
+  two     = TabFar( i,one,rows,  i.my.goals )
+  three   = TabFar( i,two,rows,  i.my.goals )
+  c       = TabDist(    i,two,three, i.my.goals ) 
   for(r in rows) {
-    a     = dist(r, two)
-    b     = dist(r, three)
+    a     = TabDist(i, r, two,   i.my.goals)
+    b     = TabDist(i, r, three, i.my.goals)
     x     = (a^2+c^2 - b^2) / (2*c) 
     if (x > 1) x = 1
     if (x < 0) x = 0
     mid   += x/length(rows)
     d[r]  = x
   }
-  if (dom(i,two,three)) {
+  if (BestDom(i,two,three)) {
     for(r in d) 
       if (d[r] <= mid) push(out,r)
   } else  
     for(r in d) 
       if (d[r] >= mid) push(out,r)
 }
-function distant(i,r1,rows,cols,  a,n,r2) {
-  for(r2 in rows) 
-    if(r1 != r2) {
-      a[r2].row = r2
-      a[r2].dist = dist(i,r1,r2,cols) }
-  n = keysort(a,"dist")
-  n = int(n*THE.distant.far)  
-  return a[n].row
-}
-function dom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
+function BestDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
   n = length(i.my.goals)
   for(c in i.my.goals) {
     x   = i.data[r1][c]
     y   = i.data[r2][c]
-    x   = norm(i, c, x)
-    y   = norm(i, c, y)
+    x   = NumNorm(i, c, x)
+    y   = NumNorm(i, c, y)
     s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
     s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
   }

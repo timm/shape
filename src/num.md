@@ -25,7 +25,6 @@
 
 # Num
 
-Create
 
 ```awk
 function Num(i,txt,pos) {
@@ -52,10 +51,10 @@ function NumAdd(i,v,    d) {
   d     = v - i.mu
   i.mu += d/i.n
   i.m2 += d*(v - i.mu)
-  NumSd(i)
+  NumVar(i)
   return v
 }
-function NumSd(i) {
+function NumVar(i) {
   if (i.m2 < 0) return 0
   if (i.n  < 2) return 0
   i.sd = (i.m2/(i.n - 1))^0.5
@@ -63,6 +62,21 @@ function NumSd(i) {
 }
 ```
 
+```awk
+function NumDist(i,x,y) {
+  if (x=="?" && y=="?") return 1
+  if (x=="?") { y=NumNorm(i,y); x=y<0.5?1:0; return abs(x-y)}
+  if (y=="?") { x=NumNorm(i,y); y=x<0.5?1:0; return abs(x-y)}
+  x = norm(i,x)
+  y = norm(i,y)
+  return abs(x - y)
+}
+
+function NumNorm(i,x) {
+  if (x ~ /\?/) return x
+  return (x - i.lo)/(i.hi - i.lo + 10^-32)
+}
+```
 Discretization (cut two Gaussians, four ways).
 
 ```awk

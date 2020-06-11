@@ -27,7 +27,7 @@
 
 ```awk
 BEGIN{  APE["oid"]  = 0
-        APE["dot"] = sprintf("%c",44)
+        APE["dot"] = sprintf("%c",46)
         APE["up"]   = APE["dot"] APE["dot"]
 }
 function List(i)    { split("",i,"") }

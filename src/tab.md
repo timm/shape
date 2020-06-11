@@ -23,7 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# `Tab`les
+# `tab`les
 
 ```awk
 @include "ape"  # standard libraries
@@ -32,14 +32,14 @@
 @include "poly" # polymorphic functions
 ```
 
-`Tab`les store raw data in `rows`  and summaries of
+`tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
 holds  data from row `r` and columns `c`.
 
 ```awk
-function Tab(i) {
+function Tab(i) { 
   Object(i)
-  is(i,"Table")
+  is(i,"Tab")
   has(i,"cols")
   has(i,"rows")
   has(i,"my") # stores indexes to particular subsets of cols 
@@ -62,52 +62,52 @@ In this example:
 -  and the rest of the columns hold symbols.
 
 ```awk
-function TabWhat(i,txt,c) { 
-  if (txt ~ /!/)        i.my.klass[c]
-  if (txt ~ /[<>]/)     i.my.goals[c]
-  if (txt ~ /[\$<>]/) { i.my.nums[c]; return "Num" }
-  i.my.syms[c]
-  return "Sym" }
+function TabCol(i,x,c) { 
+  if (x ~ /!/)    i.my.klass[c]
+  if (x ~ /[<>]/) i.my.goals[c]
+  if (x ~ /[\$<>]/) { hass(i.cols,c,"Num",x,c); i.my.nums[c] }
+  else              { hass(i.cols,c,"Sym",x c); i.my.syms[c] }
 }
 ```
 
-Tables can be initializd from  comma separated value files via 
-the `TabRead`.
+`Tab`les can be initialize from  comma separated value files via 
+`tabRead`.
 
 ```awk
 function TabRead(i,f,    r,c) {
   FS = ","
   f  = f ? f : "-"
   r  = -1
-  while((getline f) > 0)  { 
+  while((getline < f) > 0)  { 
     gsub(/([ \t\r]*|#.*)/, "")
-    if (length($0)==0) continue
-    if(++r == 0) {
-      for(c=1; c<=NF; c++) 
-        if ($c !~ /\?/)
-          hass(i.cols, c, TabHat(i,$c,c), $c, c) 
-    } else
-        for(c in i.cols)
-          i.rows[r][c] = add(i.cols[c], $c) }
+    if (!length($0)) continue
+    r++
+    for(c=1; c<=NF; c++) 
+      if(r == 0) 
+        TabCol(i,$c,c)
+      else
+        i.rows[r][c] = add(i.cols[c], $c) }
 }
 ```
 
 ```awk
-function TabDist(i,r1,r2,cols,  c,p,x,y,d,n) {
+function TabDist(i,r1,r2,cols,  n,p,d,d1) {
   n = 0.00001 # stop divide by zero errors
   p = THE.dist.p
-  for(c in cols) {
-    x  = TabNorm(i, c, i.data[r1][c])
-    y  = TabNorm(i, c, i.data[r2][c])
-    d += abs(x-y)^p
+  for(c in cols)  {
+    d1 += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
     n++
   }
   return (d/n)^(1/p)
 }
-function TabNorm(i,c,x,   lo,hi) {
-  if (x ~ /\?/) return x
-  lo = i.cols[c].lo
-  hi = i.cols[c].hi
-  return (x - lo)/(hi - lo + 10^-32)
+
+function TabFar(i,r1,rows,cols,  a,n,r2) {
+  for(r2 in rows) 
+    if(r1 != r2) {
+      a[r2].row = r2
+      a[r2].dist = dist(i,r1,r2,cols) }
+  n = keysort(a,"dist")
+  n = int(n*THE.distant.far)  
+  return a[n].row
 }
 ```
