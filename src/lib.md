@@ -79,12 +79,10 @@ function compare(x,y) {
 
 ## Unit tests
 
-``
-
 ### Tests
 
 Top level unit-test driver.  Resets the random number generator
-before each test.  Prints the group and nmae of the test.
+before each test.  Prints the group and name of the test.
 Warns about stray globals at the end.
 
 ```awk
