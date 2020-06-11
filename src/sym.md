@@ -54,7 +54,7 @@ function SymDec(i,v,  tmp) {
   if (v == "?") return v
   if (v in i.seen) {
     tmp = i.seen[v]
-    it (tmp > 0) {
+    if (tmp > 0) {
       i.n--
       i.seen[v]-- }}
   return v 

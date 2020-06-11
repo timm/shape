@@ -53,7 +53,7 @@ function NumAdd(i,x,    d) {
   NumVar(i)
   return x
 }
-function NumSub (i,x,     d)
+function NumSub (i,x,     d) {
   if (x == "?") return x
   if (i.n < 1 )  return x
   i.n--
@@ -62,7 +62,7 @@ function NumSub (i,x,     d)
   i.m2 -= d * (x - i.mu)
   i.sd  = NumVar(i)
   return x
-end
+}
 function NumSd(i) {
   if (i.m2 < 0) return 0
   if (i.n  < 2) return 0
