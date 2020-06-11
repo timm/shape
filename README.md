@@ -58,7 +58,8 @@ CoffeeScript, LUA, Gawk, etc etc, then my work environment looks like:
 I recommend these tools since, with them, you can:
 
 
-- <img align=right width=200 src="etc/img/womancoder.png">
+<img align=right width=300 src="etc/img/womancoder.png">
+
 - Write portable coding:
    - The methods here work anywhere you can get to a \*nix-style command line.
 - Do fast install:
