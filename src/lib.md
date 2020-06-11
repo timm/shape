@@ -39,6 +39,8 @@ function any(a)    { return int(0.5 + rand()*length(a)) }
 function push(a,x) { a[length(a)+1] = x; return x }
 ```
 
+### oo()
+
 Display nested lists.
 
 ```awk
@@ -59,17 +61,21 @@ function ooSortOrder(a, i) {
 }
 ```
 
-Sorting
+### keysort()
+
+Some nested array `a` by some field `k`.
 
 ```awk
 function keysort(a,k) {
   APE.keysort = k
   return asort(a,a,"keysorter")
 }
+
 function keysorter(i1,x,i2,y) {
   return compare(x[ APE.keysort ] + 0,
                  y[ APE.keysort ] + 0)
 } 
+
 function compare(x,y) {
   if (x < y) return -1
   if (x == y) return 0
@@ -79,7 +85,7 @@ function compare(x,y) {
 
 ## Unit tests
 
-### Tests
+### tests()
 
 Top level unit-test driver.  Resets the random number generator
 before each test.  Prints the group and name of the test.
@@ -97,7 +103,7 @@ function tests(what, all,   f,a,i,n) {
   rogues()
 }
 ```
-### ok
+### ok()
 
 Report the `yes` or `no` message if a test passes or fails.
 Increments the global `test.yes` and `test.no` counters.
