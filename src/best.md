@@ -23,36 +23,48 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# best
+# Space
 
 ```awk
-@include "table"
+@include "tab"
+```
 
-function Best(i,min,out,   rows,r) {
+Reason about the `Space` between `rows` in
+`Tables`.
+
+## Distance
+Recursively divide the data on the
+
+
+```awk
+function SpaceBest(i,cols, min,t, out,   t,r,min) {
+  if(!isarray(cols)) return SpaceBest
+  t = t ? t : THE.space.some/length(i.data) 
   for(r in i.data) 
-    if (rand() < THE.best.want/length(i.data)) 
+    if (rand() < t)
       push(rows,r)
-  BestHalves(i,rows, out, 2*length(i.data)^THE.best.min)
+  min = min? min : (i.rows)^THE.space.min
+  SpaceBest1(i,rows, out, min)
 }
 
-function BestHavles(i,rows,out,min,  x,tmp) {
-  if (length(rows) < min)  {
+function SpaceBest1(i,rows,out,min,  x,tmp) {
+  if (length(rows) < min) {
     for(x in rows)
       out[x] = rows[x] 
   } else { 
-     BestHalf(  i,rows,tmp)
-     BestHalves(i,tmp, out, min) }
+     SpaceHalf( i, rows, tmp)
+     SpaceBest1(i,tmp,  out, min) }
 }
       
-function BestHalf(i,rows,out,
+function SpaceHalf(i,rows,cols, out, 
               one,two,three,c,r,a,b,x,mid,d) {
   one     = any(rows)
-  two     = TabFar( i,one,rows,  i.my.goals )
-  three   = TabFar( i,two,rows,  i.my.goals )
-  c       = TabDist(    i,two,three, i.my.goals ) 
+  two     = SpaceFar( i,one,rows,  i.my.goals )
+  three   = SpaceFarT( i,two,rows,  i.my.goals )
+  c       = SpaceDist(    i,two,three, i.my.goals ) 
   for(r in rows) {
-    a     = TabDist(i, r, two,   i.my.goals)
-    b     = TabDist(i, r, three, i.my.goals)
+    a     = TabDist(i, r, two,   cols)
+    b     = TabDist(i, r, three, cols)
     x     = (a^2+c^2 - b^2) / (2*c) 
     if (x > 1) x = 1
     if (x < 0) x = 0
@@ -66,7 +78,7 @@ function BestHalf(i,rows,out,
     for(r in d) 
       if (d[r] >= mid) push(out,r)
 }
-function BestDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
+function SpaceDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
   n = length(i.my.goals)
   for(c in i.my.goals) {
     x   = i.data[r1][c]

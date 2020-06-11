@@ -1,5 +1,4 @@
 ```awk
-
 @include "ape"
 @include "poly"
 @include "num"
@@ -16,4 +15,4 @@ function _num(f,   n,lst,s,i) {
    ok(f, int(100*n.sd)== 306)
    ok(f, n.mu ==  7)
 }
-
+```

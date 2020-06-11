@@ -27,9 +27,9 @@
 
 ```awk
 BEGIN {
-  THE.distant.far = 0.9
-  THE.distant.want = 256
-  THE.dist.p = 2 
-  THE.best.min = 0.5
+  THE.tab.far = 0.9
+  THE.space.some = 256
+  THE.tab.p = 2 
+  THE.space.min = 0.5
 }
 ```

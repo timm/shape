@@ -56,10 +56,14 @@ in the following data fragment...
 
 ... then the columns are:
 
-- `$temp` is a column of numbers; 
-- `<humid` is a goal to be minimized; 
-- `!play` is a symbolic class;
--  and the rest of the columns hold symbols.
+- `$temp` is a column of `num`bers; 
+- `<humid` is a `goal` to be minimized; 
+- `!play` is a `sym`bolic class;
+-  and the rest of the columns hold `sym`bols.
+
+Note that we say that the goals and classes
+are the `y` columns and the others are the `x`
+columns.
 
 ### tabCol()
 
@@ -96,8 +100,6 @@ function TabRead(i,f,    r,c) {
         i.rows[r][c] = add(i.cols[c], $c) }
 }
 ```
-## Distance
-
 ### TabDist()
 
 Returns the distance between two rows.
@@ -106,35 +108,35 @@ Returns the distance between two rows.
 - To change that defaults, set `cols` variables
 
 ```awk
-function TabDist(i,r1,r2,cols,  n,p,d,d1) {
+function TabDist(i,r1,r2,cols,  p,c,d) {
   if (!isarray(cols)) return TabDist(i,r1,r2, i.my.x)
-  n = 0.00001 # stop divide by zero errors
-  p = THE.dist.p
-  for(c in cols)  {
-    d1 += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
-    n++
-  }
-  return (d/n)^(1/p)
+  p = THE.tab.p
+  for(c in cols)  
+    d += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
+  return (d/(length(rows)+0.00001))^(1/p)
 }
 ```
 ### TabFar()
 
-Returns a row that is `THE.distant.far` most distant from `TabFar`.
+Returns a row that is far away from row `r1`.
 
-- By default, this function searchers everything in `i.rows`
-  and computes distance using all the optimization `goals`. 
+- To avoid extreme outliers, we only go `THE.tab.far` away from `r1`.
+- By default, this function:
+  - Searchers everything in `i.rows`
+  - Computes distance using all the optimization `goals`. 
 - To change those defaults, set the `rows` and `cols` variables
 
 ```awk
 function TabFar(i,r1,rows,cols,  a,n,r2) {
-  if (!isarray(rows)) return TabFar(i,r1,i.rows)
-  if (!isarray(cols)) return TabFar(i,r1,rows,i.my.x)
+  if (!isarray(rows)) return TabFar(i,r1,i.rows, cols)
+  if (!isarray(cols)) return TabFar(i,r1, rows ,i.my.x)
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2
-      a[r2].dist = dist(i,r1,r2,cols) }
+      a[r2].dist = TabDist(i,r1,r2,cols) }
   n = keysort(a,"dist")
-  n = int(n*THE.distant.far)  
+  n = int(n*THE.space.far)  
   return a[n].row
 }
 ```
+
