@@ -43,30 +43,9 @@ function Best(i,t,    r,rows) {
   has(i,"best")
   has(i,"rest")
   for(r in t.rows) 
-    if (rand() < i.enough)
+    if (rand() < i.enough) 
       rows[r];
-  print( length(rows) )
-  BestGet(i,t,rows)
-}
-```
-
-Interface functions: connecting `Best` to the services of `Tab`.
-
-```awk
-function BestDist(i,t,x,y) {return TabDist(t,x,y, t.my[i.cols])}
-function BestFar( i,t,x,a) {return TabFar( t,x,a, t.my[i.cols])}
-```
-### BestGet()
-
-Divide the data (if there are enough rows). Otherwise,
-all the current `rows` are `best`.
-
-```awk
-function BestGet(i,t,rows,   x) {
-  if (length(rows) >= i.min) 
-    BestDiv(i,t,rows)
-  else
-    copy(rows, i.best)
+  BestDiv(i,t,rows)
 }
 ```
 ### BestDiv()
@@ -76,6 +55,8 @@ Random projection (project using cosine rule between two distant points).
 ```awk
 function BestDiv(i,t,rows, 
               one,two,three,c,r,a,b,x,mid,d,best) {
+  if (length(rows) < i.min) 
+    return copy(rows, i.best)
   one   = any(rows)
   two   = BestFar(i,t,  one, rows)
   three = BestFar(i,t,  two, rows)
@@ -95,6 +76,13 @@ function BestDiv(i,t,rows,
   else   
     for(r in d) 
       d[r] >= mid ? best[r] : i.rest[r];
-  BestGet(i,t,best) 
+  BestDiv(i,t,best) 
 }
 ```
+Interface functions: connecting `Best` to the services of `Tab`.
+
+```awk
+function BestDist(i,t,x,y) {return TabDist(t,x,y, t.my[i.cols])}
+function BestFar( i,t,x,a) {return TabFar( t,x,a, t.my[i.cols])}
+```
+
