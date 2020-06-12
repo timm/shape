@@ -75,7 +75,7 @@ Define a new column whose name is `x` at position `c`.
 function TabCols(i,a,      x,c,xy) { 
   for(c in a) {
     x = i.header[c]= a[c]
-    if  ( x ~ /!/     ) i.my.klass[c]
+    if  ( x ~ /!/     ) i.my.klass = c
     if  ( x ~ /[<>]/  ) i.my.goals[c]
     xy = x ~ /[!<>]/ ? "y"   : "x" 
     i.my[xy][c]

@@ -41,10 +41,10 @@ function Tabs(i) {
 Ensure that we have a  `klass` for a row.
 
 ```awk
-function TabsK(i,row) {
+function TabsK(i,row,   k) {
   k = row[i.all.my.klass]
   if (!(k in i.klass)) 
-    has(i.klass, k, "Tab", i.all.header)
+    hass(i.klass, k, "Tab", i.all.header)
   return k
 }
 ```
@@ -54,9 +54,10 @@ function TabsRead(i,f,  it,k,c,x) {
   Row(it, f)
   while(Rows(it)) {
     if (it.r == 0) 
-      TabCol(i.all,it.cells)
+      TabCols(i.all, it.cells)
     else {
       k = TabsK(i, it.cells)
+      print(it.r,k)
       for(c in it.cells)  {
         x = it.cells[c]
         i.klass[k].rows[r][c]= add(i.klass[k].cols[c], x)

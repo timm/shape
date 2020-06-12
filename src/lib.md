@@ -23,7 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Lib
+# Lib :o:
 
 ## Maths
 
@@ -55,6 +55,8 @@ function copy(a, b,     i){
 ```      
 ### o()
 
+Convert a flat array to a string.
+
 ```awk
 function o(a,     sep,    sep1,i,s) {
   for(i in a) {
@@ -66,6 +68,7 @@ function o(a,     sep,    sep1,i,s) {
 ### oo()
 
 Display nested lists.
+Print keys in sorted order.
 
 ```awk
 function oo(a,prefix,    indent,   i,txt) {
@@ -170,7 +173,7 @@ function rogues(    s) {
 
 ## Input
 
-## csv()
+## csv() 
 
 Iterator.
 
@@ -248,7 +251,10 @@ Example usage:
 Iterator.
 
 Read a csv file `f`, 
-set `i.cells` to all columns that start with `?`.
+
+- Set `i.cells` to all columns that _do not_ start with `?`.
+- Set `i.r` to the current row number (and first row as `i.r=0`)
+
 
 ```awk
 function Row(i,file) {
