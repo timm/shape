@@ -26,7 +26,7 @@
 # Run all tests
 
 ```awk
-@include "the"
+@include "my"
 @include "obj"
 @include "lib"
 ```

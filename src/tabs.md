@@ -28,7 +28,7 @@
 Read a csv file into multiple tables:
 
 - `i.all`   holds all data
-- `i.klass[k]` does jsut the rows for class `k`.
+- `i.klass[k]` does just the rows for class `k`.
 
 ```awk
 @include "tab"
@@ -42,7 +42,7 @@ Ensure that we have a  `klass` for a row.
 
 ```awk
 function TabsK(i,row,   k) {
-  k = row[i.all.my.klass]
+  k = row[i.all.the.klass]
   if (!(k in i.klass)) 
     hass(i.klass, k, "Tab", i.all.header)
   return k
@@ -57,11 +57,10 @@ function TabsRead(i,f,  it,k,c,x) {
       TabCols(i.all, it.cells)
     else {
       k = TabsK(i, it.cells)
-      print(it.r,k)
       for(c in it.cells)  {
         x = it.cells[c]
-        i.klass[k].rows[r][c]= add(i.klass[k].cols[c], x)
-        i.all.rows[r][c]     = add(i.all.cols[c],      x)}}}
+        i.klass[k].rows[it.r][c]= add(i.klass[k].cols[c], x)
+        i.all.rows[it.r][c]     = add(i.all.cols[c],      x)}}}
   close(f)
 }
 ```

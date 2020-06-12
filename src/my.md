@@ -23,30 +23,15 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
+# Options
+
 ```awk
-@include "ape"
-@include "tab"
-
-BEGIN {tests("tabok","_tab,_rows")} 
-
-function _tab(f,    i) {
-  Tab(i)
-  TabRead(i,"data/raw/auto93" APE.dot "csv") 
-  ok(f,length(i.rows)==398)
-  ok(f ":3", i.cols[1].seen[3] == 4)
-  ok(f ":8", i.cols[1].seen[8] == 103)
-}
-
-function _rows(f,    m,n,i,some,r1,r2,rows,a) {
-  Tab(i)
-  List(rows)
-  TabRead(i,"data/raw/auto93" APE.dot "csv") 
-  m = 64
-  while(m--)  
-    some[ any(i.rows) ]
-  for(r1 in some) {
-    n = TabAround(i, r1, some, i.the.x, a)
-    ok(f r1, a[1].dist < a[n].dist)
-  }
+BEGIN {
+  MY.best.cols = "y"
+  MY.best.enough = 256
+  MY.best.min = 0.5
+  MY.space.some = 256
+  MY.tab.far = 0.9
+  MY.tab.p = 2 
 }
 ```

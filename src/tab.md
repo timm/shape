@@ -42,7 +42,7 @@ function Tab(i,  header,c) {
   is(i,"Tab")
   has(i,"cols")
   has(i,"rows")
-  has(i,"my") # stores indexes to particular subsets of cols 
+  has(i,"the") # stores indexes to particular subsets of cols 
   has(i,"header")
   TabCols(i, header)
 }
@@ -75,12 +75,12 @@ Define a new column whose name is `x` at position `c`.
 function TabCols(i,a,      x,c,xy) { 
   for(c in a) {
     x = i.header[c]= a[c]
-    if  ( x ~ /!/     ) i.my.klass = c
-    if  ( x ~ /[<>]/  ) i.my.goals[c]
+    if  ( x ~ /!/     ) i.the.klass = c
+    if  ( x ~ /[<>]/  ) i.the.goals[c]
     xy = x ~ /[!<>]/ ? "y"   : "x" 
-    i.my[xy][c]
-    if (x ~ /[\$<>]/) { hass(i.cols,c,"Num",x,c); i.my.nums[c] }
-    else              { hass(i.cols,c,"Sym",x c); i.my.syms[c] }}
+    i.the[xy][c]
+    if (x ~ /[\$<>]/) {i.the.nums[c]; hass(i.cols,c,"Num",x,c)}
+    else              {i.the.syms[c]; hass(i.cols,c,"Sym",x c)}}
 }
 ```
 
@@ -109,7 +109,7 @@ in terms of the columns `cols`.
 ```awk
 function TabDist(i,r1,r2,cols,  
                  c,d,inc,n,p) {
-  p = THE.tab.p
+  p = MY.tab.p
   n = length(cols)+0.00001
   for(c in cols) {
     inc = dist(i.cols[c], i.rows[r1][c], i.rows[r2][c])
@@ -122,15 +122,15 @@ function TabDist(i,r1,r2,cols,
 
 Returns a row that is far away from row `r1`.
 
-- To avoid extreme outliers, we only go `THE.tab.far` away from `r1`.
+- To avoid extreme outliers, we only go `MY.tab.far` away from `r1`.
 - This function:
   - Searchers everything in `i.rows`
-  - Computes distance using all the optimization `i.my.x`. 
+  - Computes distance using all the optimization `i.the.x`. 
 
 ```awk
 function TabFar(i,r1,rows,cols,  a,n) {
   n = TabAround(i,r1,rows,cols,a)
-  n = int(n*THE.tab.far)  
+  n = int(n*MY.tab.far)  
   return a[n].row
 }
 
@@ -146,8 +146,8 @@ function TabAround(i,r1,rows,cols,a,   n,r2) {
 
 ```awk
 function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
-  n = length(i.my.goals)
-  for(c in i.my.goals) {
+  n = length(i.the.goals)
+  for(c in i.the.goals) {
     x   = i.data[r1][c]
     y   = i.data[r2][c]
     x   = NumNorm(i.cols[c], x)
@@ -156,5 +156,22 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
     s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
   }
  return s1/n < s2/n
+}
+```
+### TabShow()
+
+```awk
+function TabShow(i,     r) {
+  print o(i.header)
+  for(r in i.rows)
+    print o(i.rows[r])
+}
+
+function TabScore(i,  c,s,sep) {
+  for(c in i.the.goals) {
+    s   = s sep score(i.cols[c])
+    sep = ", "
+  }
+  return s
 }
 ```

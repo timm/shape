@@ -39,9 +39,9 @@ function Best(i,t,   cols,    r,rows) {
   is(i,"Best")
   has(i,"best")
   has(i,"rest")
-  i.min    = 2*length(t.rows)^THE.best.min
-  i.enough = THE.best.enough / length(t.rows)
-  i.cols   = cols ? cols : THE.best.cols
+  i.min    = 2*length(t.rows)^MY.best.min
+  i.enough = MY.best.enough / length(t.rows)
+  i.cols   = cols ? cols : MY.best.cols
   for(r in t.rows) 
     if (rand() < i.enough) 
       rows[r];
@@ -82,7 +82,7 @@ function BestDiv(i,t,rows,
 Interface functions: connecting `Best` to the services of `Tab`.
 
 ```awk
-function BestDist(i,t,x,y) {return TabDist(t,x,y, t.my[i.cols])}
-function BestFar( i,t,x,a) {return TabFar( t,x,a, t.my[i.cols])}
+function BestDist(i,t,x,y) {return TabDist(t,x,y, t.the[i.cols])}
+function BestFar( i,t,x,a) {return TabFar( t,x,a, t.the[i.cols])}
 ```
 

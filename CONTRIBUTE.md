@@ -254,6 +254,10 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ### Gold Styleguide
 
+tests: 
+the var trick grep '\<r\>' \*.md
+
+
 Gold is a Gawk object layer.
 
 Iterators are usaually called `it` or `itr` or `itf` or some such.

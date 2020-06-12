@@ -29,7 +29,7 @@
 BEGIN {  tests("libok","_list,_copy,_csv") }
 
 function _list(f,    a) {
-  copy(THE,a)
+  copy(MY,a)
   ok(f, a.tab.p == 2)
 }
 

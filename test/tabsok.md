@@ -23,15 +23,16 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Options
-
 ```awk
-BEGIN {
-  THE.best.cols = "y"
-  THE.best.enough = 256
-  THE.best.min = 0.5
-  THE.space.some = 256
-  THE.tab.far = 0.9
-  THE.tab.p = 2 
+@include "tabs"
+
+BEGIN {tests("tabok","_tabs") }
+
+function _tabs(f,    i,k) {
+  Tabs(i)
+  TabsRead(i,"data/cooked/auto93bore" APE.dot "csv") 
+  print "all " score(i.all)
+  for(k in i.klass) {
+   print k " " score(i.klass[k])  }
 }
 ```

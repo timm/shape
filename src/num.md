@@ -53,9 +53,9 @@ function NumAdd(i,x,    d) {
   NumSd(i)
   return x
 }
-function NumSub (i,x,     d) {
+function NumDec(i,x,     d) {
   if (x == "?") return x
-  if (i.n < 1 )  return x
+  if (i.n < 1 ) return x
   i.n--
   d     = x - i.mu
   i.mu -= d / i.n
@@ -72,7 +72,6 @@ function NumSd(i) {
 
 function NumMid(i) { return i.mu }
 function NumVar(i) { return i.sd }
-
 ```
 
 ```awk
@@ -82,12 +81,16 @@ function NumDist(i,x,y) {
   if (y=="?") { x=NumNorm(i,y); y=x<0.5?1:0; return abs(x-y)}
   x = NumNorm(i,x)
   y = NumNorm(i,y)
-  return abs(x - y)
+  return abs(x - y) 
 }
 
 function NumNorm(i,x) {
   if (x ~ /\?/) return x
   return (x - i.lo)/(i.hi - i.lo + 10^-32)
+}
+
+function NumScore(i) {
+  return i.txt "=" NumMid(i)
 }
 ```
 Discretization (cut two Gaussians, four ways).

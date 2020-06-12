@@ -84,3 +84,7 @@ function SymVar(i,  e,p,x,tmp) {
   return e
 }
 ```
+
+```awk
+function SymScore(i) { return i.txt "=" SymMid(i) }
+```
