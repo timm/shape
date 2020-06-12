@@ -110,7 +110,6 @@ function TabRead(i,f,    r,c) {
 Returns the distance between two rows, manured
 in terms of the columns `cols`.
 
-
 ```awk
 function TabDist(i,r1,r2,cols,  
                  c,d,inc,n,p) {

@@ -31,9 +31,8 @@ This repo shares two sets of tricks.
 
 - _SHape_: language independent methods to support command-line 
   development using bash, Github, vim, and tmux.
-  these tricks are called _SHape_.
-- Language dependent tricks. For example:
-  -  _Gold_ (the Gawk object layer) is my preferred way of coding in Gawk.
+- Language dependent tricks. The repo implements _Gold_ (the Gawk object layer). 
+  This is my preferred way of coding in Gawk.
 
 ## How
 

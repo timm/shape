@@ -33,7 +33,6 @@
 Using random projections,
 recursively divide the `rows` in a `Tab`le.
 
-
 ```awk
 function Best(i,t,    r,rows) {
   Object(i)

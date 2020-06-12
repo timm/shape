@@ -256,7 +256,6 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 Gold is a Gawk object layer.
 
-
 method with `_` are itnernal services. 
 
 * Write source code in `src/X.md` files. 
