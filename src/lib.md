@@ -56,12 +56,11 @@ function copy(a, b,     i){
 ### o()
 
 ```awk
-function o(a,     sep,    sep1,i,pre,s) {
+function o(a,     sep,    sep1,i,s) {
   for(i in a) {
     s    = s sep1 a[i]
-    sep1 = sep ? sep : ", "
-  }
-  return pre "{" s "}"
+    sep1 = sep ? sep : ", " }
+  return s 
 }
 ```      
 ### oo()

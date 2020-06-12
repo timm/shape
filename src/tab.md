@@ -37,12 +37,15 @@ those data in `cols` (columns). For example `i.rows[r][c]`
 holds  data from row `r` and columns `c`.
 
 ```awk
-function Tab(i) { 
+function Tab(i,  header,c) { 
   Object(i)
   is(i,"Tab")
   has(i,"cols")
   has(i,"rows")
   has(i,"my") # stores indexes to particular subsets of cols 
+  has(i,"header")
+  for(c in header)
+    TabCol(i, header[c], c)
 }
 ```
 The first row of data names the columns. Special symbols
@@ -71,6 +74,7 @@ Define a new column whose name is `x` at position `c`.
 
 ```awk
 function TabCol(i,x,c) { 
+  i.header[c] = x
   if  ( x ~ /!/     ) i.my.klass[c]
   if  ( x ~ /[<>]/  ) i.my.goals[c]
   i.my[ x ~ /[!<>]/ ? "y"   : "x" ][c]
@@ -108,7 +112,8 @@ in terms of the columns `cols`.
 
 
 ```awk
-function TabDist(i,r1,r2,cols,  c,d,inc,n,p) {
+function TabDist(i,r1,r2,cols,  
+                 c,d,inc,n,p) {
   p = THE.tab.p
   n = length(cols)+0.00001
   for(c in cols) {
