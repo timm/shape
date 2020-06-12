@@ -38,7 +38,7 @@ recursively divide the `rows` in a `Tab`le.
 function Best(i,t,    r,rows) {
   Object(i)
   is(i,"Best")
-  i.min    = length(t.rows)^THE.best.min
+  i.min    = 2*length(t.rows)^THE.best.min
   i.enough = THE.best.enough / length(t.rows)
   i.cols   = THE.best.cols
   has(i,"best")
@@ -46,6 +46,7 @@ function Best(i,t,    r,rows) {
   for(r in t.rows) 
     if (rand() < i.enough)
       rows[r];
+  print( length(rows) )
   BestGet(i,t,rows)
 }
 ```
@@ -63,7 +64,6 @@ all the current `rows` are `best`.
 
 ```awk
 function BestGet(i,t,rows,   x) {
-  print(100, length(rows))
   if (length(rows) >= i.min) 
     BestDiv(i,t,rows)
   else
@@ -77,12 +77,10 @@ Random projection (project using cosine rule between two distant points).
 ```awk
 function BestDiv(i,t,rows, 
               one,two,three,c,r,a,b,x,mid,d,best) {
-  print(1)
-  one     = any(rows)
-  two     = BestFar(i,t,  one, rows)
-  three   = BestFar(i,t,  two, rows)
-  c       = BestDist(i,t, two, three)
-  print(1,one,2,two,3,three,"c",c)
+  one   = any(rows)
+  two   = BestFar(i,t,  one, rows)
+  three = BestFar(i,t,  two, rows)
+  c     = BestDist(i,t, two, three)
   for(r in rows) {
     a     = BestDist(i,t, r, two)
     b     = BestDist(i,t, r, three)

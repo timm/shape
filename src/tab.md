@@ -98,6 +98,7 @@ function TabRead(i,f,    r,c) {
         TabCol(i,$c,c)
       else 
         i.rows[r][c] = add(i.cols[c], $c) }
+  close(f)
 }
 ```
 ### TabDist()
@@ -127,25 +128,30 @@ Returns a row that is far away from row `r1`.
   - Computes distance using all the optimization `i.my.x`. 
 
 ```awk
-function TabFar(i,r1,rows,cols,  a,n,r2) {
+function TabFar(i,r1,rows,cols,  a,n) {
+  n = TabAround(i,r1,rows,cols,a)
+  n = int(n*THE.tab.far)  
+  return a[n].row
+}
+
+function TabAround(i,r1,rows,cols,a,   n,r2) {
+  List(a)
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2
       a[r2].dist = TabDist(i,r1,r2,cols) }
-  n = keysort(a,"dist")
-  n = int(n*THE.tab.far)  
-  return a[n].row
+  return keysort(a,"dist")
 }
 ```
 
 ```awk
-function TabDom(i,r1,r2,cols,   c,e,n,x,y,s1,s2) {   
-  n = length(cols)
-  for(c in cols) {
+function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
+  n = length(i.my.goals)
+  for(c in i.my.goals) {
     x   = i.data[r1][c]
     y   = i.data[r2][c]
-    x   = NumNorm(i, c, x)
-    y   = NumNorm(i, c, y)
+    x   = NumNorm(i.cols[c], x)
+    y   = NumNorm(i.cols[c], y)
     s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
     s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
   }

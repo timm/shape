@@ -65,9 +65,9 @@ function SymDec(i,v,  tmp) {
 Distance between 2 symbols.
 
 ```awk
-function SymDist(i,x,y) {
-  if (x=="?" && y="?") return 1
-  return x==y
+function SymDist(i,x,y,    z) {
+  if (x=="?" && y=="?") return 1
+  return x != y 
 }
 ```
 ## Var and Mid

@@ -28,7 +28,7 @@
 ## Maths
 
 ```awk
-function abs(x)  { return x>=0? x: -1*x }
+function abs(x)  { return x>=0 ? x : -1*x }
 ```
 ## Lists
 
@@ -51,6 +51,17 @@ function copy(a, b,     i){
       delete b[i][SUBSEP]
     } else 
       b[i] = a[i] }
+}
+```      
+### o()
+
+```awk
+function o(a,     sep,    sep1,i,pre,s) {
+  for(i in a) {
+    s    = s sep1 a[i]
+    sep1 = sep ? sep : ", "
+  }
+  return pre "{" s "}"
 }
 ```      
 ### oo()
@@ -129,7 +140,7 @@ function ok(f,yes,    msg) {
      APE.test.yes++ 
   else
      APE.test.no++;
-  print "#TEST:\t" msg "\t" f
+  print "#test:\t" msg "\t" f
 }
 ```
 ### near()
