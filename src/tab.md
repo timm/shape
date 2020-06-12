@@ -44,8 +44,7 @@ function Tab(i,  header,c) {
   has(i,"rows")
   has(i,"my") # stores indexes to particular subsets of cols 
   has(i,"header")
-  for(c in header)
-    TabCol(i, header[c], c)
+  TabCols(i, header)
 }
 ```
 The first row of data names the columns. Special symbols
@@ -73,13 +72,15 @@ columns.
 Define a new column whose name is `x` at position `c`.
 
 ```awk
-function TabCol(i,x,c) { 
-  i.header[c] = x
-  if  ( x ~ /!/     ) i.my.klass[c]
-  if  ( x ~ /[<>]/  ) i.my.goals[c]
-  i.my[ x ~ /[!<>]/ ? "y"   : "x" ][c]
-  if (x ~ /[\$<>]/) { hass(i.cols,c,"Num",x,c); i.my.nums[c] }
-  else              { hass(i.cols,c,"Sym",x c); i.my.syms[c] }
+function TabCols(i,a,      x,c,xy) { 
+  for(c in a) {
+    x = i.header[c]= a[c]
+    if  ( x ~ /!/     ) i.my.klass[c]
+    if  ( x ~ /[<>]/  ) i.my.goals[c]
+    xy = x ~ /[!<>]/ ? "y"   : "x" 
+    i.my[xy][c]
+    if (x ~ /[\$<>]/) { hass(i.cols,c,"Num",x,c); i.my.nums[c] }
+    else              { hass(i.cols,c,"Sym",x c); i.my.syms[c] }}
 }
 ```
 
@@ -89,19 +90,14 @@ function TabCol(i,x,c) {
 `tabRead`. If `f` is omitted, then this code reads from standard input.
 
 ```awk
-function TabRead(i,f,    r,c) {
-  FS = ","
-  f  = f ? f : "-"
-  r  = -1
-  while((getline < f) > 0)  { 
-    gsub(/([ \t\r]*|#.*)/, "")
-    if (!length($0)) continue
-    r++
-    for(c=1; c<=NF; c++) 
-      if(r == 0) 
-        TabCol(i,$c,c)
-      else 
-        i.rows[r][c] = add(i.cols[c], $c) }
+function TabRead(i,f,    c,it) {
+  Row(it,f)
+  while (Rows(it)) {
+    if (it.r == 0) 
+      TabCols(i,it.cells)
+    else 
+      for(c in it.cells)
+        i.rows[it.r][c] = add(i.cols[c], it.cells[c]) }
   close(f)
 }
 ```

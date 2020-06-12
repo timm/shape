@@ -23,37 +23,44 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
+# Tabs
+
+Read a csv file into multiple tables:
+
+- `i.all`   holds all data
+- `i.klass[k]` does jsut the rows for class `k`.
+
 ```awk
 @include "tab"
 
 function Tabs(i) {
-  has(i,"all","Tab")
+  has(i,"all",  "Tab")
   has(i,"klass")
 }
+```
+Ensure that we have a  `klass` for a row.
 
-function TabsK(i) {
-  k = $i.all.my.klass
+```awk
+function TabsK(i,row) {
+  k = row[i.all.my.klass]
   if (!(k in i.klass)) 
     has(i.klass, k, "Tab", i.all.header)
   return k
 }
+```
 
-function TabsCell(t,r,c) {t.rows[r][c] = add(t.cols[c],$c)}
-function TabsRead(i,f,  r,c,k) {
-  FS = ","
-  f  = f ? f : "-"
-  r  = -1
-  while((getline < f) > 0)  { 
-    gsub(/([ \t\r]*|#.*)/, "")
-    if (!length($0)) continue
-    r++
-    if(r == 0) 
-      for(c=1; c<=NF; c++) 
-        TabCol(i.all,$c,c)
+```awk
+function TabsRead(i,f,  it,k,c,x) {
+  Row(it, f)
+  while(Rows(it)) {
+    if (it.r == 0) 
+      TabCol(i.all,it.cells)
     else {
-      k = TabsK(i)
-      for(c=1; c<=NF; c++) {
-        TabsCell(i.all,      r,c)
-        TabsCell(i.klass[k], r,c) }}}
+      k = TabsK(i, it.cells)
+      for(c in it.cells)  {
+        x = it.cells[c]
+        i.klass[k].rows[r][c]= add(i.klass[k].cols[c], x)
+        i.all.rows[r][c]     = add(i.all.cols[c],      x)}}}
   close(f)
 }
+```

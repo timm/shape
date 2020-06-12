@@ -4,20 +4,21 @@
 Ape=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 banner() { cat<<'EOF'
-
-     _----------_,     SHape  v1.0
-    ,"__         _-:,   -----------
-   /    ""--_--""...:\   SHell tricks for
-  /         |.........\   Any 
- /          |..........\   Program +
-/,         _'_........./:   documEntation
-! -,    _-"   "-_... ,;;:    
-\   -_-"         "-_/;;;;    
- \   \             /;;;;'   
-  \   \           /;;;;     
-   '.  \         /;;;'
-     "-_\_______/;;'
-
+    _....._
+  ';-.--';'
+    }===={       _.---.._    
+  .'  _|_ '.    ';-..--';   
+ /:: (_|_`  \    }====={   
+|::  ,_|_)  |  .:   _|_ '.   
+\::.   |    /_;:_  (_|_`  \  
+ '::_    _-;'--.-' ._|_)   |
+   ``````  }====={     |   / 
+          .   _|_ \  __.:'
+         /:: (_|_` \``  GOLD   : a GAWK object layer  
+        |::  ,_|_)  |  GOLDEen : a GOLD dev environment    
+        \::.   |    / GOLDmine : GOLD's data mining tools
+    jgs  ':_      .' GOLDstandrad: fairness tools
+             `````  
 EOF
 }
 tran() { gawk '

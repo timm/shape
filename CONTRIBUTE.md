@@ -256,7 +256,7 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 Gold is a Gawk object layer.
 
-method with `_` are itnernal services. 
+Iterators are usaually called `it` or `itr` or `itf` or some such.
 
 * Write source code in `src/X.md` files. 
 * Write test code for `src/X.md` in `text/Xok.md` files

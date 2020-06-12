@@ -34,14 +34,14 @@ Using random projections,
 recursively divide the `rows` in a `Tab`le.
 
 ```awk
-function Best(i,t,    r,rows) {
+function Best(i,t,   cols,    r,rows) {
   Object(i)
   is(i,"Best")
   has(i,"best")
   has(i,"rest")
   i.min    = 2*length(t.rows)^THE.best.min
   i.enough = THE.best.enough / length(t.rows)
-  i.cols   = THE.best.cols
+  i.cols   = cols ? cols : THE.best.cols
   for(r in t.rows) 
     if (rand() < i.enough) 
       rows[r];

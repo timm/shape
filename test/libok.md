@@ -26,7 +26,7 @@
 ```awk
 @include "ape"
 
-BEGIN {  tests("libok","_list,_copy") }
+BEGIN {  tests("libok","_list,_copy,_csv") }
 
 function _list(f,    a) {
   copy(THE,a)
@@ -46,5 +46,11 @@ function _copy(f,    a,b) {
   b.here.now.one = "here_now_one"
   ok(f, a.now.here.one == 111)
   ok(f, b.here.now.one == "here_now_one")
+}
+
+function _csv(f, i) {
+  Row(i,"data/raw/weather" APE.dot "csv") 
+  while( Rows(i) )
+    print(o(i.cells))
 }
 ```
