@@ -28,10 +28,18 @@
 
 function Tabs(i) {
   has(i,"all","Tab")
-  has(i,"parts")
+  has(i,"klass")
 }
-function TabsRow(t,r,c) {t.rows[r][c] = add(t.cols[c],$c)}
-function TabsRead(i,f,  r,c) {
+
+function TabsK(i) {
+  k = $i.all.my.klass
+  if (!(k in i.klass)) 
+    has(i.klass, k, "Tab", i.all.header)
+  return k
+}
+
+function TabsCell(t,r,c) {t.rows[r][c] = add(t.cols[c],$c)}
+function TabsRead(i,f,  r,c,k) {
   FS = ","
   f  = f ? f : "-"
   r  = -1
@@ -43,11 +51,9 @@ function TabsRead(i,f,  r,c) {
       for(c=1; c<=NF; c++) 
         TabCol(i.all,$c,c)
     else {
-      k = $i.all.my.klass
-      if (!(k in i.parts)) 
-        has(i.parts, k, "Tab", i.all.header)
+      k = TabsK(i)
       for(c=1; c<=NF; c++) {
         TabsCell(i.all,      r,c)
-        TabsCell(i.parts[k], r,c) }}}
+        TabsCell(i.klass[k], r,c) }}}
   close(f)
 }
