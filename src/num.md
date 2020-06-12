@@ -50,7 +50,7 @@ function NumAdd(i,x,    d) {
   d     = x - i.mu
   i.mu += d/i.n
   i.m2 += d*(x - i.mu)
-  NumVar(i)
+  NumSd(i)
   return x
 }
 function NumSub (i,x,     d) {
@@ -80,8 +80,8 @@ function NumDist(i,x,y) {
   if (x=="?" && y=="?") return 1
   if (x=="?") { y=NumNorm(i,y); x=y<0.5?1:0; return abs(x-y)}
   if (y=="?") { x=NumNorm(i,y); y=x<0.5?1:0; return abs(x-y)}
-  x = norm(i,x)
-  y = norm(i,y)
+  x = NumNorm(i,x)
+  y = NumNorm(i,y)
   return abs(x - y)
 }
 

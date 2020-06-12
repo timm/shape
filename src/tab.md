@@ -107,11 +107,14 @@ in terms of the columns `cols`.
 
 
 ```awk
-function TabDist(i,r1,r2,cols,  p,c,d) {
+function TabDist(i,r1,r2,cols,  c,d,inc,n,p) {
   p = THE.tab.p
-  for(c in cols)  
-    d += dist( i.cols[c], i.rows[r1][c], i.rows[r2][c] )
-  return (d/(length(cols)+0.00001))^(1/p)
+  n = length(cols)+0.00001
+  for(c in cols) {
+    inc = dist(i.cols[c], i.rows[r1][c], i.rows[r2][c])
+    d  += inc^p
+  }
+  return (d/n)^(1/p)
 }
 ```
 ### TabFar()
@@ -130,7 +133,7 @@ function TabFar(i,r1,rows,cols,  a,n,r2) {
       a[r2].row = r2
       a[r2].dist = TabDist(i,r1,r2,cols) }
   n = keysort(a,"dist")
-  n = int(n*THE.space.far)  
+  n = int(n*THE.tab.far)  
   return a[n].row
 }
 ```

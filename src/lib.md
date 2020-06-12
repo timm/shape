@@ -38,8 +38,21 @@ Misc
 function any(a)    { return int(0.5 + rand()*length(a)) }
 function push(a,x) { a[length(a)+1] = x; return x }
 ```
+### copy()
 
-```
+Deep copy.
+
+```awk
+function copy(a, b,     i){
+  for (i in a) {
+    if(isarray(a[i])) {
+      b[i][SUBSEP]
+      copy(a[i], b[i])
+      delete b[i][SUBSEP]
+    } else 
+      b[i] = a[i] }
+}
+```      
 ### oo()
 
 Display nested lists.
@@ -112,7 +125,10 @@ Increments the global `test.yes` and `test.no` counters.
 ```awk
 function ok(f,yes,    msg) {
   msg = yes ? "PASSED!" : "FAILED!"
-  yes ? APE.test.yes++ : APE.test.no++
+  if (yes) 
+     APE.test.yes++ 
+  else
+     APE.test.no++;
   print "#TEST:\t" msg "\t" f
 }
 ```

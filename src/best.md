@@ -39,13 +39,13 @@ function Best(i,t,    r,rows) {
   Object(i)
   is(i,"Best")
   i.min    = length(t.rows)^THE.best.min
-  i.enough = THE.best.enpugh / length(t.rows)
+  i.enough = THE.best.enough / length(t.rows)
   i.cols   = THE.best.cols
   has(i,"best")
   has(i,"rest")
-  for(r in i.data) 
+  for(r in t.rows) 
     if (rand() < i.enough)
-      push(rows,r);
+      rows[r];
   BestGet(i,t,rows)
 }
 ```
@@ -63,11 +63,11 @@ all the current `rows` are `best`.
 
 ```awk
 function BestGet(i,t,rows,   x) {
+  print(100, length(rows))
   if (length(rows) >= i.min) 
     BestDiv(i,t,rows)
   else
-    for(x in rows)
-      i.best[x] = rows[x] 
+    copy(rows, i.best)
 }
 ```
 ### BestDiv()
@@ -77,10 +77,12 @@ Random projection (project using cosine rule between two distant points).
 ```awk
 function BestDiv(i,t,rows, 
               one,two,three,c,r,a,b,x,mid,d,best) {
+  print(1)
   one     = any(rows)
   two     = BestFar(i,t,  one, rows)
   three   = BestFar(i,t,  two, rows)
   c       = BestDist(i,t, two, three)
+  print(1,one,2,two,3,three,"c",c)
   for(r in rows) {
     a     = BestDist(i,t, r, two)
     b     = BestDist(i,t, r, three)
@@ -92,11 +94,10 @@ function BestDiv(i,t,rows,
   }
   if (TabDom(t,two,three)) 
     for(r in d) 
-      d[r] <= mid ? push(best,r) : push(i.rest,r)
+      d[r] <= mid ? best[r] : i.rest[r]
   else   
     for(r in d) 
-      d[r] >= mid ? push(best,r) : push(i.rest,r);
+      d[r] >= mid ? best[r] : i.rest[r];
   BestGet(i,t,best) 
 }
-BEGIN {rogues()}
 ```

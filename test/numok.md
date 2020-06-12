@@ -12,7 +12,7 @@ function _num(f,   n,lst,s,i) {
    Num(n)
    for(i in lst)
     add(n,lst[i])
-   ok(f, int(100*n.sd)== 306)
-   ok(f, n.mu ==  7)
+   ok(f "-sd", int(100*n.sd)== 306)
+   ok(f "-mu", n.mu ==  7)
 }
 ```
