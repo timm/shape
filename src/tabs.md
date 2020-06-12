@@ -6,7 +6,7 @@ function Tabs(i) {
   has(i,"parts")
 }
 function TabsRow(t,r,c) {t.rows[r][c] = add(t.cols[c],$c)}
-function TabsRead(i,f,    r,c) {
+function TabsRead(i,f,  r,c) {
   FS = ","
   f  = f ? f : "-"
   r  = -1
