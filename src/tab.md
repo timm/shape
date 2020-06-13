@@ -77,16 +77,17 @@ function TabCols(i,a,      x,c,xy,what) {
     x = i.header[c]= a[c]
     # are you a goal column?
     if  ( x ~ /[<>]/ ) i.the.goals[c]
+   # are you an independent "x" or dependent "y" column?
+    xy   =  x ~ /[!<>]/  ? "y"   : "x"  
+    i.the[xy][c]
+    # are you the klass column? (there can only be one)
+    if  ( x ~ /!/ ) i.the.klass = c
     # are you a string "Sym" col or a numeric "Num" column?
     what =  x ~ /[\$<>]/ ? "Num" : "Sym"
     what == "Num" ? i.the.nums[c] : i.the.syms[c]
+    # make the new column (of type "what")
     hass(i.cols,c,what,x,c)
-    # are you an independent "x" or dependent "y" column?
-    xy   =  x ~ /[!<>]/  ? "y"   : "x"  
-    i.the[xy][c]
-    # are you the kllass column? (there can only be one)
-    if  ( x ~ /!/ ) i.the.klass = c
-}
+}}
 ```
 
 ### TabRead()
@@ -149,23 +150,32 @@ function TabAround(i,r1,rows,cols,a,   n,r2) {
 }
 ```
 
+### TabDom()
+
+Given two rows with multiple goals,
+one is better than the other if we lose less
+moving towards it than vice versa.
+ 
 ```awk
 function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
   n = length(i.the.goals)
   for(c in i.the.goals) {
-    x   = i.data[r1][c]
-    y   = i.data[r2][c]
-    print("x",x,"y",y)
+    x   = i.rows[r1][c]
+    y   = i.rows[r2][c]
     x   = NumNorm(i.cols[c], x)
     y   = NumNorm(i.cols[c], y)
-    print("x",x,"y",y)
     s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
     s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
   }
   return s1/n < s2/n
 }
 ```
+## Printing
+
+
 ### TabShow()
+
+Print whole table.
 
 ```awk
 function TabShow(i,     r) {
@@ -173,7 +183,12 @@ function TabShow(i,     r) {
   for(r in i.rows)
     print o(i.rows[r])
 }
+```
+### TabScore()
 
+Print just the goal columns.
+
+```awk
 function TabScore(i,  c,s,sep) {
   for(c in i.the.goals) {
     s   = s sep score(i.cols[c])

@@ -57,9 +57,9 @@ function _csv(f, it,n) {
   ok(f, typeof(it.cells[2])=="strnum")
 }
 function _anys(f,   n,s,r,good,x) {
-  n=10
+  n = 10
   while(n--) s[n+1]
-  r=1000
+  r = 1000
   while(r--) 
     good +=  within( nanys(s) ,1,10)
   ok(f, good==1000)

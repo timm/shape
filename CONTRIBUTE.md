@@ -254,6 +254,9 @@ While the prerequisites above must be satisfied prior to having your pull reques
 
 ### Gold Styleguide
 
+sets:  dont do intp[[x] = x ~/[0-9]+/ but rather    
+if(x~/[0-9]+/) intp[x]
+
 tests: 
 the var trick grep '\<r\>' \*.md
 

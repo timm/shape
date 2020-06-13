@@ -44,7 +44,7 @@ function Best(i,t,   cols,    r,rows) {
   i.cols   = cols ? cols : MY.best.cols
   for(r in t.rows) 
     if (rand() < i.enough) 
-      push(rows,r);
+      rows[r]
   BestDiv(i,t,rows)
 }
 ```
@@ -54,17 +54,16 @@ Random projection (project using cosine rule between two distant points).
 
 ```awk
 function BestDiv(i,t,rows, 
-              u,v,w,c,j,a,b,x,r,mid,d,best) {
+              any,far,away,a,b,c,x,r,mid,d,best) {
   if (length(rows) < i.min) 
     return copy(rows, i.best)
-  u = any(rows) 
-  v = BestFar(i,t,  u, rows)
-  w = BestFar(i,t,  v, rows)
-  c = BestDist(i,t, v, w)
+  any  = anys(rows) 
+  far  = BestFar(i,t,  any, rows)
+  away = BestFar(i,t,  far, rows)
+  c    = BestDist(i,t, far, away)
   for(j in rows) {
-    r     = rows[j]
-    a     = BestDist(i,t, r, v)
-    b     = BestDist(i,t, r, w)
+    a     = BestDist(i,t, r, far)
+    b     = BestDist(i,t, r, away)
     x     = (a^2+c^2 - b^2) / (2*c)  # cosine rule)
     if (x > 1) x = 1
     if (x < 0) x = 0
@@ -73,10 +72,10 @@ function BestDiv(i,t,rows,
   }
   if (TabDom(t,v,w)) 
     for(r in d) 
-      d[r] <= mid ? push(best,r) : push(i.rest,r)
+      d[r] <= mid ? best[r] : i.rest[r]
   else   
     for(r in d) 
-      d[r] <= mid ? push(i.rest, r) : push(best,r);
+      d[r] <= mid ? i.rest[r] : best[r];
   BestDiv(i,t,best) 
 }
 ```

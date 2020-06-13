@@ -33,6 +33,7 @@ function _tab(f,    i) {
   Tab(i)
   TabRead(i,"data/raw/auto93" APE.dot "csv") 
   ok(f,length(i.rows)==398)
+  ok(f ":3", i.rows[1][1] == "numeric")
   ok(f ":3", i.cols[1].seen[3] == 4)
   ok(f ":8", i.cols[1].seen[8] == 103)
 }
@@ -44,10 +45,9 @@ function seq(a,x) {
 function _rows(f,    m,n,i,j,k,some,r1,r2,a,dom) {
   Tab(i)
   TabRead(i,"data/raw/auto93" APE.dot "csv") 
-  m = 32
+  m = 256
   while(m-- > 0)
-    seq(some, anyi( i.rows) )
-  oo(some,"some")
+     some[ anys(i.rows) ]
   for(r1 in some)
     for(r2 in some)
       if(r1>r2) {
@@ -55,11 +55,10 @@ function _rows(f,    m,n,i,j,k,some,r1,r2,a,dom) {
         dom[r1].dom += TabDom(i,r1,r2)
   }
   n= keysort(dom,"dom")
-  oo(dom)
-  for(j=1; j<=5;j++)
+  for(j=1; j<=10;j++)
     print o(i.rows[ dom[j].r1 ] ) "," dom[j].dom
   print ""
-  for(j=n-5;j<=n;j++)
+  for(j=n-10;j<=n;j++)
     print o(i.rows[ dom[j].r1 ] ) "," dom[j].dom
 
 }
