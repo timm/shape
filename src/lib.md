@@ -67,17 +67,15 @@ function anys(s, n,k){
   return k ## make sure something gets returned
 }
 ```
-### copy()
+### copy() : deep copy
 
-Deep copy.
 
 ```awk
-function copy(a, b,     i,k){
-  k = "\003" # some unlikely key
+function copy(a, b,     i){
   for (i in a) {
     if(isarray(a[i])) {
-      b[i][k]        # ensure nested list exists
-      delete b[i][k] # clean up
+      b[i][0]        # ensure nested list exists
+      delete b[i][0] 
       copy(a[i], b[i])
     } else 
       b[i] = a[i] 

@@ -56,11 +56,11 @@
 ```awk
 function Tab(i,  header,c) { 
   Object(i)
-  is(i,"Tab")
-  has(i,"cols")
-  has(i,"rows")
-  has(i,"the") # stores indexes to particular subsets of cols 
-  has(i,"header")
+  is(i,  "Tab")
+  has(i, "cols")
+  has(i, "rows")
+  has(i, "the") # stores indexes to particular subsets of cols 
+  has(i, "header")
   TabCols(i, header)
 }
 ```

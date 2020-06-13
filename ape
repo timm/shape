@@ -4,17 +4,17 @@
 Ape=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 banner() { cat<<'EOF'
-    _....._              
-   ';-.--';'              GOLD      : a GAWK object layer 
+    _....._
+   ';-.--';'              GOLD      : a GAWK object layer
     }===={       _.---..,  GOLDEen  : a GOLD dev environment
   .'  _|_ '.    ';-..--';   GOLDmine: some data mining tools
  /:: (_|_`  \    }====={     GOLDstandard: AI fairness tools
-|::  ,_|_)  |  .:   _|_ '.      
+|::  ,_|_)  |  .:   _|_ '.
 \::.   |    /_;:_  (_|_`  \    http://github.com/golden/code
- '::_    _-;'--.-' ._|_)  |     (c) 2020  
-   ``````      \::.  |    /      Tim Menzies 
+ '::_    _-;'--.-' ._|_)  |     (c) 2020
+   ``````      \::.  |    /      Tim Menzies
            jgs  '::_  _-;'        timm@ieee.org
-                 ````` 
+                  ````` 
 EOF
 }
 tran() { gawk '
