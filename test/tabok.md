@@ -39,10 +39,6 @@ function _tab(f,    i) {
   ok(f ":8", i.cols[1].seen[8] == 103)
 }
 
-function seq(a,x) { 
- if(!isarray(a)) split("",a,"")
- a[x] = x }
-
 function _rows(f,    m,n,i,j,k,some,r1,r2,a,dom) {
   Tab(i)
   TabRead(i,"data/raw/auto93" APE.dot "csv") 

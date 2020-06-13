@@ -48,7 +48,7 @@ function Best(i,t,   cols,    r,rows) {
   BestDiv(i,t,rows)
 }
 ```
-## BestDiv() : recursively discard worse half of data 
+## BestDiv() : recursively prune worse half of data 
 
 Random projection (project using cosine 
 rule between two distant points).
@@ -59,10 +59,10 @@ function BestDiv(i,t,rows,
   if (length(rows) < i.min) 
     return copy(rows, i.best)
   any  = anys(rows) 
-  far  = BestFar(i,t,  any, rows)
-  away = BestFar(i,t,  far, rows)
-  c    = BestDist(i,t, far, away)
-  for(j in rows) {
+  far  = BestFar(  i,t, any, rows)
+  away = BestFar(  i,t, far, rows)
+  c    = BestDist( i,t, far, away)
+  for(r in rows) {
     a     = BestDist(i,t, r, far)
     b     = BestDist(i,t, r, away)
     x     = (a^2+c^2 - b^2) / (2*c)  # cosine rule)
@@ -71,17 +71,16 @@ function BestDiv(i,t,rows,
     mid  += x/length(rows)
     d[r]  = x
   }
-  if (TabDom(t,v,w)) 
-    for(r in d) 
-      d[r] <= mid ? best[r] : i.rest[r]
-  else   
-    for(r in d) 
-      d[r] <= mid ? i.rest[r] : best[r];
+  if (TabDom(t,far,away)) 
+        for(r in d) d[r] <= mid ? best[r]   : i.rest[r]
+  else  for(r in d) d[r] <= mid ? i.rest[r] : best[r];
   BestDiv(i,t,best) 
 }
 ```
 ## Support Code
 Interface functions: connecting `Best` to the services of `Tab`.
+Note that when we talk to the table `t`, we use the columns
+`i.cols`.
 
 ```awk
 function BestDist(i,t,x,y) {return TabDist(t,x,y, t.the[i.cols])}
