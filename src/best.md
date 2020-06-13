@@ -39,7 +39,7 @@ function Best(i,t,   cols,    r,rows) {
   is(i,"Best")
   has(i,"best")
   has(i,"rest")
-  i.min    = 2*length(t.rows)^MY.best.min
+  i.min    = length(t.rows)^MY.best.min
   i.enough = MY.best.enough / length(t.rows)
   i.cols   = cols ? cols : MY.best.cols
   for(r in t.rows) 
@@ -57,7 +57,7 @@ function BestDiv(i,t,rows,
               u,v,w,c,j,a,b,x,r,mid,d,best) {
   if (length(rows) < i.min) 
     return copy(rows, i.best)
-  u = any(rows)
+  u = any(rows) 
   v = BestFar(i,t,  u, rows)
   w = BestFar(i,t,  v, rows)
   c = BestDist(i,t, v, w)
@@ -77,7 +77,6 @@ function BestDiv(i,t,rows,
   else   
     for(r in d) 
       d[r] <= mid ? push(i.rest, r) : push(best,r);
-  oo(best)
   BestDiv(i,t,best) 
 }
 ```

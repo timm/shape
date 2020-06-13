@@ -35,9 +35,12 @@ function abs(x)  { return x>=0 ? x : -1*x }
 Misc
 
 ```awk
-function any(a)    { return a[ anyi(a) ]            }
-function anyi(a)   { return 1+int(rand()*length(a)) }
-function push(a,x) { a[length(a)+1] = x; return x   }
+function any(a)    { return a[1+int(rand()*length(a))] }
+function anyi(a)   { return   1+int(rand()*length(a))  }
+function push(a,x) { 
+   if(!isarray(a)) split("",a,"");
+   return a[ length(a)+1 ] = x; 
+}
 ```
 ### copy()
 

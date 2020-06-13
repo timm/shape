@@ -150,12 +150,14 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
   for(c in i.the.goals) {
     x   = i.data[r1][c]
     y   = i.data[r2][c]
+    print("x",x,"y",y)
     x   = NumNorm(i.cols[c], x)
     y   = NumNorm(i.cols[c], y)
+    print("x",x,"y",y)
     s1 -= 2.72 ^ ( i.cols[c].w * (x - y)/n )
     s2 -= 2.72 ^ ( i.cols[c].w * (y - x)/n )
   }
- return s1/n < s2/n
+  return s1/n < s2/n
 }
 ```
 ### TabShow()

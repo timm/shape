@@ -15,10 +15,10 @@ banner() { cat<<'EOF'
    ``````  }====={     |   / 
           .   _|_ \  __.:'
          /:: (_|_` \``  
-        |::  ,_|_)  |  GOLD   : a GAWK object layer  
-        \::.   |    / GOLDEen : a GOLD dev environment    
-    jgs  ':_      .' GOLDmine : some data mining tools
-             `````  GOLDstandard: some AI fairness tools
+        |::  ,_|_)  |  GOLD  : a GAWK object layer  
+        \::.   |    / GOLDEen: a GOLD dev environment    
+    jgs  ':_      .' GOLDmine: some data mining tools
+             `````  GOLDstandard: AI fairness tools
 EOF
 }
 tran() { gawk '

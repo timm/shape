@@ -35,6 +35,7 @@ function _best(f,    i,j,r,t) {
   print o(t.header), ", !best"
   for(j in i.rest) print  o(t.rows[ i.rest[j] ]) ", false" 
   for(j in i.best) print  o(t.rows[ i.best[j] ]) ", true" 
+  rogues()
 }
 
 ```

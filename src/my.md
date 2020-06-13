@@ -28,10 +28,10 @@
 ```awk
 BEGIN {
   MY.best.cols = "y"
-  MY.best.enough = 500
+  MY.best.enough = 256
   MY.best.min = 0.5
   MY.space.some = 256
-  MY.tab.far = 0.9
+  MY.tab.far = 0.90
   MY.tab.p = 2 
 }
 ```
