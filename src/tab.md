@@ -35,10 +35,11 @@
     - [TabFar()](#tabfar--return-a-row2-far-away-from-row1) : return a row2 far away from row1
     - [TabAround()](#tabaround--find-distances-to-other-things) : find distances to other things
 - [Optimization](#optimization) 
-    - [TabDom()](#tabdom--does-row1-dominant-row2) : does row1 dominant row2
+    - [TabDom()](#tabdom--checks-if-row1-dominant-row2) : checks if row1 dominant row2
 - [Printing](#printing) 
-    - [TabShow()](#tabshow) 
-    - [TabScore()](#tabscore) 
+    - [TabShow()](#tabshow--print-entire-table) : print entire table
+    - [TabScore()](#tabscore--print-just-the-goal-columns) : print just the goal columns.
+
 
 ```awk
 @include "ape"  # standard libraries
