@@ -31,6 +31,7 @@
 @include "sym"  # knows "mode" and counts of "seen" symbols
 @include "poly" # polymorphic functions
 ```
+## About
 
 `Tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
@@ -67,7 +68,7 @@ Note that we say that the goals and classes
 are the `y` columns and the others are the `x`
 columns.
 
-### TabCol()
+### TabCol() : make new column
 
 Define a new column whose name is `x` at position `c`.
 
@@ -90,7 +91,7 @@ function TabCols(i,a,      x,c,xy,what) {
 }}
 ```
 
-### TabRead()
+### TabRead() : read a new table from disc
 
 `Tab`les can be initialize from  comma separated value files via 
 `tabRead`. If `f` is omitted, then this code reads from standard input.
@@ -124,16 +125,13 @@ function TabDist(i,r1,r2,cols,
   return (d/n)^(1/p)
 }
 ```
-### TabFar()
+### TabFar()  
 
-Returns a row that is far away from row `r1`.
-
-- To avoid extreme outliers, we only go `MY.tab.far` 
-  away from `r1` (usually, no more than 90% towards
-  the most distant point)
-- This function:
-  - Searchers everything in `i.rows`
-  - Computes distance using all the optimization `i.the.x`. 
+Search through `rows` to returns a row that is far away from row
+`r1`.  This function restricts its computation of distance to just
+the `cols` columns.  To avoid extreme outliers, we only go `MY.tab.far`
+away from `r1` (e.g. no more than 90% towards the most distant
+point).
 
 ```awk
 function TabFar(i,r1,rows,cols,  a,n) {
@@ -145,7 +143,7 @@ function TabFar(i,r1,rows,cols,  a,n) {
 ### TabAround()
 
 Sets `a` to a list of pairs `<row,dist>` from row `r1`
-to al other rows. The `a` list is sorted by distance.
+to all other `rows`. Sort the  `a` list by distance.
 Note that `a[1]..a[k]` hold the _k_ nearest neighbors.
 
 ```awk
