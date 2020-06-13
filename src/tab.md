@@ -128,7 +128,9 @@ function TabDist(i,r1,r2,cols,
 
 Returns a row that is far away from row `r1`.
 
-- To avoid extreme outliers, we only go `MY.tab.far` away from `r1`.
+- To avoid extreme outliers, we only go `MY.tab.far` 
+  away from `r1` (usually, no more than 90% towards
+  the most distant point)
 - This function:
   - Searchers everything in `i.rows`
   - Computes distance using all the optimization `i.the.x`. 
@@ -140,8 +142,14 @@ function TabFar(i,r1,rows,cols,  a,n) {
   return a[n].row
 }
 
+### TabAround()
+
+Sets `a` to a list of pairs `<row,dist>` from row `r1`
+to al other rows. The `a` list is sorted by distance.
+Note that `a[1]..a[k]` hold the _k_ nearest neighbors.
+
+```awk
 function TabAround(i,r1,rows,cols,a,   n,r2) {
-  List(a)
   for(r2 in rows) 
     if(r1 != r2) {
       a[r2].row = r2
@@ -149,12 +157,12 @@ function TabAround(i,r1,rows,cols,a,   n,r2) {
   return keysort(a,"dist")
 }
 ```
-
 ### TabDom()
 
-Given two rows with multiple goals,
-one is better than the other if we lose less
-moving towards it than vice versa.
+Given two rows _1,2_ with multiple goals, then
+_1_ is better than _2_ if we lose less
+moving from _2_ to _1_ than  vice versa.
+
  
 ```awk
 function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {   
@@ -170,6 +178,13 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
   return s1/n < s2/n
 }
 ```
+
+Notes:
+- In order to stress the difference between goals,
+  we raise them to some power (here, _e=2.72_).
+- But before that, in order to avoid real number expositions, 
+  we normalized the goal values.
+
 ## Printing
 
 
