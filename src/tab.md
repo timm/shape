@@ -112,7 +112,6 @@ function TabCols(i,a,      x,c,xy,what) {
     hass(i.cols,c,what,x,c)
 }}
 ```
-
 ### TabRead() : read a new table from disc
 
 `Tab`les can be initialize from  comma separated value files via 
@@ -180,7 +179,7 @@ function TabAround(i,r1,rows,cols,a,   n,r2) {
 }
 ```
 ## Optimization
-### TabDom() : does row1 dominant row2
+### TabDom() : checks if row1 dominant row2
 
 Given two rows _1,2_ with multiple goals, then
 _1_ is better than _2_ if we lose less
@@ -201,7 +200,6 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
   return s1/n < s2/n
 }
 ```
-
 Notes:
 
 - `i.cols[c].w` is negative for things we want to
@@ -218,10 +216,7 @@ Notes:
 
 ## Printing
 
-
-### TabShow()
-
-Print whole table.
+### TabShow() : print entire table
 
 ```awk
 function TabShow(i,     r) {
@@ -230,9 +225,7 @@ function TabShow(i,     r) {
     print o(i.rows[r])
 }
 ```
-### TabScore()
-
-Print just the goal columns.
+### TabScore() : print just the goal columns.
 
 ```awk
 function TabScore(i,  c,s,sep) {
