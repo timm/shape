@@ -23,7 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-# Space
+# Best
 
 ```awk
 @include "ape"
@@ -48,9 +48,10 @@ function Best(i,t,   cols,    r,rows) {
   BestDiv(i,t,rows)
 }
 ```
-### BestDiv()
+## BestDiv() : recursively discard worse half of data 
 
-Random projection (project using cosine rule between two distant points).
+Random projection (project using cosine 
+rule between two distant points).
 
 ```awk
 function BestDiv(i,t,rows, 
@@ -79,6 +80,7 @@ function BestDiv(i,t,rows,
   BestDiv(i,t,best) 
 }
 ```
+## Support Code
 Interface functions: connecting `Best` to the services of `Tab`.
 
 ```awk

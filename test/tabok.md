@@ -23,6 +23,7 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
+
 ```awk
 @include "ape"
 @include "tab"
@@ -33,7 +34,7 @@ function _tab(f,    i) {
   Tab(i)
   TabRead(i,"data/raw/auto93" APE.dot "csv") 
   ok(f,length(i.rows)==398)
-  ok(f ":3", i.rows[1][1] == "numeric")
+  ok(f,"number" == typeof(i.rows[1][2]))
   ok(f ":3", i.cols[1].seen[3] == 4)
   ok(f ":8", i.cols[1].seen[8] == 103)
 }

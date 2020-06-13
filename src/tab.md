@@ -40,7 +40,6 @@
     - [TabShow()](#tabshow--print-entire-table) : print entire table
     - [TabScore()](#tabscore--print-just-the-goal-columns) : print just the goal columns.
 
-
 ```awk
 @include "ape"  # standard libraries
 @include "num"  # knows "mu", standard deviations "sd"
@@ -50,9 +49,9 @@
 ## Create
 ### Tab()
 
-`Tab`les store raw data in `rows`  and summaries of
-those data in `cols` (columns). For example `i.rows[r][c]`
-holds  data from row `r` and columns `c`.
+`Tab`les store raw data in `rows`  and summaries of those data in
+`cols` (columns). For example `i.rows[r][c]` holds  data from row
+`r` and columns `c`.
 
 ```awk
 function Tab(i,  header,c) { 
@@ -65,9 +64,9 @@ function Tab(i,  header,c) {
   TabCols(i, header)
 }
 ```
-The first row of data names the columns. Special symbols
-on those names distinguish different kinds of columns. For example, 
-in the following data fragment...
+The first row of data names the columns. Special symbols on those
+names distinguish different kinds of columns. For example, in the
+following data fragment...
 
     outlook, $temp,  <humid, wind,  !play        
     rainy,   68,     80,     FALSE, yes # comments
@@ -81,9 +80,8 @@ in the following data fragment...
 - `!play` is a `sym`bolic class;
 -  and the rest of the columns hold `sym`bols.
 
-Note that we say that the goals and classes
-are the `y` columns and the others are the `x`
-columns.
+Note that we say that the goals and classes are the `y` columns and
+the others are the `x` columns.
 
 ## Update
 ### TabCol() : make new column
@@ -115,8 +113,9 @@ function TabCols(i,a,      x,c,xy,what) {
 ```
 ### TabRead() : read a new table from disc
 
-`Tab`les can be initialize from  comma separated value files via 
-`tabRead`. If `f` is omitted, then this code reads from standard input.
+`Tab`les can be initialize from  comma separated value files via
+`tabRead`. If `f` is omitted, then this code reads from standard
+input.
 
 ```awk
 function TabRead(i,f,    c,it) {
@@ -134,8 +133,8 @@ function TabRead(i,f,    c,it) {
 
 ### TabDist() : return a distance between rows
 
-Returns the distance between two rows, measured
-in terms of the columns `cols`.
+Returns the distance between two rows, measured in terms of the
+columns `cols`.
 
 ```awk
 function TabDist(i,r1,r2,cols,  
@@ -166,9 +165,9 @@ function TabFar(i,r1,rows,cols,  a,n) {
 ```
 ### TabAround() : find distances to other things
 
-Sets `a` to a list of pairs `<row,dist>` from row `r1`
-to all other `rows`. Sort the  `a` list by distance.
-Note that `a[1]..a[k]` hold the _k_ nearest neighbors.
+Sets `a` to a list of pairs `<row,dist>` from row `r1` to all other
+`rows`. Sort the  `a` list by distance.  Note that `a[1]..a[k]`
+hold the _k_ nearest neighbors.
 
 ```awk
 function TabAround(i,r1,rows,cols,a,   n,r2) {
@@ -203,17 +202,16 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
 ```
 Notes:
 
-- `i.cols[c].w` is negative for things we want to
-  minimize (and positive otherwise).
-- In order to stress the difference between goals,
-  we raise them to some power (here, _e=2.72_).
-- But before that, in order to avoid real number expositions, 
-  we normalized the goal values.
-- This domination function was propose by Zitler in 2005
-  for the IBEA optimization algorithm. Various authors have
-  shown that this works much better for assessing multiple
-  (n>2) goals that the more traditional binary domination
-  predicate.
+- `i.cols[c].w` is negative for things we want to minimize (and
+  positive otherwise).
+- In order to stress the difference between goals, we raise them
+  to some power (here, _e=2.72_).
+- But before that, in order to avoid real number expositions, we
+  normalized the goal values.
+- This domination function was propose by Zitler in 2005 for the
+  IBEA optimization algorithm. Various authors have shown that this
+  works much better for assessing multiple (n>2) goals that the more
+  traditional binary domination predicate.
 
 ## Printing
 
@@ -222,8 +220,7 @@ Notes:
 ```awk
 function TabShow(i,     r) {
   print o(i.header)
-  for(r in i.rows)
-    print o(i.rows[r])
+  for(r in i.rows) print o(i.rows[r])
 }
 ```
 ### TabScore() : print just the goal columns.
@@ -232,8 +229,7 @@ function TabShow(i,     r) {
 function TabScore(i,  c,s,sep) {
   for(c in i.the.goals) {
     s   = s sep score(i.cols[c])
-    sep = ", "
-  }
+    sep = ", " }
   return s
 }
 ```
