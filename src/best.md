@@ -25,6 +25,10 @@
 
 # Best
 
+- [BestDiv()](#bestdiv--recursively-prune-worse-half-of-data) : recursively prune worse half of data
+- [Support Code](#support-code) 
+
+
 ```awk
 @include "ape"
 @include "tab"
