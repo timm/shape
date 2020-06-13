@@ -26,7 +26,7 @@
 ```awk
 @include "ape"
 
-BEGIN {  tests("libok","_list,_copy,_csv") }
+BEGIN {  tests("libok","_list,_copy,_csv,_anys") }
 
 function _list(f,    a) {
   copy(MY,a)
@@ -48,9 +48,20 @@ function _copy(f,    a,b) {
   ok(f, b.here.now.one == "here_now_one")
 }
 
-function _csv(f, i) {
-  Row(i,"data/raw/weather" APE.dot "csv") 
-  while( Rows(i) )
-    print(o(i.cells))
+function _csv(f, it,n) {
+  Row(it,"data/raw/weather" APE.dot "csv") 
+  while( Rows(it) )
+    n += length(it.cells) 
+  ok(f, n == 60)
+  ok(f, typeof(it.cells[1])=="string")
+  ok(f, typeof(it.cells[2])=="strnum")
+}
+function _anys(f,   n,s,r,good,x) {
+  n=10
+  while(n--) s[n+1]
+  r=1000
+  while(r--) 
+    good +=  within( nanys(s) ,1,10)
+  ok(f, good==1000)
 }
 ```

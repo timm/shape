@@ -32,14 +32,22 @@ function abs(x)  { return x>=0 ? x : -1*x }
 ```
 ## Lists
 
-Misc
+`push` to a list.
 
 ```awk
-function any(a)    { return a[1+int(rand()*length(a))] }
-function anyi(a)   { return   1+int(rand()*length(a))  }
-function push(a,x) { 
-   if(!isarray(a)) split("",a,"");
-   return a[ length(a)+1 ] = x; 
+function push(a,x) { return a[ length(a)+1 ] = x; }
+```
+
+Get a random item from a list
+
+```awk
+function anyi(a)  { return 1+int(rand()*length(a))  }
+function any(a)   { return a[ anyi(a) ] }
+function nanys(s) { return 0+anys(s) }
+function anys(s, n,k){
+  n = 1/length(s) 
+  for(k in s) if (rand() < n) return k
+  return k ## make sure something gets returned
 }
 ```
 ### copy()
@@ -47,15 +55,16 @@ function push(a,x) {
 Deep copy.
 
 ```awk
-function copy(a, b,     i){
+function copy(a, b,     i,k){
+  k = "\003\002" # some unlikely key
   for (i in a) {
     if(isarray(a[i])) {
-      b[i][SUBSEP]
+      b[i][k]        # ensure nested list exists
       copy(a[i], b[i])
-      delete b[i][SUBSEP]
+      delete b[i][k] # clean up
     } else 
-      b[i] = a[i] }
-}
+      b[i] = a[i] 
+}}
 ```      
 ### o()
 
@@ -71,7 +80,7 @@ function o(a,     sep,    sep1,i,s) {
 ```      
 ### oo()
 
-Display nested lists.
+Print a nested array, optionally with some `prefix`.
 Print keys in sorted order.
 
 ```awk
@@ -159,6 +168,16 @@ what you `want` (`epsilon` defaults to 0.001).
 function near(got,want,     epsilon) {
    epsilon = epsilon ? epsilon : 0.001
    return abs(want - got)/(want + 10^-32)  < epsilon
+}
+```
+### within()
+
+Return true if what you `got` is within 
+`lo` to `hi`.
+
+```awk
+function within(got,lo,hi) { 
+   return  got >= lo && got <= hi
 }
 ```
 ### rogues()
@@ -281,7 +300,7 @@ function Rows(i,   c,tmp) {
   return 1
 }
 ```
-Note: `i` needs to be reset before
+Note: `i` needs to be initialized before
 each call to `Rows` e.g.
 
      Row(i, "data" AU.dot "csv")

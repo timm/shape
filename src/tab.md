@@ -72,15 +72,20 @@ columns.
 Define a new column whose name is `x` at position `c`.
 
 ```awk
-function TabCols(i,a,      x,c,xy) { 
+function TabCols(i,a,      x,c,xy,what) { 
   for(c in a) {
     x = i.header[c]= a[c]
-    if  ( x ~ /!/     ) i.the.klass = c
-    if  ( x ~ /[<>]/  ) i.the.goals[c]
-    xy = x ~ /[!<>]/ ? "y"   : "x" 
+    # are you a goal column?
+    if  ( x ~ /[<>]/ ) i.the.goals[c]
+    # are you a string "Sym" col or a numeric "Num" column?
+    what =  x ~ /[\$<>]/ ? "Num" : "Sym"
+    what == "Num" ? i.the.nums[c] : i.the.syms[c]
+    hass(i.cols,c,what,x,c)
+    # are you an independent "x" or dependent "y" column?
+    xy   =  x ~ /[!<>]/  ? "y"   : "x"  
     i.the[xy][c]
-    if (x ~ /[\$<>]/) {i.the.nums[c]; hass(i.cols,c,"Num",x,c)}
-    else              {i.the.syms[c]; hass(i.cols,c,"Sym",x c)}}
+    # are you the kllass column? (there can only be one)
+    if  ( x ~ /!/ ) i.the.klass = c
 }
 ```
 
@@ -103,7 +108,7 @@ function TabRead(i,f,    c,it) {
 ```
 ### TabDist()
 
-Returns the distance between two rows, manured
+Returns the distance between two rows, measured
 in terms of the columns `cols`.
 
 ```awk
