@@ -180,10 +180,18 @@ function TabDom(i,r1,r2,   c,e,n,x,y,s1,s2) {
 ```
 
 Notes:
+
+- `i.cols[c].w` is negative for things we want to
+  minimize (and positive otherwise).
 - In order to stress the difference between goals,
   we raise them to some power (here, _e=2.72_).
 - But before that, in order to avoid real number expositions, 
   we normalized the goal values.
+- This domination function was propose by Zitler in 2005
+  for the IBEA optimization algorithm. Various authors have
+  shown that this works much better for assessing multiple
+  (n>2) goals that the more traditional binary domination
+  predicate.
 
 ## Printing
 
