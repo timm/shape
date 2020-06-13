@@ -100,7 +100,7 @@ setup() {
   exists src/ape.md         etc/md/ape.md
   exists src/lib.md         etc/md/lib.md
   exists src/obj.md         etc/md/obj.md
-  exists src/the.md         etc/md/the.md
+  exists src/my.md          etc/md/my.md
   
  docs
  trans
