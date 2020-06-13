@@ -25,13 +25,15 @@
 
 # Tab
 
-- [About](#about) 
+- [Create](#create) 
     - [TabCol()](#tabcol--make-new-column) : make new column
     - [TabRead()](#tabread--read-a-new-table-from-disc) : read a new table from disc
-    - [TabDist()](#tabdist) 
-    - [TabFar()](#tabfar) 
-    - [TabAround()](#tabaround) 
-    - [TabDom()](#tabdom) 
+- [Geometry](#geometry) 
+    - [TabDist()](#tabdist--return-a-distance-between-rows) : return a distance between rows
+    - [TabFar()](#tabfar--return-a-row2-far-away-from-row1) : return a row2 far away from row1
+    - [TabAround()](#tabaround--find-distances-to-other-things) : find distances to other things
+- [Optimization](#optimization) 
+    - [TabDom()](#tabdom--does-row1-dominant-row2) : does row1 dominant row2
 - [Printing](#printing) 
     - [TabShow()](#tabshow) 
     - [TabScore()](#tabscore) 
@@ -42,7 +44,7 @@
 @include "sym"  # knows "mode" and counts of "seen" symbols
 @include "poly" # polymorphic functions
 ```
-## About
+## Create
 
 `Tab`les store raw data in `rows`  and summaries of
 those data in `cols` (columns). For example `i.rows[r][c]`
@@ -119,7 +121,9 @@ function TabRead(i,f,    c,it) {
   close(f)
 }
 ```
-### TabDist()
+## Geometry
+
+### TabDist() : return a distance between rows
 
 Returns the distance between two rows, measured
 in terms of the columns `cols`.
@@ -136,7 +140,7 @@ function TabDist(i,r1,r2,cols,
   return (d/n)^(1/p)
 }
 ```
-### TabFar()  
+### TabFar() : return a row2 far away from row1
 
 Search through `rows` to returns a row that is far away from row
 `r1`.  This function restricts its computation of distance to just
@@ -151,7 +155,7 @@ function TabFar(i,r1,rows,cols,  a,n) {
   return a[n].row
 }
 ```
-### TabAround()
+### TabAround() : find distances to other things
 
 Sets `a` to a list of pairs `<row,dist>` from row `r1`
 to all other `rows`. Sort the  `a` list by distance.
@@ -166,7 +170,8 @@ function TabAround(i,r1,rows,cols,a,   n,r2) {
   return keysort(a,"dist")
 }
 ```
-### TabDom()
+## Optimization
+### TabDom() : does row1 dominant row2
 
 Given two rows _1,2_ with multiple goals, then
 _1_ is better than _2_ if we lose less
