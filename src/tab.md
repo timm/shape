@@ -27,6 +27,7 @@
 
 - [Create](#create) 
     - [Tab()](#tab) 
+- [Update](#update) 
     - [TabCol()](#tabcol--make-new-column) : make new column
     - [TabRead()](#tabread--read-a-new-table-from-disc) : read a new table from disc
 - [Geometry](#geometry) 
@@ -84,6 +85,7 @@ Note that we say that the goals and classes
 are the `y` columns and the others are the `x`
 columns.
 
+## Update
 ### TabCol() : make new column
 
 Define a new column whose name is `x` at position `c`.
