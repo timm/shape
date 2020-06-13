@@ -1,0 +1,27 @@
+#!/usr/bin/env gawk -f
+
+function ns(n,    s) {
+   n--
+   while(n-- > 0) s= s "    "
+   return s
+}
+function trim(s) {
+  gsub(/^[ \t]*/,"",s)
+  gsub(/[ \t]*$/,"",s)
+  return s
+}
+
+/^#[#]+[ \t]/ { 
+     new = split($1,a,"#") - 2
+     f = trim($2)
+     $1= $2 = ""
+     txt = trim($0)
+     if (txt)
+       link = f "-" txt
+     else
+       link = f
+     gsub(/[^a-zA-Z0-9\- ]/,"",link)
+     gsub(/ /,"-",link)
+     print ns(new) "- [" f "](#" tolower(link) ") " txt
+}
+END {print ""}
