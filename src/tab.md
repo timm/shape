@@ -141,7 +141,7 @@ function TabFar(i,r1,rows,cols,  a,n) {
   n = int(n*MY.tab.far)  
   return a[n].row
 }
-
+```
 ### TabAround()
 
 Sets `a` to a list of pairs `<row,dist>` from row `r1`
