@@ -35,8 +35,9 @@ function abs(x)  { return x>=0 ? x : -1*x }
 Misc
 
 ```awk
-function any(a)    { return int(0.5 + rand()*length(a)) }
-function push(a,x) { a[length(a)+1] = x; return x }
+function any(a)    { return a[ anyi(a) ]            }
+function anyi(a)   { return 1+int(rand()*length(a)) }
+function push(a,x) { a[length(a)+1] = x; return x   }
 ```
 ### copy()
 
@@ -73,6 +74,7 @@ Print keys in sorted order.
 ```awk
 function oo(a,prefix,    indent,   i,txt) {
   txt = indent ? indent : (prefix AU["dot"] )
+  if (!isarray(a)) {print(a); return a}
   ooSortOrder(a)
   for(i in a)  {
     if (isarray(a[i]))   {

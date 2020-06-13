@@ -33,8 +33,8 @@ function _best(f,    i,j,r,t) {
   TabRead(t,"data/raw/auto93" APE.dot "csv") 
   Best(i, t, "y")
   print o(t.header), ", !best"
-  for(r in i.rest) print  o(t.rows[r]) ", false" 
-  for(r in i.best) print  o(t.rows[r]) ", true" 
+  for(j in i.rest) print  o(t.rows[ i.rest[j] ]) ", false" 
+  for(j in i.best) print  o(t.rows[ i.best[j] ]) ", true" 
 }
 
 ```

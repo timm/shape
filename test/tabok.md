@@ -37,16 +37,27 @@ function _tab(f,    i) {
   ok(f ":8", i.cols[1].seen[8] == 103)
 }
 
-function _rows(f,    m,n,i,some,r1,r2,rows,a) {
+function _rows(f,    m,n,i,some,r1,r2,a,dom,j) {
   Tab(i)
-  List(rows)
   TabRead(i,"data/raw/auto93" APE.dot "csv") 
-  m = 64
+  m = 256
   while(m--)  
-    some[ any(i.rows) ]
+    some[ anyi(i.rows) ]
   for(r1 in some) {
-    n = TabAround(i, r1, some, i.the.x, a)
-    ok(f r1, a[1].dist < a[n].dist)
+    #n = TabAround(i, r1, some, i.the.x, a)
+    #ok(f r1, a[1].dist < a[n].dist)
+    for(r2 in some)
+      if(r2>r1) {
+       dom[r1].r1 = r1 
+       dom[r1].dom += TabDom(i,r1,r2) }
   }
+  print ""
+  n= keysort(dom,"dom")
+  for(j=1; j<=5;j++)
+    print o(i.rows[ dom[j].r1 ] )
+  print ""
+  for(j=n-5;j<=n;j++)
+    print o(i.rows[ dom[j].r1 ] )
+
 }
 ```

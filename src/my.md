@@ -28,7 +28,7 @@
 ```awk
 BEGIN {
   MY.best.cols = "y"
-  MY.best.enough = 256
+  MY.best.enough = 500
   MY.best.min = 0.5
   MY.space.some = 256
   MY.tab.far = 0.9
