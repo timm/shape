@@ -25,6 +25,22 @@
 
 # Lib :o:
 
+- [Maths](#maths) 
+- [Lists](#lists) 
+    - [copy()](#copy) 
+    - [o()](#o) 
+    - [oo()](#oo) 
+    - [keysort()](#keysort) 
+- [Unit](#unit-tests) tests
+    - [tests()](#tests) 
+    - [ok()](#ok) 
+    - [near()](#near) 
+    - [within()](#within) 
+    - [rogues()](#rogues) 
+- [Input](#input) 
+- [csv()](#csv) 
+- [cells()](#cells) 
+
 ## Maths
 
 ```awk
