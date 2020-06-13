@@ -25,6 +25,10 @@
 
 # Tabs
 
+- [Tabs()](#tabs--create) : create
+- [TabsK()](#tabsk--ensure-that-we-have-a-klass-k) : ensure that we have a klass `k`
+- [TabsRead()](#tabsread--read-the-tables-from-disk) : read the tables from disk
+
 Read a csv file into multiple tables:
 
 - `i.all`   holds all data
@@ -32,13 +36,17 @@ Read a csv file into multiple tables:
 
 ```awk
 @include "tab"
+```
+## Tabs() : create
 
+```awk
 function Tabs(i) {
   has(i,"all",  "Tab")
   has(i,"klass")
 }
 ```
-Ensure that we have a  `klass` for a row.
+## TabsK() : ensure that we have a klass `k`
+
 
 ```awk
 function TabsK(i,row,   k) {
@@ -48,6 +56,7 @@ function TabsK(i,row,   k) {
   return k
 }
 ```
+## TabsRead() : read the tables from disk
 
 ```awk
 function TabsRead(i,f,  it,k,c,x) {

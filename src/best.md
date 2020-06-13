@@ -26,7 +26,7 @@
 # Best
 
 - [BestDiv()](#bestdiv--recursively-prune-worse-half-of-data) : recursively prune worse half of data
-- [Support Code](#support-code) 
+- [Support Code](#support-code--connections-from-best-to-tab) : connections from `Best` to `Tab`
 
 
 ```awk
@@ -43,7 +43,7 @@ function Best(i,t,   cols,    r,rows) {
   is(i,"Best")
   has(i,"best")
   has(i,"rest")
-  i.min    = length(t.rows)^MY.best.min
+  i.min    = 2*length(t.rows)^MY.best.min
   i.enough = MY.best.enough / length(t.rows)
   i.cols   = cols ? cols : MY.best.cols
   for(r in t.rows) 
@@ -81,8 +81,8 @@ function BestDiv(i,t,rows,
   BestDiv(i,t,best) 
 }
 ```
-## Support Code
-Interface functions: connecting `Best` to the services of `Tab`.
+## Support Code : connections from `Best` to `Tab`
+
 Note that when we talk to the table `t`, we use the columns
 `i.cols`.
 
