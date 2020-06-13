@@ -32,7 +32,7 @@ function _tabs(f,    i,k) {
   Tabs(i)
   TabsRead(i,"data/cooked/auto93bore" APE.dot "csv") 
   print "all " score(i.all)
-  for(k in i.klass) {
-   print k " " score(i.klass[k])  }
+  for(k in i.tab) {
+     print k " " score(i.tab[k])  }
 }
 ```

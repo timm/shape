@@ -32,7 +32,7 @@
 Read a csv file into multiple tables:
 
 - `i.all`   holds all data
-- `i.klass[k]` does just the rows for class `k`.
+- `i.tab[k]` just the rows for class `k`.
 
 ```awk
 @include "tab"
@@ -42,17 +42,17 @@ Read a csv file into multiple tables:
 ```awk
 function Tabs(i) {
   has(i,"all",  "Tab")
-  has(i,"klass")
+  has(i,"tab")
 }
 ```
-## TabsK() : ensure that we have a klass `k`
+## TabsK() : ensure that we have a table for class `k`
 
 
 ```awk
 function TabsK(i,row,   k) {
   k = row[i.all.the.klass]
-  if (!(k in i.klass)) 
-    hass(i.klass, k, "Tab", i.all.header)
+  if (!(k in i.tab)) 
+    hass(i.tab, k, "Tab", i.all.header)
   return k
 }
 ```
@@ -68,8 +68,8 @@ function TabsRead(i,f,  it,k,c,x) {
       k = TabsK(i, it.cells)
       for(c in it.cells)  {
         x = it.cells[c]
-        i.klass[k].rows[it.r][c]= add(i.klass[k].cols[c], x)
-        i.all.rows[it.r][c]     = add(i.all.cols[c],      x)}}}
+        i.tab[k].rows[it.r][c] = add(i.tab[k].cols[c], x)
+           i.all.rows[it.r][c] = add(   i.all.cols[c], x)}}}
   close(f)
 }
 ```
