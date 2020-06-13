@@ -25,6 +25,17 @@
 
 # Tab
 
+- [About](#about) 
+    - [TabCol()](#tabcol--make-new-column) : make new column
+    - [TabRead()](#tabread--read-a-new-table-from-disc) : read a new table from disc
+    - [TabDist()](#tabdist) 
+    - [TabFar()](#tabfar) 
+    - [TabAround()](#tabaround) 
+    - [TabDom()](#tabdom) 
+- [Printing](#printing) 
+    - [TabShow()](#tabshow) 
+    - [TabScore()](#tabscore) 
+
 ```awk
 @include "ape"  # standard libraries
 @include "num"  # knows "mu", standard deviations "sd"
