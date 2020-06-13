@@ -31,15 +31,16 @@
     - [o()](#o) 
     - [oo()](#oo) 
     - [keysort()](#keysort) 
-- [Unit](#unit-tests) tests
+- [Unit tests](#unit-tests) 
     - [tests()](#tests) 
     - [ok()](#ok) 
     - [near()](#near) 
     - [within()](#within) 
     - [rogues()](#rogues) 
 - [Input](#input) 
-- [csv()](#csv) 
-- [cells()](#cells) 
+    - [csv()](#csv) 
+    - [Row()](#row) 
+
 
 ## Maths
 
@@ -72,12 +73,12 @@ Deep copy.
 
 ```awk
 function copy(a, b,     i,k){
-  k = "\003\002" # some unlikely key
+  k = "\003" # some unlikely key
   for (i in a) {
     if(isarray(a[i])) {
       b[i][k]        # ensure nested list exists
-      copy(a[i], b[i])
       delete b[i][k] # clean up
+      copy(a[i], b[i])
     } else 
       b[i] = a[i] 
 }}
@@ -213,7 +214,7 @@ function rogues(    s) {
 
 ## Input
 
-## csv() 
+### csv() 
 
 Iterator.
 
@@ -286,7 +287,7 @@ Example usage:
             print "#E> row " n " wrong number of fields" 
      }
 
-## cells()
+### Row()
 
 Iterator.
 
@@ -294,7 +295,6 @@ Read a csv file `f`,
 
 - Set `i.cells` to all columns that _do not_ start with `?`.
 - Set `i.r` to the current row number (and first row as `i.r=0`)
-
 
 ```awk
 function Row(i,file) {
@@ -322,5 +322,4 @@ each call to `Rows` e.g.
      Row(i, "data" AU.dot "csv")
      while( Rows(i) ) {
        print i.cells[1]
-
-
+     

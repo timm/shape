@@ -28,17 +28,18 @@
 - [Create](#create) 
     - [Tab()](#tab) 
 - [Update](#update) 
-    - [TabCol()](#tabcol--make-new-column) : make new column
-    - [TabRead()](#tabread--read-a-new-table-from-disc) : read a new table from disc
+    - [TabCol()](#tabcol-:-make-new-column) : make new column
+    - [TabRead()](#tabread-:-read-a-new-table-from-disc) : read a new table from disc
 - [Geometry](#geometry) 
-    - [TabDist()](#tabdist--return-a-distance-between-rows) : return a distance between rows
-    - [TabFar()](#tabfar--return-a-row2-far-away-from-row1) : return a row2 far away from row1
-    - [TabAround()](#tabaround--find-distances-to-other-things) : find distances to other things
+    - [TabDist()](#tabdist-:-return-a-distance-between-rows) : return a distance between rows
+    - [TabFar()](#tabfar-:-return-a-row2-far-away-from-row1) : return a row2 far away from row1
+    - [TabAround()](#tabaround-:-find-distances-to-other-things) : find distances to other things
 - [Optimization](#optimization) 
-    - [TabDom()](#tabdom--does-row1-dominant-row2) : does row1 dominant row2
+    - [TabDom()](#tabdom-:-does-row1-dominant-row2) : does row1 dominant row2
 - [Printing](#printing) 
     - [TabShow()](#tabshow) 
     - [TabScore()](#tabscore) 
+
 
 
 ```awk
