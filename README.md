@@ -43,7 +43,7 @@ A session in GOLDEN looks like this:
 
 To support easy documentation
 
-- GOLD code is stored in x.md  markdown files 
+- GOLD code is stored in `x.md`  markdown files 
 - To give a repository a common look-and-feel,
      the first paragraph of the main `README.md` can be automatically   pushed out to  all `*.md` filess
     in the repo. 
@@ -53,17 +53,13 @@ To support easy access to nested fields
 - e.g  `a.b.c = 2.3` becomes `a["b"]["c"] = 2.3`. 
 - Note that GOLD knows not to alter  the decimal point in 2.3
 
-To implement the GOLD:
+To implement that dot notation, the GOLD interpret (celled `gold`):
 - Under the hood,  GOLD transpiles code  from `src/\*.md`  to  `.var/x.awk
 - The transpiler is a one line long:
 
 ```
 s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
 ```
-
-To support easy excution
-- Much of the work in GOLDEN (e,g, transpiling, running code in `.var`)  is handled by the GOLD interpreter.
-- The name of that interpreter is `gold` (no suprises there).
 
 To support object creation aggregation, and inheritance 
 - There is  30 likes of portable awk (so not preprocessing needed there)
