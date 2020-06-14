@@ -5,15 +5,15 @@ Ape=$(cd $( dirname "${BASH_SOURCE[0]}" ) && pwd )
 
 banner() { cat<<'EOF'
     _....._
-   ';-.--';'              GOLD      : a GAWK object layer
-    }===={       _.---..,  GOLDEen  : a GOLD dev environment
-  .'  _|_ '.    ';-..--';   GOLDmine: some data mining tools
- /:: (_|_`  \    }====={     GOLDstandard: AI fairness tools
+   ';-.--';'               GOLD       : a GAWK object layer
+    }===={       _.---..,   GOLDEN    : a GOLD dev environment
+  .'  _|_ '.    ';-..--';    GOLDMINE : some data mining tools
+ /:: (_|_`  \    }====={      GOLDSTAR: some AI fairness tools
 |::  ,_|_)  |  .:   _|_ '.
-\::.   |    /_;:_  (_|_`  \    http://github.com/golden/code
- '::_    _-;'--.-' ._|_)  |     (c) 2020
-   ``````      \::.  |    /      Tim Menzies
-           jgs  '::_  _-;'        timm@ieee.org
+\::.   |    /_;:_  (_|_`  \     http://github.com/golden/code
+ '::_    _-;'--.-' ._|_)  |      (c) 2020
+   ``````      \::.  |    /       Tim Menzies
+           jgs  '::_  _-;'         timm@ieee.org
                   ````` 
 EOF
 }
