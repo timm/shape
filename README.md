@@ -133,8 +133,10 @@ function csv(a,file,     b4, status,line) {
   }
   line = b4 $0                         
   gsub(/([ \t]*|#.*$)/, "", line)       # no spaces or comments
-  if (!line) return csv(a,file, line)   # skip blank likes
-  if (line ~ /,$/) return csv(a,file, line) # join lines ending with "," to next line
+  if (!line) 
+    return csv(a,file, line)            # skip blank likes
+  if (line ~ /,$/) 
+    return csv(a,file, line)            # join lines ending with "," to next line
   split(line, a, ",")                   # reset the output  list
   return 1                              # signal that iteration can continue 
 }
