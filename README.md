@@ -44,8 +44,8 @@ A session in GOLDEN looks like this:
 To support easy documentation
 
 - GOLD code is stored in x.md  markdown files 
-- To give a repository its own identify and a common look-and-feel,
-     the first paragraph of the main `README.md` can be automatically   pushed out across all other `*.md` filess
+- To give a repository a common look-and-feel,
+     the first paragraph of the main `README.md` can be automatically   pushed out to  all `*.md` filess
     in the repo. 
 
 To support easy access to nested fields
