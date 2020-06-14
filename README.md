@@ -34,7 +34,7 @@ To get started, see our [install](INSTALL.md) instructions and our
 - GAWK is very portable, very succinct, scripting language. 
 - GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
 - GOLDMINE are some data mining tools written in GOLD.
-- The GOLDRUSH are a set of data mining fairness operators for GOLDMINE. 
+- GOLDRUSH are a set of data mining fairness assurance operators. 
 - GOLDEN is a cross-platform development environment for the above,  based on bash, vim and tmux. 
 
 A session in GOLDEN looks like this:
@@ -54,12 +54,16 @@ To support easy access to nested fields
 - Note that GOLD knows not to alter  the decimal point in 2.3
 
 To implement the GOLD:
-- Code in src/\*.md is transpiled to .var/x.awk
+- Under the hood,  GOLD transpiles code  from `src/\*.md`  to  `.var/x.awk
 - The transpiler is a one line long:
 
 ```
-s = gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
+s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
 ```
+
+To support easy excution
+- Much of the work in GOLDEN (e,g, transpiling, running code in `.var`)  is handled by the GOLD interpreter.
+- The name of that interpreter is `gold`.
 
 To support object creation aggregation, and inheritance 
 - There is  30 likes of portable awk (so not preprocessing needed there)
