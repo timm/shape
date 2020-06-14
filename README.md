@@ -63,7 +63,7 @@ s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
 
 To support easy excution
 - Much of the work in GOLDEN (e,g, transpiling, running code in `.var`)  is handled by the GOLD interpreter.
-- The name of that interpreter is `gold`.
+- The name of that interpreter is `gold` (no suprises there).
 
 To support object creation aggregation, and inheritance 
 - There is  30 likes of portable awk (so not preprocessing needed there)
