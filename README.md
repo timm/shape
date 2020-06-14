@@ -35,8 +35,9 @@ To get started, see our [install](INSTALL.md) instructions and our
 - GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
 - GOLDMINE are some data mining tools written in GOLD.
 - The GOLDRUSH are a set of data mining fairness operators for GOLDMINE. 
+- GOLDEN is a cross-platform development environment for the above,  based on bash, vim and tmux. 
 
-GOLDEN is a cross-platform development environment for GOLD based on bash, vim and tmux that looks like this:
+A session in GOLDEN looks like this:
 
 <p align=center><a href="etc/img/screen.png"><img src="etc/img/screen900.png" width=900></a></p>
 
