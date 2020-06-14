@@ -94,7 +94,7 @@ The result is the variable `i.cells`, which  is reset for every step of the loop
 
 
      Row(it, "somecsvfile")    # Row defines "it", which is the iterator
-     while( doing(it) ) { # Rows runs the Row interator
+     while( Doing(it) ) { # Rows runs the Row interator
        print it.cells[1]
 
 Fyi- having coded this iterator in lua and python and coffeescript, I can assert that that the following is 
@@ -113,13 +113,13 @@ function Row(i,file) {
 function RowDoing(i,   c,tmp,n) {
   if (!csv(tmp,i.file))   # iterators can be nested; e.g. csv is another iterator
     return 0              # signal end of iterator
-  if (!length(i.use))   # the initialization step. only called for first rows
+  if (!length(i.use))     # the initialization step. only called for first rows
     for(c in tmp)
       if (tmp[c] !~ /\?/)
         i.use[c] = ++n;
   i.r++
   for(c in i.use)
-    i.cells[ i.use[c] ] = tmp[c]
+    i.cells[i.use[c]] = tmp[c]
   return 1                # signal to continue the iteration
 }
 ```
@@ -131,7 +131,7 @@ function csv(a,file,     b4, status,line) {
   status = getline < file
   if (status<0) {                       # complain about missing files
     print "#E> Missing file ["file"]"
-    exit 1                             # crash on error
+    exit 1                              # crash on error
   }
   if (status==0) {
     close(file)
