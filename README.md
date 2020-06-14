@@ -107,7 +107,7 @@ function Row(i,file) {
 function Rows(i,   c,tmp,n) {
   if (!csv(tmp,i.file))   # iterators can be nested; e.g. csv is another iterator
     return 0              # signal end of iterator
-  if (!length(i.cells))   # the initialization step. only called for line 1
+  if (!length(i.use))   # the initialization step. only called for first rows 
     for(c in tmp)
       if (tmp[c] !~ /\?/)
         i.use[c] = ++n;
@@ -117,7 +117,7 @@ function Rows(i,   c,tmp,n) {
   return 1                # signal to continue the iteration
 }
 ```
-Iterators can be nested. e.g. the above code calls the csv iterator (no new objects here,  just good old gawk):
+Iterators can be nested. e.g. the above code calls the csv iterator (no new objects here,  just good old GAWK):
 
 ```awk
 function csv(a,file,     b4, status,line) {
@@ -125,10 +125,12 @@ function csv(a,file,     b4, status,line) {
   status = getline < file
   if (status<0) {                       # complain about missing files
     print "#E> Missing file ["file"]"  
-    exit 1  }                           # crash on error
+    exit 1                             # crash on error
+  }
   if (status==0) {
     close(file)
-    return 0  }                         # signal that iteration can continue                                
+    return 0                            # signal that iteration can continue                                
+  }
   line = b4 $0                         
   gsub(/([ \t]*|#.*$)/, "", line)       # no spaces or comments
   if (!line) return csv(a,file, line)   # skip blank likes
