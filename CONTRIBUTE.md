@@ -263,7 +263,9 @@ the var trick grep '\<r\>' \*.md
 
 Gold is a Gawk object layer.
 
-Iterators are usaually called `it` or `itr` or `itf` or some such.
+Iterators variables are usaually called `it` or `itr` or `itf` or some such.
+Iteraate control concutions are uually called its or iting. e.g. Collect could define an
+iteratpr so while(Collecting(it)) { print it.k, it.v } would be the code.
 
 * Write source code in `src/X.md` files. 
 * Write test code for `src/X.md` in `text/Xok.md` files

@@ -23,49 +23,118 @@
    <a href="https://doi.org/10.5281/zenodo.3887420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.3887420.svg" alt="DOI"></a>
 </p>
 
-
-## What
-
-
-This repo shares two sets of tricks.
-
-- _SHape_: language independent methods to support command-line 
-  development using bash, Github, vim, and tmux.
-- Language dependent tricks. The repo implements _Gold_ (the Gawk object layer). 
-
 ## How
 
-See our [install](INSTALL.md) instructions and our
+To get started, see our [install](INSTALL.md) instructions and our
 [guide for contributors](CONTRIBUTING.md).
 
 
-## Why?
+## What
 
-While IDEs are great, command-line development is fast,  lightweight,
-and portable to anywhere we can access a terminal.
-So I do a lot of command-line code developing with bash, vim, and tmux.
-But no matter what language I am working in,  I usually end up with the same
-directory structure, support scripts, documentation system, etc etc.
-For example, whether or not I am 
-coding in Prolog, Python, Perl, LISP, Smalltalk, 
-CoffeeScript, LUA, Gawk, etc etc, then my work environment looks like:
+- GAWK is very portable, very succinct, scripting language. 
+- GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
+- GOLDMINE are some data mining tools written in GOLD.
+- The GOLDRUSH are a set of data mining fairness operators for GOLDMINE. 
+
+GOLDEN is a cross-platform development environment for GOLD based on bash, vim and tmux that looks like this:
 
 <p align=center><a href="etc/img/screen.png"><img src="etc/img/screen900.png" width=900></a></p>
 
+One advantage with GOLDEN is that it defines itself using sub-directories
+relative to the position of the  main `gold`. This means that:
 
-I recommend these tools since, with them, you can:
+- The system can be installed without changing external global config files
+- The system can be uninstalled just be zapping its directory.
 
 
-<img align=right width=300 src="etc/img/womancoder.png">
+To support easy documentation
 
-- Write portable coding:
-   - The methods here work anywhere you can get to a \*nix-style command line.
-- Do fast install:
-   - With _SHape_,
-     code can be installed code without having to update config files all over your hard drive.
-- Do dast uninstall:
-   - With _SHape_,
-     code can be quickly uninstalled, just by deleting the _SHape_ directory
+- GOLD code is stored in x.md  markdown files 
+- To give a repository its own identify and a common look-and-feel,
+     the first paragraph of the main `README.md` can be automatically   pushed out across all other `*.md` filess
+    in the repo. 
+
+To support easy access to nested fields
+- A dot notation is added 
+- e.g  `a.b.c = 2.3` becomes `a["b"]["c"] = 2.3`. 
+- Note that GOLD knows not to alter  the decimal point in 2.3
+
+To implement the GOLD:
+- Code in src/\*.md is transpiled to .var/x.awk
+- The transpiler is a one line long:
+
+    s = gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
+
+To support object creation aggregation, and inheritance 
+- There is  30 likes of portable awk (so not preprocessing needed there)
+
+To support polymorphism, 
+- All  objects have a type field called   "ois". 
+- This, plus indirect functions, are  used to defined  polymorphic verbs e.g.
+
+    function add(i,x,    f) { f=i.ois "Add";   return @f(i,x)  }
+    function dec(i,x,    f) { f=i.ois "Dec";   return @f(i,x)  }
+    function show(i,     f) { f=i.ois "Show";  return @f(i)    }
+    function score(i,    f) { f=i.ois "Score"; return @f(i)    }
+    function dist(i,x,y, f) { f=i.ois "Dist";  return @f(i,x,y)}
+    
+To support unit testing:
+- Code in `src/x.md` has a test file `test/xok.md`. 
+- A shell script changes to /test and rules all the \*ok.md files
+- A .travis.yml uses that script to retest the code after each commit
+
+## Example
+Here's an iterator that prunes away columns that start with a "?" in their name.  A variable i.cells is reset for every step of the loop. This variable holds   just the columns we want to use
+
+     Row(it, "somecsvfile")    # Row defines "it", which is the iterator
+     while( Rows(it) ) { # Rows runs the Row interator
+       print it.cells[1]
+
+Fyi- having coded this iterator in lua and python and coffeescript, I can assert that that the following is 
+the simplest implementation 
+I've yet seen 
+
+```awk
+function Row(i,file) {
+  i.file = file
+  has(i,"use") # aggregation
+  has(i,"cells") # aggregation
+  i.r = -1
+}
+function Rows(i,   c,tmp,n) {
+  if (!csv(tmp,i.file)) # interators can be nested. csv is another itnerator
+    return 0              # signal end of iterator
+  if (!length(i.cells)). # the initialization step. only called for line 1
+    for(c in tmp)
+      if (tmp[c] !~ /\?/)
+        i.use[c] = ++n;
+  i.r++
+  for(c in i.use)
+    i.cells[ i.use[c] ] = tmp[c]
+  return 1                # signal to continue the iteration
+}
+```
+Iterators can be nested. e.g. the above code calls the csv iterator (no new objects here,  just good old gawk):
+
+```awk
+function csv(a,file,     b4, status,line) {
+  file   = file ? file : "-"            # can read from standard in
+  status = getline < file
+  if (status<0) {                      # complain about missing files
+    print "#E> Missing file ["file"]"  
+    exit 1  }                                  # crash on error
+  if (status==0) {
+    close(file)
+    return 0  }                             #  signal that iteration can continue                                
+  line = b4 $0                         
+  gsub(/([ \t]*|#.*$)/, "", line)     # no spaces or comments
+  if (!line) return csv(a,file, line)          # skip blank likes
+  if (line ~ /,$/) return csv(a,file, line)          # join lines ending with "," to next line
+  split(line, a, ",")                                  # reset the output  list
+  return 1                                        # signal that iteration can continue 
+}
+```
+
 - Support test-driven development:
    - _SHape_ code comprises many small files, each of which can be tested severely;
    - _SHape_'s unit tests for code in the `src/` directory are held in a separate `test/` directory.
@@ -75,5 +144,4 @@ I recommend these tools since, with them, you can:
       - Code is stored in an `.md` within code blocks.
       - Executable gawk files are generated by commenting out everything _except_ the code blocks,
         then the resulting file writen into a `.var/` directory.
-   - To give a repository its own identify and a common look-and-feel,
-     the first paragraph of `./README.md` is  be pushed out across all the `*.md` files.
+   - 
