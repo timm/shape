@@ -33,5 +33,6 @@ BEGIN {
   MY.space.some = 256
   MY.tab.far = 0.90
   MY.tab.p = 2 
+  MY.range.same = 0.95 
 }
 ```

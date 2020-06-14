@@ -29,6 +29,6 @@
 BEGIN {tests("boreok","_bore") }
 
 function _bore(f,    i) {
-  Bore(i, "data/cooked/auto93bore" APE.dot "csv",a) 
+  Bore(i, "data/cooked/auto93bore" APE.dot "csv") 
 }
 ```

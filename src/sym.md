@@ -25,7 +25,12 @@
 
 # sym
 
-Creat.
+## Create
+
+```awk
+#include "ape"
+```
+### Sym()
 
 ```awk
 function Sym(i,txt,pos) { 
@@ -38,8 +43,9 @@ function Sym(i,txt,pos) {
   has(i,"seen") 
 }
 ```
+## Update.
 
-Update.
+### SymAdd()
 
 ```awk
 function SymAdd(i,v,  tmp) {
@@ -49,7 +55,7 @@ function SymAdd(i,v,  tmp) {
   if (tmp > i.most) { i.most = tmp; i.mode = v }
   return v 
 }
-
+  
 function SymDec(i,v,  tmp) {
   if (v == "?") return v
   if (v in i.seen) {
@@ -58,6 +64,15 @@ function SymDec(i,v,  tmp) {
       i.n--
       i.seen[v]-- }}
   return v 
+}
+function SymMerge(i,j,k,   s,z) {
+  k.n = i.n + j.n
+  for(s in i.seen) { k.seen[s] += i.seen[s] }
+  for(s in j.seen) { k.seen[s] += j.seen[s] }
+  for(s in k.seen) { z          = k.seen[s]
+                     if (z > k.most) {
+                       k.most = z
+                       k.mode = s }}
 }
 ```
 ### SymDist()
@@ -84,7 +99,6 @@ function SymVar(i,  e,p,x,tmp) {
   return e
 }
 ```
-
 ```awk
 function SymScore(i) { return i.txt "=" SymMid(i) }
 ```

@@ -301,16 +301,16 @@ function Row(i,file) {
   has(i,"cells")
   i.r = -1
 }
-function Rows(i,   c,tmp) {
+function Rows(i,   c,tmp,n) {
   if (!csv(tmp,i.file)) 
     return 0
   if (!length(i.cells)) 
     for(c in tmp) 
       if (tmp[c] !~ /\?/)
-        i.use[c] 
+        i.use[c] = ++n;
   i.r++
   for(c in i.use)  
-    i.cells[c] = tmp[c] 
+    i.cells[ i.use[c] ] = tmp[c] 
   return 1
 }
 ```
