@@ -53,9 +53,8 @@ To support easy access to nested fields
 - e.g  `a.b.c = 2.3` becomes `a["b"]["c"] = 2.3`. 
 - Note that GOLD knows not to alter  the decimal point in 2.3
 
-To implement that dot notation, the GOLD interpret (celled `gold`):
-- Under the hood,  GOLD transpiles code  from `src/\*.md`  to  `.var/x.awk
-- The transpiler is a one line long:
+To implement that dot notation, the GOLD interpreter (celled `gold`):
+- GOLD transpiles code  from `src/\*.md`  to  `.var/x.awk. That transpiler is a one line long:
 
 ```
 s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
