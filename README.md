@@ -40,13 +40,6 @@ GOLDEN is a cross-platform development environment for GOLD based on bash, vim a
 
 <p align=center><a href="etc/img/screen.png"><img src="etc/img/screen900.png" width=900></a></p>
 
-One advantage with GOLDEN is that it defines itself using sub-directories
-relative to the position of the  main `gold`. This means that:
-
-- The system can be installed without changing external global config files
-- The system can be uninstalled just be zapping its directory.
-
-
 To support easy documentation
 
 - GOLD code is stored in x.md  markdown files 
@@ -86,6 +79,12 @@ To support unit testing:
 - Code in `src/x.md` has a test file `test/xok.md`. 
 - A shell script changes to /test and rules all the \*ok.md files
 - A .travis.yml file uses that script to retest the code after each commit
+
+To support easy install and uninstall:
+- All files in GOLDEN are defined relative to the position of the  main `gold`. 
+- So installation is mostly just unzipping a file to a directory
+- Uninstalling is  zapping that directory.
+
 
 ## Example
 Here's an iterator that prunes away columns that start with a "?" in their name.  A variable i.cells is reset for every step of the loop. This variable holds   just the columns we want to use
