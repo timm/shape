@@ -47,7 +47,6 @@ function Tabs(i) {
 ```
 ## TabsK() : ensure that we have a table for class `k`
 
-
 ```awk
 function TabsK(i,row,   k) {
   k = row[i.all.the.klass]

@@ -260,7 +260,6 @@ if(x~/[0-9]+/) intp[x]
 tests: 
 the var trick grep '\<r\>' \*.md
 
-
 Gold is a Gawk object layer.
 
 Iterators variables are usaually called `it` or `itr` or `itf` or some such.

@@ -28,7 +28,6 @@
 - [BestDiv()](#bestdiv--recursively-prune-worse-half-of-data) : recursively prune worse half of data
 - [Support Code](#support-code--connections-from-best-to-tab) : connections from `Best` to `Tab`
 
-
 ```awk
 @include "ape"
 @include "tab"
@@ -90,4 +89,3 @@ Note that when we talk to the table `t`, we use the columns
 function BestDist(i,t,x,y) {return TabDist(t,x,y, t.the[i.cols])}
 function BestFar( i,t,x,a) {return TabFar( t,x,a, t.the[i.cols])}
 ```
-

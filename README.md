@@ -34,7 +34,7 @@ To get started, see our [install](INSTALL.md) instructions and our
 - GAWK is very portable, very succinct, scripting language. 
 - GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
 - GOLDMINE are some data mining tools written in GOLD.
-- GOLDRUSH are a set of data mining fairness assurance operators. 
+- GOLDSTAR are a set of data mining fairness assurance operators. 
 - GOLDEN is a cross-platform development environment for the above,  based on bash, vim and tmux. 
 
 A session in GOLDEN looks like this:
@@ -44,14 +44,13 @@ A session in GOLDEN looks like this:
 To support easy documentation
 
 - GOLD code is stored in `x.md`  markdown files 
-- To give a repository a common look-and-feel,
-     the first paragraph of the main `README.md` can be automatically   pushed out to  all `*.md` filess
-    in the repo. 
+- To share (e.g.) a common site map for the repo,
+  - Para one of  the main `README.md` file can be auto copied    to  all `*.md` files
 
-To support easy access to nested fields
-- A dot notation is added 
-- e.g  `a.b.c = 2.3` becomes `a["b"]["c"] = 2.3`. 
-- Note that GOLD knows not to alter  the decimal point in 2.3
+To support easier access to nested array contents:
+- GOLD extends GAWK with a Python-like dot notation 
+  - e.g  `a.b.c = 2.3` becomes `a["b"]["c"] = 2.3`. 
+  - Note that GOLD knows not to alter  the decimal point in 2.3
 
 To implement that dot notation, the GOLD interpreter (celled `gold`):
 - Transpiles code  from `src/\*.md`  to  `.var/x.awk. That transpiler is a one line long:
@@ -68,14 +67,18 @@ To support polymorphism,
 - This, plus indirect functions, are  used to defined  polymorphic verbs e.g.
 
 ```awk
-function add(i,x,    f) { f=i.ois "Add";   return @f(i,x)  }
-function dec(i,x,    f) { f=i.ois "Dec";   return @f(i,x)  }
-function show(i,     f) { f=i.ois "Show";  return @f(i)    }
-function score(i,    f) { f=i.ois "Score"; return @f(i)    }
-function dist(i,x,y, f) { f=i.ois "Dist";  return @f(i,x,y)}
+function show(i,   f) { f=i.ois "Show";  return @f(i) }
+function doing(i,  f) { f=i.ois "Doing";  return @f(i)}
 ```    
 
-To support unit testing:
+To better support include libraries:
+- GOLD code rarely using `PATTERN {ACTION}` or `END {ACTION}` since those constructs assume that they are
+  the main controllers, not some sub-routine.
+- GOLD code rarely defines glolals. The current code base only uses two globals:
+  - `GOLD` : stores some system information. Defined in `src/obj.md`.
+  - `MY`   : stores constants. Defined in `src/my.md`. 
+
+To support automatic unit testing:
 - Code in `src/x.md` has a test file `test/xok.md`. 
 - A shell script changes to /test and rules all the \*ok.md files
 - A .travis.yml file uses that script to retest the code after each commit
@@ -83,14 +86,16 @@ To support unit testing:
 To support easy install and uninstall:
 - All files in GOLDEN are defined relative to the position of the  main `gold`. 
 - So installation is mostly just unzipping a file to a directory
-- Uninstalling is  zapping that directory.
+- And uninstalling is just zapping that directory.
 
 
 ## Example
-Here's an iterator that prunes away columns that start with a "?" in their name.  A variable i.cells is reset for every step of the loop. This variable holds   just the columns we want to use
+Here's an iterator that prunes away columns that start with a "?" in their name. 
+The result is the variable `i.cells`, which  is reset for every step of the loop.
+
 
      Row(it, "somecsvfile")    # Row defines "it", which is the iterator
-     while( Rows(it) ) { # Rows runs the Row interator
+     while( doing(it) ) { # Rows runs the Row interator
        print it.cells[1]
 
 Fyi- having coded this iterator in lua and python and coffeescript, I can assert that that the following is 
@@ -99,12 +104,14 @@ I've yet seen
 
 ```awk
 function Row(i,file) {
+  Object(i)
+  is(i,"Row")
   i.file = file
   has(i,"use") # aggregation
   has(i,"cells") # aggregation
   i.r = -1
 }
-function Rows(i,   c,tmp,n) {
+function RowDoing(i,   c,tmp,n) {
   if (!csv(tmp,i.file))   # iterators can be nested; e.g. csv is another iterator
     return 0              # signal end of iterator
   if (!length(i.use))   # the initialization step. only called for first rows
@@ -117,7 +124,7 @@ function Rows(i,   c,tmp,n) {
   return 1                # signal to continue the iteration
 }
 ```
-Iterators can be nested. e.g. the above code calls the csv iterator (no new objects here,  just good old GAWK):
+Iterators can be nested. e.g. the above code calls the `csv` iterator (no new objects here,  just good old GAWK):
 
 ```awk
 function csv(a,file,     b4, status,line) {

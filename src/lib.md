@@ -41,7 +41,6 @@
     - [csv()](#csv) 
     - [Row()](#row) 
 
-
 ## Maths
 
 ```awk
@@ -68,7 +67,6 @@ function anys(s, n,k){
 }
 ```
 ### copy() : deep copy
-
 
 ```awk
 function copy(a, b,     i){
