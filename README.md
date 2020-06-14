@@ -63,7 +63,9 @@ To implement the GOLD:
 - Code in src/\*.md is transpiled to .var/x.awk
 - The transpiler is a one line long:
 
-    s = gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
+```
+s = gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
+```
 
 To support object creation aggregation, and inheritance 
 - There is  30 likes of portable awk (so not preprocessing needed there)
@@ -72,16 +74,18 @@ To support polymorphism,
 - All  objects have a type field called   "ois". 
 - This, plus indirect functions, are  used to defined  polymorphic verbs e.g.
 
-    function add(i,x,    f) { f=i.ois "Add";   return @f(i,x)  }
-    function dec(i,x,    f) { f=i.ois "Dec";   return @f(i,x)  }
-    function show(i,     f) { f=i.ois "Show";  return @f(i)    }
-    function score(i,    f) { f=i.ois "Score"; return @f(i)    }
-    function dist(i,x,y, f) { f=i.ois "Dist";  return @f(i,x,y)}
-    
+```awk
+function add(i,x,    f) { f=i.ois "Add";   return @f(i,x)  }
+function dec(i,x,    f) { f=i.ois "Dec";   return @f(i,x)  }
+function show(i,     f) { f=i.ois "Show";  return @f(i)    }
+function score(i,    f) { f=i.ois "Score"; return @f(i)    }
+function dist(i,x,y, f) { f=i.ois "Dist";  return @f(i,x,y)}
+```    
+
 To support unit testing:
 - Code in `src/x.md` has a test file `test/xok.md`. 
 - A shell script changes to /test and rules all the \*ok.md files
-- A .travis.yml uses that script to retest the code after each commit
+- A .travis.yml file uses that script to retest the code after each commit
 
 ## Example
 Here's an iterator that prunes away columns that start with a "?" in their name.  A variable i.cells is reset for every step of the loop. This variable holds   just the columns we want to use
