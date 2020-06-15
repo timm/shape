@@ -32,6 +32,8 @@ To get started, see our [install](INSTALL.md) instructions and our
 ## What
 
 - GAWK is very portable, very succinct, scripting language. 
+  - It lacks encapsulation and packaging tools, an IDE, unit testing standards, or document generation tools. 
+  - Which is all easily fixed with a few scripts written in, you guessed it, GAWK.
 - GOLD is an object layer that extends GAWK with objects, aggregation, polymorphism and inheritance. 
 - GOLDMINE are some data mining tools written in GOLD.
 - GOLDSTAR are a set of data mining fairness assurance operators. 
@@ -42,9 +44,10 @@ To get started, see our [install](INSTALL.md) instructions and our
 
 To support easy documentation
 
-- GOLD code is stored in `x.md`  markdown files 
-- To share (e.g.) a common site map for the repo,
-  - Para one of  the main `README.md` file can be auto copied    to  all `*.md` files
+- GOLD code is stored in `x.md`  Markdown files (so can mix code and doc) 
+- There are also scripts to 
+  - Add a table of contents to your Markdown, if you want them.
+  - Share a common header across all `*.md` files (copied over from para1 of the main `README.md`)
 
 To support easier access to nested array contents:
 - GOLD extends GAWK with a Python-like dot notation 
@@ -54,7 +57,7 @@ To support easier access to nested array contents:
 To implement that dot notation, the GOLD interpreter (celled `gold`):
 - Transpiles code  from `src/\*.md`  to  `.var/x.awk. That transpiler is a one line long:
 
-```
+```awk
 s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
 ```
 
