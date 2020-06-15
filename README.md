@@ -55,11 +55,14 @@ To support easier access to nested array contents:
   - Note that GOLD knows not to alter  the decimal point in 2.3
 
 To implement that dot notation, the GOLD interpreter (celled `gold`):
-- Transpiles code  from `src/\*.md`  to  `.var/x.awk. That transpiler is a one line long:
+
+- Transpiles code  from `src/\*.md`  to  `.var/x.awk`. That transpiler is a one line long:
+
 
 ```awk
 s= gensub(/\.([^0-9\\*\\$\\+])([a-zA-Z0-9_]*)/,"[\"\\1\\2\"]","g",s)
 ```
+
 
 To support object creation aggregation, and inheritance 
 - There is  30 likes of portable awk (so not preprocessing needed there)
